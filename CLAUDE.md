@@ -4,31 +4,32 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Aaron Perkel's personal website (aaronperkel.com) — a small server-rendered PHP site (no build step, no JS framework), hosted on UVM's Apache/PHP shared hosting (`aperkel.w3.uvm.edu`, the "silk" server). This repo tracks the main portfolio site only. The live server also hosts self-contained sub-apps under the same webroot — `checklist/`, `riley21/`, `videos/` — which have their own separate repos in `~/Documents/projects/` and must not be added here. A working copy of the full live webroot is sometimes mounted/synced at `silk/` (gitignored); when present, it is the reference for what's actually deployed.
+Aaron Perkel's personal website (aaronperkel.com) — a Next.js (App Router) + Tailwind CSS v4 + TypeScript site, fully static, deployed on Vercel. It was migrated from a hand-written PHP site in July 2026 (the PHP version is in git history before that point). The old PHP-hosted sub-apps (`checklist/`, `riley21/`, `videos/`) were never part of this repo — they have their own repos in `~/Documents/projects/` and still live on UVM's server.
 
-## Repo layout
+## Commands
 
-All site code lives in `www-root/` — this is the actual document root served by Apache (the repo root is not the web root). Key files:
+```bash
+npm run dev     # dev server
+npm run build   # production build (all routes prerender static)
+npm run lint    # eslint
+```
 
-- `partials/layout.php` — emits the full `<head>` (per-page title/description from a `$pageMeta` array keyed by filename, JSON-LD schema, favicons) and opens `<body>`, then includes `partials/header.php` and `partials/nav.php`. Every page starts with `include 'partials/layout.php';`.
-- `partials/footer.php` — closes `</body></html>`, so it must be the last include on a page.
-- `index.php`, `about.php`, `resume.php` — the three real pages. Pattern: include `partials/layout.php` → include page data file → render → include `partials/footer.php`.
-- `data/about.php`, `data/resume.php` — page content as plain PHP arrays (`$aboutData`, `$resumeData`). This is the only "CMS" — edit these arrays to change site copy, resume entries, skills, etc. Values may contain raw HTML and are echoed unescaped, so only trusted content belongs here.
-- `generate_resume_pdf.php` — builds the same resume data into a standalone HTML document and renders it to PDF via Dompdf (`vendor/dompdf`). It has its own inline `<style>` markup — keep it in sync with `resume.php`/`public/css/style.css` if the resume layout changes.
-- `public/css/style.css`, `public/js/main.js` — single global stylesheet and script, loaded by `layout.php`. `main.js` is only included on `index.php` (project card popup behavior).
-- `public/img/` — static assets (icons, screenshots, favicons). Gitignored (`www-root/public/img/` in `.gitignore`); images are deployed separately, not committed.
-- `.htaccess` — forces HTTPS, rewrites `/about` and `/resume` to their `.php` files, excludes the `/riley21/` subsite (present on the server, not in this repo) from rewriting, serves `notfound.html` for 404s, and gzips common asset types.
+## Architecture
 
-## Conventions
+- **`data/*.ts` is the only "CMS"** — `projects.ts` (home-page cards), `about.ts`, `resume.ts`. Edit these to change site copy, resume entries, skills, etc. Several fields are HTML strings rendered with `dangerouslySetInnerHTML` (a carry-over from the PHP site), so only trusted content belongs there.
+- `app/layout.tsx` — Inter via `next/font`, site-wide metadata (favicons, manifest, apple-web-app), JSON-LD Person schema, and the Font Awesome kit script (`kit.fontawesome.com/c428e5511d.js`) that turns `<i class="fa-...">` into icons everywhere. Header/Nav/Footer render around every page.
+- `components/ProjectsGrid.tsx` — the one interactive piece: project cards + popup with prev/next. Opening `/?project=<Name>` auto-opens that card's popup (resume "Projects" links and old indexed URLs rely on this).
+- Design tokens (page/panel/primary/muted/accent colors) are Tailwind `@theme` variables in `app/globals.css`, carried over from the PHP site's stylesheet. Styling is Tailwind utilities in JSX; globals.css has only base element styles and the footer's Minecraft-icon hover gradient.
+- `app/robots.ts` / `app/sitemap.ts` generate robots.txt and sitemap.xml.
+- `next.config.ts` — permanent redirects from the PHP-era URLs (`/index.php`, `/about.php`, `/resume.php`, `/generate_resume_pdf.php`) and a rewrite mapping the old `/public/:path*` asset URLs onto `/:path*` (used by `public/me.html`, the web manifest, and any external hotlinks).
 
-- CSS/JS includes in `layout.php` are cache-busted with `?<?php echo time(); ?>` — there's no asset pipeline or versioning beyond that.
-- `$pathParts['filename']` (derived from `PHP_SELF` in `layout.php`) drives the `<body class="...">`, the `$pageMeta` lookup, the canonical URL, and the active nav link in `partials/nav.php` — keep this in mind if adding a new top-level page.
-- Dependencies are managed via Composer (`dompdf/dompdf`) with the vendor directory committed under `www-root/vendor/`; there's no other package manager or build process.
+## Static odds and ends
 
-## Working locally
+- `public/me.html` — standalone self-contained contact card (a printed luggage-tag QR code points at it). Not part of the Next app; don't rename its URL.
+- `public/resume.pdf` — static file linked from the resume page. It is **not** generated at build time; the old PHP/Dompdf generator was retired at migration. To update it: change `data/resume.ts`, then re-export a PDF by hand (or print the resume page) and replace this file.
+- `public/img/` — all images, committed to the repo (they were deployed out-of-band in the PHP era).
 
-There's no dev server script — serve `www-root/` with PHP's built-in server, e.g. `php -S localhost:8000 -t www-root`, then visit `/`, `/about.php`, `/resume.php`.
+## Deployment / hosting context
 
-## Deploying
-
-No deploy script in the repo; the live site is updated by manual file transfer to UVM's server (the gitignore references an SFTP client config). Committing and pushing here does not change the live site.
+- Vercel deploys from this repo; pushing to `main` updates production once the Vercel project is connected.
+- The UVM server (`aperkel.w3.uvm.edu`, "silk") still hosts the sub-apps and `cal.ics`; `minecraft.aaronperkel.com` points at a separate host. Keep those DNS records intact when changing domain settings.

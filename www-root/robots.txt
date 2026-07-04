@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /cal.ics
-
-Sitemap: https://aaronperkel.com/sitemap.xml

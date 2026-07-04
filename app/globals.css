@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+/* Design tokens carried over from the PHP site's style.css */
+@theme {
+  --color-page: #0b1a2a;
+  --color-panel: #12263f;
+  --color-header: #091622;
+  --color-primary: #e6f1ff;
+  --color-muted: #a3b1c2;
+  --color-accent: #58a6ff;
+  --color-accent-light: #79c0ff;
+
+  --font-sans: var(--font-inter), sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-page);
+    color: var(--color-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  a {
+    color: var(--color-accent);
+  }
+
+  a:hover {
+    color: var(--color-accent-light);
+    text-decoration: underline;
+  }
+}
+
+/* Minecraft server icon hover (footer) */
+.social-icons a[aria-label="Minecraft Server"]:hover i {
+  background: linear-gradient(to bottom, #56a555 32%, #764a29 32%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@view-transition {
+  navigation: auto;
+}
