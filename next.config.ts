@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
       { source: "/about.php", destination: "/about", permanent: true },
       { source: "/resume.php", destination: "/resume", permanent: true },
       { source: "/generate_resume_pdf.php", destination: "/resume.pdf", permanent: true },
+      // Sub-apps that still live on UVM's server (they were proxied by the
+      // old Cloudflare Worker; now they redirect to their real home).
+      { source: "/checklist/:path*", destination: "https://aperkel.w3.uvm.edu/checklist/:path*", permanent: false },
+      { source: "/riley21/:path*", destination: "https://aperkel.w3.uvm.edu/riley21/:path*", permanent: false },
+      { source: "/videos/:path*", destination: "https://aperkel.w3.uvm.edu/videos/:path*", permanent: false },
     ];
   },
   async rewrites() {

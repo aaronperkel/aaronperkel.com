@@ -21,7 +21,8 @@ npm run lint    # eslint
 - `components/ProjectsGrid.tsx` — the one interactive piece: project cards + popup with prev/next. Opening `/?project=<Name>` auto-opens that card's popup (resume "Projects" links and old indexed URLs rely on this).
 - Design tokens (page/panel/primary/muted/accent colors) are Tailwind `@theme` variables in `app/globals.css`, carried over from the PHP site's stylesheet. Styling is Tailwind utilities in JSX; globals.css has only base element styles and the footer's Minecraft-icon hover gradient.
 - `app/robots.ts` / `app/sitemap.ts` generate robots.txt and sitemap.xml.
-- `next.config.ts` — permanent redirects from the PHP-era URLs (`/index.php`, `/about.php`, `/resume.php`, `/generate_resume_pdf.php`) and a rewrite mapping the old `/public/:path*` asset URLs onto `/:path*` (used by `public/me.html`, the web manifest, and any external hotlinks).
+- `next.config.ts` — permanent redirects from the PHP-era URLs (`/index.php`, `/about.php`, `/resume.php`, `/generate_resume_pdf.php`), redirects sending the UVM-hosted sub-app paths (`/checklist`, `/riley21`, `/videos`) to `aperkel.w3.uvm.edu`, and a rewrite mapping the old `/public/:path*` asset URLs onto `/:path*` (used by `public/me.html`, the web manifest, and any external hotlinks).
+- **CLI/curl experience** (ported from a retired Cloudflare Worker): `proxy.ts` detects curl/httpie/wget user agents on `/`, `/help`, `/links`, `/projects`, `/json` and rewrites them to `app/cli/[page]/route.ts`, which serves plain text from `data/cli.ts` (ASCII-art landing, links, JSON). `/vcard` (app/vcard/route.ts) serves a downloadable contact card to everyone. Browsers hitting the CLI-only paths get the normal site/404.
 
 ## Static odds and ends
 
