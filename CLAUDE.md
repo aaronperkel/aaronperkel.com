@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Aaron Perkel's personal website (aaronperkel.com) — a small server-rendered PHP site (no build step, no JS framework). This repo tracks the main portfolio site only; the live server also hosts sub-apps (checklist, riley21, videos) that are not in this repo (see the sibling `silk/` directory and the CLAUDE.md one level up).
+Aaron Perkel's personal website (aaronperkel.com) — a small server-rendered PHP site (no build step, no JS framework), hosted on UVM's Apache/PHP shared hosting (`aperkel.w3.uvm.edu`, the "silk" server). This repo tracks the main portfolio site only. The live server also hosts self-contained sub-apps under the same webroot — `checklist/`, `riley21/`, `videos/` — which have their own separate repos in `~/Documents/projects/` and must not be added here. A working copy of the full live webroot is sometimes mounted/synced at `silk/` (gitignored); when present, it is the reference for what's actually deployed.
 
 ## Repo layout
 
-All site code lives in `www-root/` — this is the actual document root served by Apache (the project root is not the web root). Key files:
+All site code lives in `www-root/` — this is the actual document root served by Apache (the repo root is not the web root). Key files:
 
 - `partials/layout.php` — emits the full `<head>` (per-page title/description from a `$pageMeta` array keyed by filename, JSON-LD schema, favicons) and opens `<body>`, then includes `partials/header.php` and `partials/nav.php`. Every page starts with `include 'partials/layout.php';`.
 - `partials/footer.php` — closes `</body></html>`, so it must be the last include on a page.
@@ -31,4 +31,4 @@ There's no dev server script — serve `www-root/` with PHP's built-in server, e
 
 ## Deploying
 
-No deploy script in the repo; the live site is updated by manual file transfer to UVM's server. A working copy of the full live webroot lives in the sibling `silk/` directory — after changing shared files here, mirror them there.
+No deploy script in the repo; the live site is updated by manual file transfer to UVM's server (the gitignore references an SFTP client config). Committing and pushing here does not change the live site.

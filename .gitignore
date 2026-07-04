@@ -2,6 +2,9 @@
 www-root/public/img/
 repomix-output.txt
 
+# Working copy of the live UVM webroot, sometimes mounted/synced here
+silk/
+
 ##### Windows
 # Windows thumbnail cache files
 Thumbs.db
