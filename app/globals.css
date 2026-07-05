@@ -1,37 +1,59 @@
 @import "tailwindcss";
 
-/* Design tokens carried over from the PHP site's style.css */
+/* Design tokens. Neutral, document-like: white/near-black in light mode,
+   inverted in dark mode. Links are underlined ink, not colored. */
 @theme {
-  --color-page: #0b1a2a;
-  --color-panel: #12263f;
-  --color-header: #091622;
-  --color-primary: #e6f1ff;
-  --color-muted: #a3b1c2;
-  --color-accent: #58a6ff;
-  --color-accent-light: #79c0ff;
+  --color-page: #ffffff;
+  --color-ink: #171717;
+  --color-muted: #6f6f6f;
+  --color-rule: #e4e4e4;
 
-  --font-sans: var(--font-inter), sans-serif;
+  --font-serif: var(--font-plex-serif), Georgia, serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-page: #0a0a0a;
+    --color-ink: #ededed;
+    --color-muted: #969696;
+    --color-rule: #2a2a2a;
+  }
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    color-scheme: light dark;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 
   body {
     background: var(--color-page);
-    color: var(--color-primary);
-    line-height: 1.6;
-    overflow-x: hidden;
+    color: var(--color-ink);
+    line-height: 1.65;
   }
 
+  /* Prose links: underlined ink, quiet until hovered */
   a {
-    color: var(--color-accent);
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-decoration-color: var(--color-muted);
+    text-underline-offset: 3px;
   }
 
   a:hover {
-    color: var(--color-accent-light);
-    text-decoration: underline;
+    text-decoration-color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
   }
 }
 

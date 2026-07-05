@@ -8,15 +8,21 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <section className="mb-12 rounded-lg bg-panel px-8 py-16 text-center shadow-[0_4px_12px_rgba(0,0,0,0.1)]">
-        <div className="mx-auto max-w-[700px]">
-          <h1 className="mb-4 text-[clamp(2rem,5vw,3rem)] font-semibold">Hello! I’m Aaron.</h1>
-          <p>Network Technician @ UVM; B.S. in Computer Science.</p>
-        </div>
+      <section className="py-14">
+        <h1 className="text-[2rem] font-semibold leading-tight">Hello — I’m Aaron.</h1>
+        <p className="mt-4 max-w-[38rem]">
+          I’m a network technician at the University of Vermont with a B.S. in Computer
+          Science. I like building small, reliable systems: networks, web apps, and the
+          occasional Raspberry Pi project.
+        </p>
+        <p className="mt-6 font-mono text-[0.85rem] text-muted">
+          $ curl aaronperkel.com{" "}
+          <span className="max-sm:hidden"># this site works in your terminal, too</span>
+        </p>
       </section>
 
-      <section>
-        <h2 className="mx-auto mb-8 block pb-4 text-center text-[clamp(1.75rem,4vw,2.5rem)] font-semibold">
+      <section className="border-t border-rule pt-10">
+        <h2 className="mb-8 font-mono text-[0.8rem] font-medium uppercase tracking-[0.15em] text-muted">
           Projects
         </h2>
         <ProjectsGrid />

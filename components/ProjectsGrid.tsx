@@ -6,10 +6,9 @@ import { projects } from "@/data/projects";
 
 // Match the old main.js behavior: normalize NBSP so ?project=Blob Kart
 // matches names containing non-breaking spaces.
-const normalize = (s: string) => s.replace(/ /g, " ").trim();
+const normalize = (s: string) => s.replace(/ /g, " ").trim();
 
-const popupNavButton =
-  "fixed top-1/2 z-[1001] flex h-14 w-14 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-none bg-[rgba(40,58,80,0.7)] text-[1.8rem] text-primary transition-[background,scale] hover:bg-[rgba(50,72,99,0.9)] hover:scale-110 active:scale-95 max-md:top-auto max-md:bottom-4 max-md:h-12 max-md:w-12 max-md:translate-y-0 max-md:text-2xl";
+const pagerButton = "cursor-pointer font-mono text-[0.85rem] text-muted transition-colors hover:text-ink";
 
 export default function ProjectsGrid() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -23,89 +22,97 @@ export default function ProjectsGrid() {
     if (idx !== -1) setOpenIndex(idx);
   }, []);
 
-  // Disable background scroll while the popup is open
-  useEffect(() => {
-    document.body.classList.toggle("overflow-hidden", openIndex !== null);
-    return () => document.body.classList.remove("overflow-hidden");
-  }, [openIndex]);
-
   const close = () => setOpenIndex(null);
   const step = (delta: number) =>
     setOpenIndex((i) => (i === null ? null : (i + delta + projects.length) % projects.length));
+
+  // Disable background scroll and handle keyboard nav while the popup is open
+  useEffect(() => {
+    document.body.classList.toggle("overflow-hidden", openIndex !== null);
+    if (openIndex === null) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenIndex(null);
+      if (e.key === "ArrowLeft") step(-1);
+      if (e.key === "ArrowRight") step(1);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      document.body.classList.remove("overflow-hidden");
+    };
+  }, [openIndex]);
 
   const open = openIndex === null ? null : projects[openIndex];
 
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-6">
+      <div className="grid grid-cols-2 gap-x-6 gap-y-9 max-sm:grid-cols-1">
         {projects.map((project, idx) => (
-          <article
-            key={project.name}
-            onClick={() => setOpenIndex(idx)}
-            className="flex cursor-pointer flex-col overflow-hidden rounded-xl bg-panel shadow-[0_2px_8px_rgba(0,0,0,0.2)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_6px_16px_rgba(0,0,0,0.3)]"
-          >
+          <article key={project.name} className="group cursor-pointer" onClick={() => setOpenIndex(idx)}>
             <Image
               src={project.image}
               alt={project.name}
-              width={600}
-              height={200}
-              className="h-[200px] w-full object-cover"
+              width={640}
+              height={427}
+              className="aspect-[3/2] w-full rounded-[3px] border border-rule object-cover"
             />
-            <h3 className="mt-auto p-4 text-center text-[1.1rem]">{project.name}</h3>
+            <h3 className="mt-2.5 font-semibold group-hover:underline group-hover:underline-offset-4">
+              {project.name}
+            </h3>
+            <p className="mt-0.5 text-[0.9rem] text-muted">{project.tagline}</p>
           </article>
         ))}
       </div>
 
       {open && (
         <div
-          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/[0.88] p-4"
+          className="fixed inset-0 z-[1000] flex items-center justify-center bg-black/50 p-4 backdrop-blur-[2px]"
+          role="dialog"
+          aria-modal="true"
+          aria-label={open.name}
           onClick={close}
         >
-          <button
-            aria-label="Previous project"
-            className={`${popupNavButton} left-4 min-[800px]:left-[calc(50%-350px-4rem)]`}
-            onClick={(e) => {
-              e.stopPropagation();
-              step(-1);
-            }}
-          >
-            <i className="fa-solid fa-caret-left"></i>
-          </button>
-
           <div
-            className="relative max-h-[90vh] w-[90vw] max-w-[700px] overflow-y-auto rounded-xl bg-panel p-8 text-primary shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
+            className="flex max-h-[90vh] w-[90vw] max-w-[560px] flex-col rounded-md border border-rule bg-page"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              aria-label="Close"
-              className="absolute top-0 right-0 h-8 w-8 cursor-pointer text-center text-[1.2rem] leading-8 text-muted transition-[rotate,scale,color] duration-[250ms] hover:rotate-90 hover:scale-125 hover:text-accent active:scale-100"
-              onClick={close}
-            >
-              <i className="fa-solid fa-xmark fa-xl"></i>
-            </button>
-            <Image
-              src={open.image}
-              alt={open.name}
-              width={700}
-              height={400}
-              className="mx-auto mb-4 block w-full max-h-[60vh] rounded-lg object-contain"
-            />
-            <div className="mt-4 leading-[1.7] text-muted">
-              <h3 className="mb-3 text-primary">{open.name}</h3>
-              <p dangerouslySetInnerHTML={{ __html: open.descHtml }} />
+            <div className="flex items-center justify-between gap-4 border-b border-rule px-5 py-3">
+              <h3 className="font-semibold">{open.name}</h3>
+              <button
+                aria-label="Close"
+                className="cursor-pointer font-mono text-[1.1rem] leading-none text-muted transition-colors hover:text-ink"
+                onClick={close}
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="overflow-y-auto px-5 py-4">
+              <Image
+                src={open.image}
+                alt={open.name}
+                width={700}
+                height={467}
+                className="mx-auto max-h-[50vh] w-auto max-w-full rounded-[3px] border border-rule"
+              />
+              <p
+                className="mt-4 text-[0.95rem] leading-[1.7] text-muted"
+                dangerouslySetInnerHTML={{ __html: open.descHtml }}
+              />
+            </div>
+
+            <div className="flex items-center justify-between border-t border-rule px-5 py-3">
+              <button aria-label="Previous project" className={pagerButton} onClick={() => step(-1)}>
+                ← prev
+              </button>
+              <span className="font-mono text-[0.85rem] text-muted">
+                {(openIndex ?? 0) + 1} / {projects.length}
+              </span>
+              <button aria-label="Next project" className={pagerButton} onClick={() => step(1)}>
+                next →
+              </button>
             </div>
           </div>
-
-          <button
-            aria-label="Next project"
-            className={`${popupNavButton} right-4 min-[800px]:right-[calc(50%-350px-4rem)]`}
-            onClick={(e) => {
-              e.stopPropagation();
-              step(1);
-            }}
-          >
-            <i className="fa-solid fa-caret-right"></i>
-          </button>
         </div>
       )}
     </>

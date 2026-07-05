@@ -1,17 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import Script from "next/script";
+import { IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
-import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const plexSerif = IBM_Plex_Serif({
+  variable: "--font-plex-serif",
   subsets: ["latin"],
   weight: ["400", "600"],
+  style: ["normal", "italic"],
+});
+
+const plexMono = IBM_Plex_Mono({
+  variable: "--font-plex-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 export const metadata: Metadata = {
@@ -25,7 +30,7 @@ export const metadata: Metadata = {
       { url: "/img/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: [{ url: "/img/apple-touch-icon.png", sizes: "180x180" }],
-    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#58a6ff" }],
+    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#0f1a29" }],
   },
   manifest: "/img/site.webmanifest",
   appleWebApp: {
@@ -36,7 +41,10 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0F1A29",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+  ],
 };
 
 const personSchema = {
@@ -82,16 +90,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={inter.variable}>
-      <body className="mx-auto my-8 max-w-[80%] px-4 font-sans max-md:m-4 max-md:max-w-full max-md:px-0">
+    <html lang="en" className={`${plexSerif.variable} ${plexMono.variable}`}>
+      <body className="mx-auto flex min-h-svh max-w-[44rem] flex-col px-6 font-serif max-md:px-5">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        <Script src="https://kit.fontawesome.com/c428e5511d.js" crossOrigin="anonymous" />
         <Header />
-        <Nav />
-        {children}
+        <div className="flex-1">{children}</div>
         <Footer />
         <Analytics />
         <SpeedInsights />

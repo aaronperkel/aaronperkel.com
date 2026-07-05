@@ -1,8 +1,10 @@
 // Home-page project cards. `descHtml` may contain trusted HTML (links, etc.)
 // and is rendered with dangerouslySetInnerHTML — only trusted content belongs here.
+// `tagline` is the one-line summary shown under the card name in the grid.
 export interface Project {
   name: string;
   image: string;
+  tagline: string;
   descHtml: string;
 }
 
@@ -10,73 +12,57 @@ export const projects: Project[] = [
   {
     name: "Íocón",
     image: "/img/iocon.webp",
+    tagline: "Next.js storefront for an Irish dance graphics studio",
     descHtml:
       'Íocón is the business site I built for my girlfriend\'s custom Irish dance graphics studio — a gallery, multi-step order flows for each product, and a live waitlist, built with Next.js, TypeScript & Tailwind CSS. <a href="https://iocongraphics.com" target="_blank">View Site</a> · <a href="https://github.com/aaronperkel/iocon" target="_blank">GitHub Repo</a>',
   },
   {
     name: "UVM Sublets",
-    image: "/img/sublet.webp",
+    image: "/img/uvm-sublets.webp",
+    tagline: "Sublet listings platform for UVM students",
     descHtml:
-      'UVM Sublets is a PHP/MySQL platform for UVM students to post & manage sublet listings. Uses noUiSlider & Leaflet for filters & interactive maps. <a href="https://github.com/aaronperkel/sublet" target="_blank">GitHub Repo</a>',
+      'UVM Sublets is a platform I built for UVM students to find and post sublet listings — browse with price, distance, and semester filters, see every listing on an interactive Leaflet map, and sign in with a UVM NetID to post your own. PHP & MySQL, with noUiSlider and Leaflet on the front end. <a href="https://sublet.aperkel.w3.uvm.edu" target="_blank">View Site</a> · <a href="https://github.com/aaronperkel/sublet" target="_blank">GitHub Repo</a>',
   },
   {
     name: "Utility Manager",
-    image: "/img/utility.webp",
+    image: "/img/utility-manager.webp",
+    tagline: "Bill splitting & reminders for my apartment",
     descHtml:
-      "A personal portal for my two roommates’ and my utility bills—built with HTML, CSS, PHP, SQL & Python. Features include bill listing, cost splitting, PDF downloads, admin portal, email reminders (automated via Raspberry Pi). <a href=\"https://github.com/aaronperkel/Utility-Manager\" target=\"_blank\">GitHub Repo</a>",
+      'Utility Manager is the dashboard my roommates and I use to keep up with our gas, electric, and internet bills — it splits each bill, tracks who has paid, charts cost trends, publishes an iCal feed of due dates, and sends automated email reminders from a cron job. Built with PHP, MySQL & Python on UVM\'s web server. <a href="https://github.com/aaronperkel/Utility-Manager" target="_blank">GitHub Repo</a>',
   },
   {
     name: "Message/Doodle Board",
-    image: "/img/board.webp",
+    image: "/img/message-doodle-board.webp",
+    tagline: "Birthday guestbook with canvas doodles",
     descHtml:
-      'I built a lightweight birthday guestbook that lets visitors write notes or draw on a canvas; entries are saved to MySQL and rendered in a masonry gallery with live refresh. Stack: PHP (PDO), vanilla JS/Canvas, and a simple email notify flow with CSRF + honeypot spam protection. <a href="https://github.com/aaronperkel/message-doodle-board.git" target="_blank">GitHub Repo</a>',
+      'A guestbook I built for my girlfriend\'s 21st birthday — friends could leave a note or draw a doodle on a canvas, and every entry lands in a live-refreshing masonry gallery. PHP (PDO) and vanilla JS/Canvas, with CSRF + honeypot spam protection and an email ping when someone posts. <a href="https://aperkel.w3.uvm.edu/riley21/" target="_blank">View Site</a> · <a href="https://github.com/aaronperkel/message-doodle-board" target="_blank">GitHub Repo</a>',
   },
   {
     name: "Finance Tracker",
     image: "/img/finance-tracker.webp",
+    tagline: "Net-worth dashboard with Chart.js",
     descHtml:
-      'Developed a full-stack “Finance Tracker” web app (PHP, MySQL, JavaScript/Chart.js, CSS) to help users monitor net worth, manage accounts, and log work hours. <a href="https://github.com/aaronperkel/finance-tracker" target="_blank">GitHub Repo</a>',
+      'Finance Tracker is a personal net-worth dashboard: I log snapshots of each account and it charts balances, net worth over time, and logged work hours with Chart.js. Full-stack PHP, MySQL & vanilla JavaScript. <a href="https://github.com/aaronperkel/finance-tracker" target="_blank">GitHub Repo</a>',
   },
   {
     name: "Blob Kart",
-    image: "/img/img.gif",
+    image: "/img/blob-kart.gif",
+    tagline: "Two-player C++/OpenGL kart racer",
     descHtml:
-      'Blob Kart is a game inspired by Mario Kart created in C++ using GLM, GLFW, and OpenGL. My partner Owen Cook and I created this project for our Advanced Programming class at UVM. Graphics starter code was provided by the teaching assistants and the instructor. <a href="https://github.com/owncook/Blob-Kart" target="_blank">GitHub Repo</a>',
-  },
-  {
-    name: "Web Site Dev Final",
-    image: "/img/cs1080final.webp",
-    descHtml:
-      'This project was built with Lily Bonds using HTML, CSS & PHP for a fictitious company Green Mountain Cycles. It includes 5 pages and a form that emails submissions. <a href="https://courses.aperkel.w3.uvm.edu/cs1080/final/" target="_blank">View Site</a>',
-  },
-  {
-    name: "DormKit",
-    image: "/img/dormkit.webp",
-    descHtml:
-      'DormKit is a "smart dorm" prototype—Flask web app + Raspberry Pi + Arduino to control dorm electronics remotely. Built with Owen Cook, Alexa Witkin & Sam Zimpfer. <a href="https://github.com/aaronperkel/DormKit" target="_blank">GitHub Repo</a>',
+      'Blob Kart is a two-player kart racer inspired by Mario Kart, written with Owen Cook in C++ and OpenGL (GLM + GLFW) for UVM\'s Advanced Programming course. It has a character select screen, boost pads, and lap checkpoints so nobody can cheat by circling the finish line — and driving through the grass really does slow you down. Graphics starter code came from our instructor and TAs. <a href="https://github.com/owncook/Blob-Kart" target="_blank">GitHub Repo</a>',
   },
   {
     name: "Custom PCB",
-    image: "/img/pcb.webp",
+    image: "/img/custom-pcb.webp",
+    tagline: "KiCad board for a temperature-sensing glove",
     descHtml:
-      "Designed a custom KiCad PCB for a prosthetic glove detecting high temperatures to assist people with neuropathy.",
+      "I designed this custom PCB in KiCad for a prosthetic glove that senses dangerously hot surfaces — a warning system for people with neuropathy who can't feel heat themselves.",
   },
   {
     name: "Lights Out",
-    image: "/img/lightsout.gif",
+    image: "/img/lights-out.gif",
+    tagline: "Classic puzzle in C++ and OpenGL",
     descHtml:
-      'Lights Out is a puzzle where toggling a cell and its neighbors toggles lights on/off. Goal: turn off all lights. Built in C++ with GLM, GLFW & OpenGL by Owen Cook and me. <a href="https://github.com/aaronperkel/Lights-Out" target="_blank">GitHub Repo</a>',
+      'Lights Out is the classic puzzle: toggling a cell flips its neighbors too, and the goal is to switch every light off in as few clicks as possible. Owen Cook and I wrote it in C++ with OpenGL (GLM + GLFW). <a href="https://github.com/aaronperkel/Lights-Out" target="_blank">GitHub Repo</a>',
   },
-  {
-    name: "CodeBuilder",
-    image: "/img/combine.webp",
-    descHtml:
-      'CodeBuilder is an iOS app to learn coding via drag‑and‑drop code blocks, articles, daily challenges & community forum. <a href="https://github.com/gohacki/CodeBuilder" target="_blank">GitHub Repo</a>',
-  },
-  // {
-  //   name: "Room Status Sign",
-  //   image: "/img/sign.webp",
-  //   descHtml:
-  //     'An E‑Ink door display showing my current status (e.g. "Do Not Disturb") with timeframe, powered by Flask on Raspberry Pi. <a href="https://github.com/aaronperkel/Room-Display-Sign" target="_blank">GitHub Repo</a>',
-  // },
 ];

@@ -9,7 +9,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/resume`, priority: 0.8 },
     { url: `${base}/?project=UVM%20Sublets`, priority: 0.64 },
     { url: `${base}/?project=Utility%20Manager`, priority: 0.64 },
-    { url: `${base}/?project=CodeBuilder`, priority: 0.64 },
     { url: `${base}/?project=Blob%20Kart`, priority: 0.64 },
   ];
 }

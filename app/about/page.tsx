@@ -10,38 +10,30 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <main>
-      <div className="grid grid-cols-1 gap-8 py-4 md:grid-cols-2">
-        <h2 className="col-span-full border-b-2 border-accent pb-2 text-center text-[2.25rem] font-semibold">
-          {aboutData.pageTitle}
-        </h2>
+    <main className="py-14">
+      <h1 className="text-[2rem] font-semibold leading-tight">{aboutData.pageTitle}</h1>
 
-        {aboutData.sections.map((section) => (
-          <div
-            key={section.title}
-            className="rounded-lg bg-panel p-6 shadow-[0_2px_8px_rgba(0,0,0,0.3)]"
-          >
-            <h3 className="mb-3 font-semibold text-accent">{section.title}</h3>
-            {section.contentHtml && (
-              <p
-                className="leading-normal text-muted"
-                dangerouslySetInnerHTML={{ __html: section.contentHtml }}
-              />
-            )}
-            {section.list && (
-              <ul className="text-muted">
-                {section.list.map((item, i) => (
-                  <li
-                    key={i}
-                    className="relative mb-2 pl-5 before:absolute before:left-0 before:text-accent before:content-['▹']"
-                    dangerouslySetInnerHTML={{ __html: item }}
-                  />
-                ))}
-              </ul>
-            )}
-          </div>
-        ))}
-      </div>
+      {aboutData.sections.map((section) => (
+        <section key={section.title} className="mt-10">
+          <h2 className="mb-3 font-mono text-[0.8rem] font-medium uppercase tracking-[0.15em] text-muted">
+            {section.title}
+          </h2>
+          {section.contentHtml && (
+            <p dangerouslySetInnerHTML={{ __html: section.contentHtml }} />
+          )}
+          {section.list && (
+            <ul>
+              {section.list.map((item, i) => (
+                <li
+                  key={i}
+                  className="relative mb-2 pl-5 before:absolute before:left-0 before:text-muted before:content-['–']"
+                  dangerouslySetInnerHTML={{ __html: item }}
+                />
+              ))}
+            </ul>
+          )}
+        </section>
+      ))}
     </main>
   );
 }

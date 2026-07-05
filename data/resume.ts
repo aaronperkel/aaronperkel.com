@@ -1,7 +1,6 @@
 // Resume content — the single source for both the /resume page and the
 // PDF generated at build time by app/resume.pdf/route.ts.
 export interface ContactItem {
-  icon: string; // Font Awesome class, e.g. "fas fa-envelope"
   label: string;
   href?: string;
 }
@@ -38,13 +37,13 @@ export interface ResumeProject {
 export const resumeData = {
   name: "Aaron Perkel",
   contactInfo: [
-    { icon: "fas fa-envelope", label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
-    { icon: "fas fa-phone", label: "(478) 262-8935", href: "tel:4782628935" },
-    { icon: "fas fa-map-marker-alt", label: "77 N Union St #3, Burlington, VT 05401" },
-    { icon: "fas fa-globe", label: "aaronperkel.com", href: "https://aaronperkel.com" },
-    // Short labels for the sidebar; the PDF shows the full host/path from href.
-    { icon: "fab fa-github", label: "/aaronperkel", href: "https://github.com/aaronperkel" },
-    { icon: "fab fa-linkedin", label: "/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
+    { label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
+    { label: "(478) 262-8935", href: "tel:4782628935" },
+    { label: "77 N Union St #3, Burlington, VT 05401" },
+    // Web page and PDF both show the full host/path from href for http links.
+    { label: "aaronperkel.com", href: "https://aaronperkel.com" },
+    { label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },
+    { label: "linkedin.com/in/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
   ] satisfies ContactItem[],
   honorsAndAwards: [
     { title: "Golden Key Honor Society", date: "Oct 2023" },
@@ -105,7 +104,8 @@ export const resumeData = {
   projects: [
     { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "PHP/MySQL platform for off-campus housing listings" },
     { link: "/?project=Utility%20Manager", name: "Utility Manager", description: "Web portal for splitting & tracking roommate bills" },
-    { link: "/?project=CodeBuilder", name: "CodeBuilder", description: "iOS app teaching coding via drag-and-drop blocks" },
+    // CodeBuilder is no longer on the home-page grid, so link straight to the repo.
+    { link: "https://github.com/gohacki/CodeBuilder", name: "CodeBuilder", description: "iOS app teaching coding via drag-and-drop blocks" },
     { link: "/?project=Blob%20Kart", name: "Blob Kart", description: "C++/OpenGL racing game for Advanced Programming class" },
   ] satisfies ResumeProject[],
 };
