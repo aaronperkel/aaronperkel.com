@@ -73,7 +73,7 @@ export default function ProjectsGrid() {
           onClick={close}
         >
           <div
-            className="flex max-h-[90vh] w-[90vw] max-w-[560px] flex-col rounded-md border border-rule bg-page"
+            className="flex h-[660px] max-h-[85vh] w-[90vw] max-w-[560px] flex-col rounded-md border border-rule bg-page"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between gap-4 border-b border-rule px-5 py-3">
@@ -87,13 +87,13 @@ export default function ProjectsGrid() {
               </button>
             </div>
 
-            <div className="overflow-y-auto px-5 py-4">
+            <div className="flex-1 overflow-y-auto px-5 py-4">
               <Image
                 src={open.image}
                 alt={open.name}
                 width={700}
                 height={467}
-                className="mx-auto max-h-[50vh] w-auto max-w-full rounded-[3px] border border-rule"
+                className="mx-auto h-[340px] w-auto max-w-full rounded-[3px] border border-rule object-contain"
               />
               <p
                 className="mt-4 text-[0.95rem] leading-[1.7] text-muted"
