@@ -16,9 +16,6 @@ export default function Footer() {
           <a href="https://instagram.com/aaronperkel" aria-label="Instagram" className="ml-2 text-xl text-muted hover:text-accent">
             <i className="fab fa-instagram"></i>
           </a>
-          <a href="https://minecraft.aaronperkel.com" aria-label="Minecraft Server" className="ml-2 text-xl text-muted hover:text-accent">
-            <i className="fa-solid fa-square-full"></i>
-          </a>
         </div>
       </div>
     </footer>

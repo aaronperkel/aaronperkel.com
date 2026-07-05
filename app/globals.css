@@ -35,14 +35,6 @@
   }
 }
 
-/* Minecraft server icon hover (footer) */
-.social-icons a[aria-label="Minecraft Server"]:hover i {
-  background: linear-gradient(to bottom, #56a555 32%, #764a29 32%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 @view-transition {
   navigation: auto;
 }
