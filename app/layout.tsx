@@ -62,7 +62,7 @@ const personSchema = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "81 Buell St #1",
+    streetAddress: "77 N Union St #3",
     addressLocality: "Burlington",
     addressRegion: "VT",
     postalCode: "05401",

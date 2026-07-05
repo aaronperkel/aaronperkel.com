@@ -68,5 +68,6 @@ N:Perkel;Aaron;;;
 FN:Aaron Perkel
 EMAIL;TYPE=INTERNET,PREF:me@aaronperkel.com
 TEL;TYPE=CELL:478-262-8935
+ADR;TYPE=HOME:;;77 N Union St #3;Burlington;VT;05401;USA
 URL:https://aaronperkel.com
 END:VCARD`.trim();

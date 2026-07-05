@@ -40,10 +40,11 @@ export const resumeData = {
   contactInfo: [
     { icon: "fas fa-envelope", label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
     { icon: "fas fa-phone", label: "(478) 262-8935", href: "tel:4782628935" },
-    { icon: "fas fa-map-marker-alt", label: "81 Buell St #1, Burlington VT 05401" },
+    { icon: "fas fa-map-marker-alt", label: "77 N Union St #3, Burlington, VT 05401" },
     { icon: "fas fa-globe", label: "aaronperkel.com", href: "https://aaronperkel.com" },
-    { icon: "fab fa-github", label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },
-    { icon: "fab fa-linkedin", label: "linkedin.com/in/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
+    // Short labels for the sidebar; the PDF shows the full host/path from href.
+    { icon: "fab fa-github", label: "/aaronperkel", href: "https://github.com/aaronperkel" },
+    { icon: "fab fa-linkedin", label: "/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
   ] satisfies ContactItem[],
   honorsAndAwards: [
     { title: "Golden Key Honor Society", date: "Oct 2023" },

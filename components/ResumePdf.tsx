@@ -75,6 +75,11 @@ const styles = StyleSheet.create({
   bold: { fontFamily: "Helvetica-Bold" },
 });
 
+// Web labels can be shorthand like "/aaronperkel"; on paper the full
+// host/path from the href is more useful, so derive it for http(s) links.
+const display = (item: ContactItem) =>
+  item.href?.startsWith("http") ? item.href.replace(/^https?:\/\//, "") : item.label;
+
 function ContactLine({ items }: { items: ContactItem[] }) {
   return (
     <View style={styles.contactRow}>
@@ -84,7 +89,7 @@ function ContactLine({ items }: { items: ContactItem[] }) {
           <Text>
             {item.href ? (
               <Link src={item.href} style={styles.link}>
-                {item.label}
+                {display(item)}
               </Link>
             ) : (
               item.label
