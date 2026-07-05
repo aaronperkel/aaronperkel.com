@@ -23,7 +23,7 @@ export default function Resume() {
               {resumeData.contactInfo.map((item, i) => (
                 <li key={i} className="mb-3 text-[0.95rem]">
                   <i className={item.icon}></i>{" "}
-                  <span dangerouslySetInnerHTML={{ __html: item.html }} />
+                  {item.href ? <a href={item.href}>{item.label}</a> : item.label}
                 </li>
               ))}
             </ul>
@@ -80,10 +80,15 @@ export default function Resume() {
             Skills &amp; Interests
           </h3>
           <div className="grid grid-cols-2 gap-4">
-            {resumeData.skillsAndInterests.categories.map((category, i) => (
+            {[
+              resumeData.skills.slice(0, Math.ceil(resumeData.skills.length / 2)),
+              resumeData.skills.slice(Math.ceil(resumeData.skills.length / 2)),
+            ].map((column, i) => (
               <ul key={i}>
-                {category.map((skill, j) => (
-                  <li key={j} className={arrowLi} dangerouslySetInnerHTML={{ __html: skill }} />
+                {column.map((group) => (
+                  <li key={group.category} className={arrowLi}>
+                    <strong>{group.category}:</strong> {group.items.join(", ")}
+                  </li>
                 ))}
               </ul>
             ))}

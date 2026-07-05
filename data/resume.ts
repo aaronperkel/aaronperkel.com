@@ -1,8 +1,9 @@
-// Resume content. `html` fields may contain trusted HTML and are rendered
-// with dangerouslySetInnerHTML — only trusted content belongs here.
+// Resume content — the single source for both the /resume page and the
+// PDF generated at build time by app/resume.pdf/route.ts.
 export interface ContactItem {
   icon: string; // Font Awesome class, e.g. "fas fa-envelope"
-  html: string;
+  label: string;
+  href?: string;
 }
 
 export interface Honor {
@@ -23,6 +24,11 @@ export interface School {
   time: string;
 }
 
+export interface SkillGroup {
+  category: string;
+  items: string[];
+}
+
 export interface ResumeProject {
   link: string;
   name: string;
@@ -30,14 +36,14 @@ export interface ResumeProject {
 }
 
 export const resumeData = {
-  pageTitle: "Resume",
+  name: "Aaron Perkel",
   contactInfo: [
-    { icon: "fas fa-envelope", html: '<a href="mailto:me@aaronperkel.com">me@aaronperkel.com</a>' },
-    { icon: "fas fa-phone", html: '<a href="tel:4782628935">(478) 262‑8935</a>' },
-    { icon: "fas fa-map-marker-alt", html: "81 Buell St #1, Burlington VT 05401" },
-    { icon: "fas fa-globe", html: '<a href="https://aaronperkel.com">https://aaronperkel.com</a>' },
-    { icon: "fab fa-github", html: '<a href="https://github.com/aaronperkel">/aaronperkel</a>' },
-    { icon: "fab fa-linkedin", html: '<a href="https://linkedin.com/in/aaronperkel">/aaronperkel</a>' },
+    { icon: "fas fa-envelope", label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
+    { icon: "fas fa-phone", label: "(478) 262-8935", href: "tel:4782628935" },
+    { icon: "fas fa-map-marker-alt", label: "81 Buell St #1, Burlington VT 05401" },
+    { icon: "fas fa-globe", label: "aaronperkel.com", href: "https://aaronperkel.com" },
+    { icon: "fab fa-github", label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },
+    { icon: "fab fa-linkedin", label: "linkedin.com/in/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
   ] satisfies ContactItem[],
   honorsAndAwards: [
     { title: "Golden Key Honor Society", date: "Oct 2023" },
@@ -70,8 +76,8 @@ export const resumeData = {
     //   time: "Jan 2024 – May 2025 • 1 yr 5 mos",
     //   details: [
     //     "Grade weekly assignments and provide detailed feedback",
-    //     "Co‑develop lecture materials and lab exercises for CS2100 & CS2300",
-    //     "Built a Java‑based autograder leveraging JUnit to streamline grading",
+    //     "Co-develop lecture materials and lab exercises for CS2100 & CS2300",
+    //     "Built a Java-based autograder leveraging JUnit to streamline grading",
     //   ],
     // },
   ] satisfies Job[],
@@ -87,24 +93,18 @@ export const resumeData = {
     //   time: "Admitted",
     // },
   ] satisfies School[],
-  skillsAndInterests: {
-    categories: [
-      [
-        "<strong>Languages:</strong> Python, Java, C++, C",
-        "<strong>Web:</strong> HTML5, CSS3, PHP",
-        "<strong>Mobile:</strong> iOS (Swift), Xcode",
-      ],
-      [
-        "<strong>Database:</strong> SQL",
-        "<strong>Tools:</strong> Git, Docker, NGINX",
-        "<strong>Soft Skills:</strong> Leadership, Communication, Problem‑Solving",
-      ],
-    ],
-  },
+  skills: [
+    { category: "Languages", items: ["Python", "Java", "C++", "C"] },
+    { category: "Web", items: ["HTML5", "CSS3", "PHP"] },
+    { category: "Mobile", items: ["iOS (Swift)", "Xcode"] },
+    { category: "Database", items: ["SQL"] },
+    { category: "Tools", items: ["Git", "Docker", "NGINX"] },
+    { category: "Soft Skills", items: ["Leadership", "Communication", "Problem-Solving"] },
+  ] satisfies SkillGroup[],
   projects: [
-    { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "PHP/MySQL platform for off‑campus housing listings" },
+    { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "PHP/MySQL platform for off-campus housing listings" },
     { link: "/?project=Utility%20Manager", name: "Utility Manager", description: "Web portal for splitting & tracking roommate bills" },
-    { link: "/?project=CodeBuilder", name: "CodeBuilder", description: "iOS app teaching coding via drag‑and‑drop blocks" },
+    { link: "/?project=CodeBuilder", name: "CodeBuilder", description: "iOS app teaching coding via drag-and-drop blocks" },
     { link: "/?project=Blob%20Kart", name: "Blob Kart", description: "C++/OpenGL racing game for Advanced Programming class" },
   ] satisfies ResumeProject[],
 };
