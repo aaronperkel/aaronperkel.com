@@ -24,7 +24,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ page: s
     case "links":
       return text(linksTxt + "\n");
     case "json":
-      return text(JSON.stringify(cliJson), "application/json; charset=utf-8");
+      return text(JSON.stringify(cliJson, null, 2) + "\n", "application/json; charset=utf-8");
     default:
       return new Response("Not found\n", { status: 404 });
   }
