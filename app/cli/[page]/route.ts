@@ -1,5 +1,13 @@
 import { headerTxt, landing, linksTxt, helpTxt, cliJson } from "@/data/cli";
 
+// Prerender all four pages at build time so `curl aaronperkel.com` hits the
+// CDN instead of cold-starting a function (headers are preserved, like resume.pdf).
+export const dynamic = "force-static";
+
+export function generateStaticParams() {
+  return ["home", "help", "links", "json"].map((page) => ({ page }));
+}
+
 const text = (body: string, type = "text/plain; charset=utf-8") =>
   new Response(body, {
     headers: { "content-type": type, "x-aaron-cli": "1" },

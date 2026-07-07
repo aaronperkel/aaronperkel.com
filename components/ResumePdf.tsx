@@ -160,7 +160,10 @@ export default function ResumePdf() {
         <Text style={styles.sectionTitle}>Projects</Text>
         {projects.map((project) => (
           <Bullet key={project.name}>
-            <Link src={`${SITE}${project.link}`} style={styles.link}>
+            <Link
+              src={project.link.startsWith("http") ? project.link : `${SITE}${project.link}`}
+              style={styles.link}
+            >
               {project.name}
             </Link>
             {project.description ? ` — ${project.description}` : ""}

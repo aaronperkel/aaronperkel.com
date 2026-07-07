@@ -39,7 +39,8 @@ export const resumeData = {
   contactInfo: [
     { label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
     { label: "(478) 262-8935", href: "tel:4782628935" },
-    { label: "77 N Union St #3, Burlington, VT 05401" },
+    // City/state only — the full street address doesn't belong on a public page.
+    { label: "Burlington, VT" },
     // Web page and PDF both show the full host/path from href for http links.
     { label: "aaronperkel.com", href: "https://aaronperkel.com" },
     { label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },

@@ -12,7 +12,7 @@ export const headerTxt = `
 
 export const landing = `
 About
-- CS + Networks @ UVM
+- Network Technician @ UVM — B.S. Computer Science '25
 - I build infra tools and tinker a lot.
 
 Links
@@ -33,7 +33,8 @@ Links / Projects
 - About:   https://aaronperkel.com/about
 - Resume:  https://aaronperkel.com/resume
 
-Code & Repos
+Projects
+- Íocón: https://iocongraphics.com
 - Utility Manager: https://github.com/aaronperkel/Utility-Manager
 - UVM Sublets: https://github.com/aaronperkel/sublet
 - Finance Tracker: https://github.com/aaronperkel/finance-tracker`.trim();
@@ -55,12 +56,14 @@ export const cliJson = {
     { title: "Resume", url: "https://aaronperkel.com/resume" },
   ],
   projects: [
+    { title: "Íocón", url: "https://iocongraphics.com" },
     { title: "Utility Manager", url: "https://github.com/aaronperkel/Utility-Manager" },
     { title: "UVM Sublets", url: "https://github.com/aaronperkel/sublet" },
     { title: "Finance Tracker", url: "https://github.com/aaronperkel/finance-tracker" },
   ],
 };
 
+// No home address here — this file is downloadable by anyone on the internet.
 export const vcard = `
 BEGIN:VCARD
 VERSION:3.0
@@ -68,6 +71,5 @@ N:Perkel;Aaron;;;
 FN:Aaron Perkel
 EMAIL;TYPE=INTERNET,PREF:me@aaronperkel.com
 TEL;TYPE=CELL:478-262-8935
-ADR;TYPE=HOME:;;77 N Union St #3;Burlington;VT;05401;USA
 URL:https://aaronperkel.com
 END:VCARD`.trim();

@@ -1,6 +1,8 @@
 import { vcard } from "@/data/cli";
 
 // Downloadable contact card (available to browsers and CLI alike).
+export const dynamic = "force-static";
+
 export function GET() {
   return new Response(vcard, {
     headers: {

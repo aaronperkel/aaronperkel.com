@@ -1,22 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { IBM_Plex_Serif, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import "./globals.css";
 
-const plexSerif = IBM_Plex_Serif({
+// Self-hosted from committed files (Fontsource latin-subset woff2) rather than
+// next/font/google so builds never depend on reaching Google Fonts.
+const plexSerif = localFont({
   variable: "--font-plex-serif",
-  subsets: ["latin"],
-  weight: ["400", "600"],
-  style: ["normal", "italic"],
+  src: [
+    { path: "../assets/fonts/ibm-plex-serif-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../assets/fonts/ibm-plex-serif-latin-600-normal.woff2", weight: "600", style: "normal" },
+  ],
+  adjustFontFallback: "Times New Roman",
 });
 
-const plexMono = IBM_Plex_Mono({
+const plexMono = localFont({
   variable: "--font-plex-mono",
-  subsets: ["latin"],
-  weight: ["400", "500"],
+  src: [
+    { path: "../assets/fonts/ibm-plex-mono-latin-400-normal.woff2", weight: "400", style: "normal" },
+    { path: "../assets/fonts/ibm-plex-mono-latin-500-normal.woff2", weight: "500", style: "normal" },
+  ],
 });
 
 export const metadata: Metadata = {
@@ -38,6 +44,15 @@ export const metadata: Metadata = {
     title: "AP",
     statusBarStyle: "default",
   },
+  // og:title/og:description fall back to each page's resolved title/description.
+  openGraph: {
+    type: "website",
+    url: "https://aaronperkel.com",
+    siteName: "Aaron Perkel",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export const viewport: Viewport = {
@@ -47,11 +62,14 @@ export const viewport: Viewport = {
   ],
 };
 
+// Deliberately no street address, birth date, or other PII here — this JSON
+// blob is served machine-readable to every scraper. City/state is enough.
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Aaron Coleman Perkel",
+  name: "Aaron Perkel",
   url: "https://aaronperkel.com",
+  email: "mailto:me@aaronperkel.com",
   sameAs: [
     "https://github.com/aaronperkel",
     "https://linkedin.com/in/aaronperkel",
@@ -72,15 +90,10 @@ const personSchema = {
   ],
   address: {
     "@type": "PostalAddress",
-    streetAddress: "77 N Union St #3",
     addressLocality: "Burlington",
     addressRegion: "VT",
-    postalCode: "05401",
     addressCountry: "US",
   },
-  birthPlace: "Richmond, VA",
-  birthDate: "2003-11-11",
-  gender: "Male",
   image: "https://aaronperkel.com/img/headshot.webp",
 };
 
@@ -89,8 +102,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // data-scroll-behavior lets Next disable the CSS smooth scrolling (used for
+  // in-page anchors) during route transitions, so page changes jump instantly
   return (
-    <html lang="en" className={`${plexSerif.variable} ${plexMono.variable}`}>
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${plexSerif.variable} ${plexMono.variable}`}
+    >
       <body className="mx-auto flex min-h-svh max-w-[44rem] flex-col px-6 font-serif max-md:px-5">
         <script
           type="application/ld+json"

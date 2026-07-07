@@ -491,3 +491,5 @@ composer.lock
 *.scss.map
 
 resume-static.html
+# Claude Code local settings
+.claude/settings.local.json

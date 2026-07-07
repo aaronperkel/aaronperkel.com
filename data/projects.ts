@@ -46,7 +46,7 @@ export const projects: Project[] = [
   },
   {
     name: "Blob Kart",
-    image: "/img/blob-kart.gif",
+    image: "/img/blob-kart.webp",
     tagline: "Two-player C++/OpenGL kart racer",
     descHtml:
       'Blob Kart is a two-player kart racer inspired by Mario Kart, written with Owen Cook in C++ and OpenGL (GLM + GLFW) for UVM\'s Advanced Programming course. It has a character select screen, boost pads, and lap checkpoints so nobody can cheat by circling the finish line — and driving through the grass really does slow you down. Graphics starter code came from our instructor and TAs. <a href="https://github.com/owncook/Blob-Kart" target="_blank">GitHub Repo</a>',
@@ -60,7 +60,7 @@ export const projects: Project[] = [
   },
   {
     name: "Lights Out",
-    image: "/img/lights-out.gif",
+    image: "/img/lights-out.webp",
     tagline: "Classic puzzle in C++ and OpenGL",
     descHtml:
       'Lights Out is the classic puzzle: toggling a cell flips its neighbors too, and the goal is to switch every light off in as few clicks as possible. Owen Cook and I wrote it in C++ with OpenGL (GLM + GLFW). <a href="https://github.com/aaronperkel/Lights-Out" target="_blank">GitHub Repo</a>',
