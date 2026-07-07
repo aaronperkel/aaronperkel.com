@@ -36,7 +36,7 @@ export const metadata: Metadata = {
       { url: "/img/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: [{ url: "/img/apple-touch-icon.png", sizes: "180x180" }],
-    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#0f1a29" }],
+    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#171717" }],
   },
   manifest: "/img/site.webmanifest",
   appleWebApp: {
