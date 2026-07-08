@@ -33,14 +33,11 @@ const endpoint = (path: string, comment: string) =>
 const project = (name: string, tagline: string, url: string) =>
   name.padEnd(17) + note(tagline) + "\n" + " ".repeat(17) + link(url);
 
-// ---- Header (≈67 cols). Keep leading spaces; strip only the end. ----
-export const headerTxt = `
-    ___                             ____            __        __
-   /   | ____ __________  ____     / __ \\___  _____/ /_____  / /
-  / /| |/ __ \`/ ___/ __ \\/ __ \\   / /_/ / _ \\/ ___/ //_/ _ \\/ /
- / ___ / /_/ / /  / /_/ / / / /  / ____/  __/ /  / ,< /  __/ /
-/_/  |_|\\__,_/_/   \\____/_/ /_/  /_/    \\___/_/  /_/|_|\\___/_/
-`.replace(/\s+$/, ""); // do NOT .trim(); it would kill the left padding
+// ---- Header: "AARON PERKEL" in half-block caps (46 cols, 2 rows). ----
+export const headerTxt = [
+  "▄▀█ ▄▀█ █▀█ █▀█ █▄ █   █▀█ █▀▀ █▀█ █▄▀ █▀▀ █",
+  "█▀█ █▀█ █▀▄ █▄█ █ ▀█   █▀▀ ██▄ █▀▄ █ █ ██▄ █▄▄",
+].join("\n");
 
 export const landing = [
   "I'm a network technician at the University of Vermont with a",
