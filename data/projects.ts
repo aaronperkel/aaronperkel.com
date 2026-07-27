@@ -10,11 +10,11 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    name: "Íocón",
+    name: "Iocon Graphics",
     image: "/img/iocon.webp",
     tagline: "Next.js storefront for an Irish dance graphics studio",
     descHtml:
-      'Íocón is the business site I built for my girlfriend\'s custom Irish dance graphics studio — a gallery, multi-step order flows for each product, and a live waitlist, built with Next.js, TypeScript & Tailwind CSS. <a href="https://iocongraphics.com" target="_blank">View Site</a> · <a href="https://github.com/aaronperkel/iocon" target="_blank">GitHub Repo</a>',
+      'Iocon is the business site I built for my girlfriend\'s custom Irish dance graphics studio — a gallery, multi-step order flows for each product, and a live waitlist, built with Next.js, TypeScript & Tailwind CSS. <a href="https://iocongraphics.com" target="_blank">View Site</a> · <a href="https://github.com/aaronperkel/iocon" target="_blank">GitHub Repo</a>',
   },
   {
     name: "UVM Sublets",
