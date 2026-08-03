@@ -32,6 +32,8 @@ export interface ResumeProject {
   link: string;
   name: string;
   description?: string;
+  // Optional sub-bullets for the projects worth more than a one-liner.
+  details?: string[];
 }
 
 export const resumeData = {
@@ -62,30 +64,29 @@ export const resumeData = {
       ],
     },
     {
+      title: "Computer Science Teaching Assistant",
+      location: "University of Vermont – Burlington, VT",
+      time: "Jan 2024 – May 2025 • 1 yr 5 mos",
+      details: [
+        "Built a Java autograder on JUnit that replaced manual grading for two courses",
+        "Co-developed lecture materials and lab exercises for CS2100 & CS2300",
+        "Reviewed weekly assignments and gave line-level feedback on student code",
+      ],
+    },
+    {
       title: "ETS Student Technician - Level II",
       location: "University of Vermont – Burlington, VT",
       time: "Nov 2023 – May 2025 • 1 yr 7 mos",
       details: [
-        "Primary IT support contact for UVM staff & students",
-        "Respond to tickets via phone & email; escalated to the appropriate group",
+        "Primary IT support contact for UVM staff & students; triaged and escalated tickets",
         "Maintained internal documentation and assisted lower level techs",
       ],
     },
-    // {
-    //   title: "Computer Science Teaching Assistant",
-    //   location: "University of Vermont – Burlington, VT",
-    //   time: "Jan 2024 – May 2025 • 1 yr 5 mos",
-    //   details: [
-    //     "Grade weekly assignments and provide detailed feedback",
-    //     "Co-develop lecture materials and lab exercises for CS2100 & CS2300",
-    //     "Built a Java-based autograder leveraging JUnit to streamline grading",
-    //   ],
-    // },
   ] satisfies Job[],
   education: [
     {
       institution: "University of Vermont",
-      degree: "B.S. Computer Science, Math Minor",
+      degree: "B.S. Computer Science, Mathematics Minor — completed in three years",
       time: "Aug 2022 – May 2025",
     },
     // {
@@ -95,18 +96,31 @@ export const resumeData = {
     // },
   ] satisfies School[],
   skills: [
-    { category: "Languages", items: ["Python", "Java", "C++", "C"] },
-    { category: "Web", items: ["HTML5", "CSS3", "PHP"] },
-    { category: "Mobile", items: ["iOS (Swift)", "Xcode"] },
-    { category: "Database", items: ["SQL"] },
-    { category: "Tools", items: ["Git", "Docker", "NGINX"] },
-    { category: "Soft Skills", items: ["Leadership", "Communication", "Problem-Solving"] },
+    { category: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL", "C", "C++", "Java", "PHP"] },
+    { category: "Full-Stack", items: ["React", "Next.js (App Router)", "Node.js", "REST APIs", "Tailwind CSS"] },
+    { category: "Data", items: ["MySQL", "TiDB Cloud", "Schema design & migrations"] },
+    { category: "Cloud & CI", items: ["Git", "GitHub Actions", "Vercel", "Cloudflare", "Docker", "Linux"] },
+    { category: "AI Tooling", items: ["Claude Code", "LLM-assisted development"] },
+    { category: "Interests", items: ["Aviation", "Flight sim (VATSIM)", "FAA PPL"] },
   ] satisfies SkillGroup[],
   projects: [
-    { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "PHP/MySQL platform for off-campus housing listings" },
-    { link: "/?project=Utility%20Manager", name: "Utility Manager", description: "Web portal for splitting & tracking roommate bills" },
-    // CodeBuilder is no longer on the home-page grid, so link straight to the repo.
-    { link: "https://github.com/gohacki/CodeBuilder", name: "CodeBuilder", description: "iOS app teaching coding via drag-and-drop blocks" },
-    { link: "/?project=Blob%20Kart", name: "Blob Kart", description: "C++/OpenGL racing game for Advanced Programming class" },
+    {
+      link: "/?project=Iocon%20Graphics",
+      name: "Iocon Graphics",
+      description: "Production storefront built for a working artist — iocongraphics.com",
+      details: [
+        "Sole engineer for a non-technical client: gallery, six order flows, a live order queue, moderated reviews, and an admin portal she runs herself — Next.js 15, TypeScript, TiDB Cloud; live and taking real orders",
+      ],
+    },
+    {
+      link: "/?project=Utility%20Manager",
+      name: "Utility Manager",
+      description: "Internal tool for splitting shared household bills — Next.js rewrite of a PHP app",
+      details: [
+        "Rewrote a two-year-old PHP/MySQL app as Next.js 15 + TypeScript, migrating the live DB to TiDB Cloud and PDFs to Vercel Blob with no user interruption; email-code auth, cron scheduler, signed JSON API",
+      ],
+    },
+    { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "Sublet listings platform for UVM students — PHP/MySQL, NetID login, Leaflet maps, faceted filters" },
+    { link: "/?project=Blob%20Kart", name: "Blob Kart", description: "Two-player kart racer in C++ and OpenGL (GLFW/GLM) — physics, lap checkpoints, surface friction" },
   ] satisfies ResumeProject[],
 };

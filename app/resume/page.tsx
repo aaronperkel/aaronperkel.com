@@ -108,6 +108,15 @@ export default function Resume() {
             <li key={project.name} className={dashLi}>
               <Link href={project.link}>{project.name}</Link>
               {project.description && <> — {project.description}</>}
+              {project.details && project.details.length > 0 && (
+                <ul className="mt-1 mb-2">
+                  {project.details.map((detail, i) => (
+                    <li key={i} className={dashLi}>
+                      {detail}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>

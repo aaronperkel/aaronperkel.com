@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 9.5,
     lineHeight: 1.4,
     color: color.text,
-    paddingVertical: 46,
+    paddingVertical: 40,
     paddingHorizontal: 54,
   },
   name: {
@@ -55,10 +55,10 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: color.rule,
     paddingBottom: 3,
-    marginTop: 16,
-    marginBottom: 8,
+    marginTop: 11,
+    marginBottom: 6,
   },
-  entry: { marginBottom: 8 },
+  entry: { marginBottom: 7 },
   entryHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
   time: { color: color.muted, fontSize: 9 },
   location: { fontFamily: "Helvetica-Oblique", color: color.muted, marginBottom: 2 },
   bullet: { flexDirection: "row", marginBottom: 1 },
+  subBullet: { flexDirection: "row", marginBottom: 1, paddingLeft: 12, color: color.muted },
   bulletDot: { width: 12, textAlign: "center" },
   bulletText: { flex: 1 },
   skillsGrid: { flexDirection: "row", flexWrap: "wrap" },
@@ -159,15 +160,23 @@ export default function ResumePdf() {
 
         <Text style={styles.sectionTitle}>Projects</Text>
         {projects.map((project) => (
-          <Bullet key={project.name}>
-            <Link
-              src={project.link.startsWith("http") ? project.link : `${SITE}${project.link}`}
-              style={styles.link}
-            >
-              {project.name}
-            </Link>
-            {project.description ? ` — ${project.description}` : ""}
-          </Bullet>
+          <View key={project.name} wrap={false}>
+            <Bullet>
+              <Link
+                src={project.link.startsWith("http") ? project.link : `${SITE}${project.link}`}
+                style={styles.link}
+              >
+                {project.name}
+              </Link>
+              {project.description ? ` — ${project.description}` : ""}
+            </Bullet>
+            {project.details?.map((detail, i) => (
+              <View key={i} style={styles.subBullet}>
+                <Text style={styles.bulletDot}>–</Text>
+                <Text style={styles.bulletText}>{detail}</Text>
+              </View>
+            ))}
+          </View>
         ))}
 
         <Text style={styles.sectionTitle}>Honors &amp; Awards</Text>

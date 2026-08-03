@@ -491,5 +491,8 @@ composer.lock
 *.scss.map
 
 resume-static.html
+# Job application uploads + their generator — kept locally, never published with the site
+cover-letter*
+resume-aaron-perkel.pdf
 # Claude Code local settings
 .claude/settings.local.json
