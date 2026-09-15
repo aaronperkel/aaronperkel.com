@@ -48,10 +48,10 @@ export const resumeData = {
     { label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },
     { label: "linkedin.com/in/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
   ] satisfies ContactItem[],
+  // Empty for now; typed so the section stays type-safe until an entry returns.
   honorsAndAwards: [
-    { title: "Golden Key Honor Society", date: "Oct 2023" },
     // { title: "Excellence in Technology", date: "May 2021" },
-  ] satisfies Honor[],
+  ] as Honor[],
   experience: [
     {
       title: "Network Technician",
@@ -61,16 +61,6 @@ export const resumeData = {
         "Support campus-wide networking and telecommunications infrastructure within an enterprise environment",
         "Execute department-level phone system migrations from Nortel to Cisco",
         "Install, mount, and patch wireless access points across campus buildings",
-      ],
-    },
-    {
-      title: "Computer Science Teaching Assistant",
-      location: "University of Vermont – Burlington, VT",
-      time: "Jan 2024 – May 2025 • 1 yr 5 mos",
-      details: [
-        "Built a Java autograder on JUnit that replaced manual grading for two courses",
-        "Co-developed lecture materials and lab exercises for CS2100 & CS2300",
-        "Reviewed weekly assignments and gave line-level feedback on student code",
       ],
     },
     {

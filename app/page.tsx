@@ -15,10 +15,6 @@ export default function Home() {
           Science. I like building small, reliable systems: networks, web apps, and the
           occasional Raspberry Pi project.
         </p>
-        <p className="mt-6 font-mono text-[0.85rem] text-muted">
-          $ curl aaronperkel.com{" "}
-          <span className="max-sm:hidden"># this site works in your terminal, too</span>
-        </p>
       </section>
 
       <section className="border-t border-rule pt-10">

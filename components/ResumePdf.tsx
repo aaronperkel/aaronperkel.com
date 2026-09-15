@@ -179,13 +179,17 @@ export default function ResumePdf() {
           </View>
         ))}
 
-        <Text style={styles.sectionTitle}>Honors &amp; Awards</Text>
-        {honorsAndAwards.map((honor) => (
-          <View key={honor.title} style={styles.entryHeader}>
-            <Text>{honor.title}</Text>
-            {honor.date && <Text style={styles.time}>{honor.date}</Text>}
-          </View>
-        ))}
+        {honorsAndAwards.length > 0 && (
+          <>
+            <Text style={styles.sectionTitle}>Honors &amp; Awards</Text>
+            {honorsAndAwards.map((honor) => (
+              <View key={honor.title} style={styles.entryHeader}>
+                <Text>{honor.title}</Text>
+                {honor.date && <Text style={styles.time}>{honor.date}</Text>}
+              </View>
+            ))}
+          </>
+        )}
       </Page>
     </Document>
   );

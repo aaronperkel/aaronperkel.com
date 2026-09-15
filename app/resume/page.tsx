@@ -89,17 +89,19 @@ export default function Resume() {
         </ul>
       </section>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Honors &amp; Awards</h2>
-        <ul>
-          {resumeData.honorsAndAwards.map((honor) => (
-            <li key={honor.title} className={dashLi}>
-              {honor.title}
-              {honor.date && <span className="text-muted"> — {honor.date}</span>}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {resumeData.honorsAndAwards.length > 0 && (
+        <section className="mt-10">
+          <h2 className={sectionLabel}>Honors &amp; Awards</h2>
+          <ul>
+            {resumeData.honorsAndAwards.map((honor) => (
+              <li key={honor.title} className={dashLi}>
+                {honor.title}
+                {honor.date && <span className="text-muted"> — {honor.date}</span>}
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       <section className="mt-10">
         <h2 className={sectionLabel}>Projects</h2>
