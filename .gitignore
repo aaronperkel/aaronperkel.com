@@ -496,3 +496,9 @@ cover-letter*
 resume-aaron-perkel.pdf
 # Claude Code local settings
 .claude/settings.local.json
+
+# Impeccable: local live-mode session state (the design record itself is committed)
+.impeccable/live/
+.impeccable/config.local.json
+# Claude Code skills/tooling — machine-local, not part of the site
+.claude/

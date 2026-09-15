@@ -1,4 +1,4 @@
-import { headerTxt, landing, linksTxt, helpTxt, cliJson } from "@/data/cli";
+import { landing, linksTxt, helpTxt, cliJson } from "@/data/cli";
 
 // Prerender all four pages at build time so `curl aaronperkel.com` hits the
 // CDN instead of cold-starting a function (headers are preserved, like resume.pdf).
@@ -18,7 +18,7 @@ export async function GET(_req: Request, { params }: { params: Promise<{ page: s
 
   switch (page) {
     case "home":
-      return text(`${headerTxt}\n\n${landing}\n`);
+      return text(`${landing}\n`);
     case "help":
       return text(helpTxt + "\n");
     case "links":

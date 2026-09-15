@@ -8,7 +8,7 @@ const socials = [
 export default function Footer() {
   return (
     <footer className="mt-16 flex flex-wrap items-center justify-between gap-2 border-t border-rule py-6 font-mono text-[0.8rem] text-muted">
-      <p>© {new Date().getFullYear()} Aaron Perkel</p>
+      <p className="tabular-nums">© {new Date().getFullYear()} Aaron Perkel LLC</p>
       <div className="flex gap-4">
         {socials.map((s) => (
           <a key={s.label} href={s.href} className="text-muted no-underline hover:text-ink hover:underline">

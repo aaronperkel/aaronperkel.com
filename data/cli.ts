@@ -33,33 +33,44 @@ const endpoint = (path: string, comment: string) =>
 const project = (name: string, tagline: string, url: string) =>
   name.padEnd(17) + note(tagline) + "\n" + " ".repeat(17) + link(url);
 
-// ---- Header: "AARON PERKEL" in half-block caps (46 cols, 2 rows). ----
-export const headerTxt = [
-  "▄▀█ ▄▀█ █▀█ █▀█ █▄ █   █▀█ █▀▀ █▀█ █▄▀ █▀▀ █",
-  "█▀█ █▀█ █▀▄ █▄█ █ ▀█   █▀▀ ██▄ █▀▄ █ █ ██▄ █▄▄",
-].join("\n");
+// Man-page body indent: section heads sit flush left, their bodies step in.
+const ind = (s: string) => "   " + s;
 
 export const landing = [
-  "I'm a network technician at the University of Vermont with a",
-  "B.S. in Computer Science. I like building small, reliable",
-  "systems: networks, web apps, and the occasional Raspberry Pi",
-  "project.",
+  section("name"),
   "",
-  section("links"),
+  ind("aaron perkel " + dim("\u2014") + " network technician and software engineer"),
   "",
-  row("web", "https://aaronperkel.com"),
-  row("about", "https://aaronperkel.com/about"),
-  row("resume", "https://aaronperkel.com/resume"),
-  row("github", "https://github.com/aaronperkel"),
-  row("email", "me@aaronperkel.com"),
+  section("synopsis"),
   "",
-  section("legend"),
+  ind("perkel " + dim("[--network] [--software] [--vermont]")),
   "",
-  cmd("curl aaronperkel.com", "this page"),
-  cmd("curl aaronperkel.com/links", "links + projects"),
-  cmd("curl aaronperkel.com/json", "the above, as JSON"),
-  cmd("curl aaronperkel.com/help", "every endpoint"),
-  cmd("curl -OJ aaronperkel.com/vcard", "contact card (.vcf)"),
+  section("description"),
+  "",
+  ind("I'm a network technician at the University of Vermont with"),
+  ind("a B.S. in Computer Science. I like building small, reliable"),
+  ind("systems: networks, web apps, and the occasional Raspberry"),
+  ind("Pi project."),
+  "",
+  section("examples"),
+  "",
+  ind(cmd("curl aaronperkel.com", "this page")),
+  ind(cmd("curl aaronperkel.com/links", "links + projects")),
+  ind(cmd("curl aaronperkel.com/json", "the above, as JSON")),
+  ind(cmd("curl aaronperkel.com/help", "every endpoint")),
+  ind(cmd("curl -OJ aaronperkel.com/vcard", "contact card (.vcf)")),
+  "",
+  section("author"),
+  "",
+  ind("Aaron Perkel " + dim("\u00b7") + " " + link("me@aaronperkel.com") + " " + dim("\u00b7") + " Burlington, VT"),
+  "",
+  section("see also"),
+  "",
+  ind(row("web", "https://aaronperkel.com")),
+  ind(row("about", "https://aaronperkel.com/about")),
+  ind(row("resume", "https://aaronperkel.com/resume")),
+  ind(row("github", "https://github.com/aaronperkel")),
+  ind(row("linkedin", "https://linkedin.com/in/aaronperkel")),
 ].join("\n");
 
 export const linksTxt = [

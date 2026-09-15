@@ -55,6 +55,12 @@
     outline: 2px solid var(--color-ink);
     outline-offset: 2px;
   }
+
+  /* The browser's own surfaces, themed from the same two tokens */
+  ::selection {
+    background: var(--color-ink);
+    color: var(--color-page);
+  }
 }
 
 @view-transition {

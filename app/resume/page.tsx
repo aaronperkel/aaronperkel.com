@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { resumeData, type ContactItem } from "@/data/resume";
+import { ManSection, RunningHead, docDate } from "@/components/ManPage";
 
 export const metadata: Metadata = {
   title: "Aaron Perkel – Resume",
@@ -9,8 +10,6 @@ export const metadata: Metadata = {
   alternates: { canonical: "/resume" },
 };
 
-const sectionLabel =
-  "mb-4 font-mono text-[0.8rem] font-medium uppercase tracking-[0.15em] text-muted";
 const dashLi = "relative mb-1.5 pl-5 before:absolute before:left-0 before:text-muted before:content-['–']";
 
 // Same display rule as the PDF: linked items show the bare host/path.
@@ -20,15 +19,16 @@ const display = (item: ContactItem) =>
 export default function Resume() {
   return (
     <main className="py-14">
-      <div className="flex flex-wrap items-baseline justify-between gap-2">
+      <RunningHead left="resume(1)" center="User Commands" right="resume(1)" decorative />
+
+      <div className="mt-9 flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="text-[2rem] font-semibold leading-tight">Resume</h1>
         <a href="/resume.pdf" className="font-mono text-[0.85rem]">
           resume.pdf ↓
         </a>
       </div>
 
-      <section className="mt-8">
-        <h2 className={sectionLabel}>Contact</h2>
+      <ManSection title="Contact">
         {/* Same two-line grouping as the PDF: personal info, then web presence */}
         {[resumeData.contactInfo.slice(0, 3), resumeData.contactInfo.slice(3)].map((group, g) => (
           <ul key={g} className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[0.85rem]">
@@ -40,15 +40,14 @@ export default function Resume() {
             ))}
           </ul>
         ))}
-      </section>
+      </ManSection>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Experience</h2>
+      <ManSection title="Experience">
         {resumeData.experience.map((job) => (
-          <article key={job.title} className="mb-7">
+          <article key={job.title} className="mb-7 last:mb-0">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
               <h3 className="font-semibold">{job.title}</h3>
-              <time className="font-mono text-[0.8rem] text-muted">{job.time}</time>
+              <time className="font-mono text-[0.8rem] tabular-nums text-muted">{job.time}</time>
             </div>
             {job.location && <p className="text-[0.95rem] text-muted">{job.location}</p>}
             {job.details && job.details.length > 0 && (
@@ -62,23 +61,21 @@ export default function Resume() {
             )}
           </article>
         ))}
-      </section>
+      </ManSection>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Education</h2>
+      <ManSection title="Education">
         {resumeData.education.map((edu) => (
-          <article key={edu.institution} className="mb-4">
+          <article key={edu.institution} className="mb-4 last:mb-0">
             <div className="flex flex-wrap items-baseline justify-between gap-x-4">
               <h3 className="font-semibold">{edu.institution}</h3>
-              <time className="font-mono text-[0.8rem] text-muted">{edu.time}</time>
+              <time className="font-mono text-[0.8rem] tabular-nums text-muted">{edu.time}</time>
             </div>
             {edu.degree && <p className="text-[0.95rem] text-muted">{edu.degree}</p>}
           </article>
         ))}
-      </section>
+      </ManSection>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Skills &amp; Interests</h2>
+      <ManSection title="Skills & Interests">
         <ul>
           {resumeData.skills.map((group) => (
             <li key={group.category} className={dashLi}>
@@ -87,22 +84,22 @@ export default function Resume() {
             </li>
           ))}
         </ul>
-      </section>
+      </ManSection>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Honors &amp; Awards</h2>
-        <ul>
-          {resumeData.honorsAndAwards.map((honor) => (
-            <li key={honor.title} className={dashLi}>
-              {honor.title}
-              {honor.date && <span className="text-muted"> — {honor.date}</span>}
-            </li>
-          ))}
-        </ul>
-      </section>
+      {resumeData.honorsAndAwards.length > 0 && (
+        <ManSection title="Honors & Awards">
+          <ul>
+            {resumeData.honorsAndAwards.map((honor) => (
+              <li key={honor.title} className={dashLi}>
+                {honor.title}
+                {honor.date && <span className="text-muted"> — {honor.date}</span>}
+              </li>
+            ))}
+          </ul>
+        </ManSection>
+      )}
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Projects</h2>
+      <ManSection title="Projects">
         <ul>
           {resumeData.projects.map((project) => (
             <li key={project.name} className={dashLi}>
@@ -120,7 +117,11 @@ export default function Resume() {
             </li>
           ))}
         </ul>
-      </section>
+      </ManSection>
+
+      <div className="mt-14">
+        <RunningHead left="Burlington, VT" center={docDate} right="resume(1)" />
+      </div>
     </main>
   );
 }

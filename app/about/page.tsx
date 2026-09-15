@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { aboutData } from "@/data/about";
+import { ManSection, RunningHead, docDate } from "@/components/ManPage";
 
 export const metadata: Metadata = {
   title: "Aaron Perkel – About",
@@ -11,13 +12,17 @@ export const metadata: Metadata = {
 export default function About() {
   return (
     <main className="py-14">
-      <h1 className="text-[2rem] font-semibold leading-tight">{aboutData.pageTitle}</h1>
+      <RunningHead
+        left="perkel(7)"
+        center="Miscellaneous Information"
+        right="perkel(7)"
+        decorative
+      />
+
+      <h1 className="mt-9 text-[2rem] font-semibold leading-tight">{aboutData.pageTitle}</h1>
 
       {aboutData.sections.map((section) => (
-        <section key={section.title} className="mt-10">
-          <h2 className="mb-3 font-mono text-[0.8rem] font-medium uppercase tracking-[0.15em] text-muted">
-            {section.title}
-          </h2>
+        <ManSection key={section.title} title={section.title}>
           {section.contentHtml && (
             <p dangerouslySetInnerHTML={{ __html: section.contentHtml }} />
           )}
@@ -32,8 +37,12 @@ export default function About() {
               ))}
             </ul>
           )}
-        </section>
+        </ManSection>
       ))}
+
+      <div className="mt-14">
+        <RunningHead left="Burlington, VT" center={docDate} right="perkel(7)" />
+      </div>
     </main>
   );
 }
