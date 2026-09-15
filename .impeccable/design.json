@@ -1,326 +1,432 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-09-15T12:34:57.867990Z",
+  "generatedAt": "2026-09-15T21:40:00Z",
   "title": "Design System: aaronperkel.com",
   "extensions": {
     "colorMeta": {
-      "ink": {
+      "accent": {
         "role": "primary",
-        "displayName": "Ink",
-        "canonical": "#171717",
-        "darkCounterpart": "ink-dark",
+        "displayName": "System Accent (fallback)",
+        "canonical": "AccentColor, fallback #0b5fff light / #4d9bff dark",
         "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
+          "#031633",
+          "#062a66",
+          "#083f99",
+          "#0b5fff",
+          "#4d9bff",
+          "#84b8ff",
+          "#b8d6ff",
+          "#e6f0ff"
         ]
       },
-      "page": {
+      "accent-ink": {
+        "role": "primary",
+        "displayName": "Bounded Accent Ink",
+        "canonical": "color-mix(in oklab, var(--color-accent) 55%, var(--color-ink))",
+        "tonalRamp": [
+          "#0b1020",
+          "#121a33",
+          "#18254d",
+          "#1f3a7a",
+          "#2b4fa8",
+          "#5f7fc6",
+          "#a3b6de",
+          "#dde5f4"
+        ]
+      },
+      "ground": {
         "role": "neutral",
-        "displayName": "Page",
+        "displayName": "Ground",
         "canonical": "#ffffff",
-        "darkCounterpart": "page-dark",
         "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#5c5c61",
+          "#a2a2aa",
+          "#d7d7dc",
+          "#f4f4f6",
+          "#ffffff"
         ]
       },
-      "muted": {
+      "raise": {
         "role": "neutral",
-        "displayName": "Muted Ink",
-        "canonical": "#6f6f6f",
-        "darkCounterpart": "muted-dark",
+        "displayName": "Raised Ground",
+        "canonical": "#f4f4f6",
         "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
-        ],
-        "note": "5.0:1 on page, 8.9:1 for muted-dark on page-dark - clears WCAG AA in both schemes."
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#5c5c61",
+          "#a2a2aa",
+          "#d7d7dc",
+          "#eaeaee",
+          "#f4f4f6"
+        ]
       },
-      "rule": {
+      "ink": {
         "role": "neutral",
-        "displayName": "Rule",
-        "canonical": "#e4e4e4",
-        "darkCounterpart": "rule-dark",
+        "displayName": "Ink",
+        "canonical": "#1a1a1c",
         "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
+          "#1a1a1c",
+          "#2b2b2f",
+          "#43434a",
+          "#5c5c61",
+          "#8a8a92",
+          "#b6b6bd",
+          "#d7d7dc",
+          "#f2f2f4"
+        ]
+      },
+      "ink-2": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#5c5c61",
+        "tonalRamp": [
+          "#1a1a1c",
+          "#2b2b2f",
+          "#43434a",
+          "#5c5c61",
+          "#7b7b82",
+          "#a2a2aa",
+          "#c6c6cd",
+          "#eaeaee"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "#d7d7dc",
+        "tonalRamp": [
+          "#1a1a1c",
+          "#26262b",
+          "#33333a",
+          "#4d4d55",
+          "#8d8d96",
+          "#b9b9c1",
+          "#d7d7dc",
+          "#efeff2"
+        ]
+      },
+      "ground-dark": {
+        "role": "neutral",
+        "displayName": "Ground (dark)",
+        "canonical": "#161619",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#5c5c61",
+          "#a2a2aa",
+          "#d7d7dc",
+          "#f2f2f4"
+        ]
+      },
+      "raise-dark": {
+        "role": "neutral",
+        "displayName": "Raised Ground (dark)",
+        "canonical": "#202026",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#5c5c61",
+          "#a2a2aa",
+          "#d7d7dc",
+          "#f2f2f4"
         ]
       },
       "ink-dark": {
+        "role": "neutral",
+        "displayName": "Ink (dark)",
+        "canonical": "#f2f2f4",
+        "tonalRamp": [
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#5c5c61",
+          "#a2a2aa",
+          "#c9c9d0",
+          "#e2e2e6",
+          "#f2f2f4"
+        ]
+      },
+      "ink-2-dark": {
+        "role": "neutral",
+        "displayName": "Secondary Ink (dark)",
+        "canonical": "#a2a2aa",
+        "tonalRamp": [
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#4d4d55",
+          "#75757e",
+          "#a2a2aa",
+          "#c9c9d0",
+          "#e8e8ec"
+        ]
+      },
+      "line-dark": {
+        "role": "neutral",
+        "displayName": "Hairline (dark)",
+        "canonical": "#33333a",
+        "tonalRamp": [
+          "#0b0b0d",
+          "#161619",
+          "#202026",
+          "#33333a",
+          "#4d4d55",
+          "#75757e",
+          "#a2a2aa",
+          "#d7d7dc"
+        ]
+      },
+      "accent-dark": {
         "role": "primary",
-        "displayName": "Ink (dark scheme)",
-        "canonical": "#ededed",
+        "displayName": "System Accent fallback (dark)",
+        "canonical": "#4d9bff",
         "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
-        ]
-      },
-      "page-dark": {
-        "role": "neutral",
-        "displayName": "Page (dark scheme)",
-        "canonical": "#0a0a0a",
-        "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
-        ]
-      },
-      "muted-dark": {
-        "role": "neutral",
-        "displayName": "Muted Ink (dark scheme)",
-        "canonical": "#969696",
-        "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
-        ]
-      },
-      "rule-dark": {
-        "role": "neutral",
-        "displayName": "Rule (dark scheme)",
-        "canonical": "#2a2a2a",
-        "tonalRamp": [
-          "#262626",
-          "#404040",
-          "#595959",
-          "#737373",
-          "#8c8c8c",
-          "#a6a6a6",
-          "#bfbfbf",
-          "#f2f2f2"
+          "#04142b",
+          "#06264d",
+          "#0a3a80",
+          "#0e4fb3",
+          "#2f78e6",
+          "#4d9bff",
+          "#93c2ff",
+          "#d6e7ff"
         ]
       }
     },
     "typographyMeta": {
       "display": {
         "displayName": "Display",
-        "purpose": "Page titles only, one per page, first element in main."
+        "purpose": "Page title, once per page; the only size above 0.9375rem."
       },
       "title": {
         "displayName": "Title",
-        "purpose": "Project names, job titles, institutions, dialog heading. Same size as body; separated by weight alone."
+        "purpose": "Project names, job titles, institutions, toolbar wordmark. Body size at semibold."
       },
       "body": {
         "displayName": "Body",
-        "purpose": "All prose. The 44rem column holds it to roughly 70 characters."
+        "purpose": "All prose, held to 60ch inside the 42rem column; also the resume's Download PDF action."
       },
-      "detail": {
-        "displayName": "Detail",
-        "purpose": "Supporting line belonging to the entry above it - job location, degree, dialog description."
+      "secondary": {
+        "displayName": "Secondary",
+        "purpose": "Taglines, locations, degrees, expanded-row descriptions; always secondary ink."
       },
-      "tagline": {
-        "displayName": "Tagline",
-        "purpose": "One-line summary under a project card name."
+      "utility": {
+        "displayName": "Utility",
+        "purpose": "Toolbar routes, footer, in-row links."
       },
       "label": {
         "displayName": "Label",
-        "purpose": "Every section heading on every page. Mono, uppercase, 0.15em tracking, muted. One size, no exceptions."
+        "purpose": "Uppercase grouped-list section heading. One size, one treatment, every page."
       },
       "meta": {
         "displayName": "Meta",
-        "purpose": "Nav, dates, footer, pager controls, the resume.pdf link, the HTTP/1.1 404 line. Steps down to 0.8rem for dates and the footer."
+        "purpose": "System mono for data: stack lists, dates, the LIVE mark. Tabular figures."
       }
     },
     "shadows": [],
     "motion": [
       {
-        "name": "hover-transition",
-        "value": "color 150ms cubic-bezier(0.4, 0, 0.2, 1)",
-        "purpose": "The only transition in the system: muted-to-ink on nav, footer, pager, and close controls."
+        "name": "platform-150",
+        "value": "150ms ease",
+        "purpose": "The only duration in the system: disclosure rotation, row hover wash, link colour and underline thickness."
       },
       {
-        "name": "view-transition",
-        "value": "@view-transition { navigation: auto }",
-        "purpose": "Browser-native cross-document transition between routes. No custom keyframes anywhere in the project."
-      },
-      {
-        "name": "smooth-scroll",
-        "value": "scroll-behavior: smooth",
-        "purpose": "In-page anchors only. Disabled under prefers-reduced-motion, and disabled by Next during route transitions via data-scroll-behavior."
+        "name": "reduced-motion",
+        "value": "transition: none",
+        "purpose": "Under prefers-reduced-motion: reduce, link/summary/chevron transitions are removed, not shortened."
       }
     ],
     "breakpoints": [
       {
         "name": "sm",
         "value": "640px"
-      },
-      {
-        "name": "md",
-        "value": "768px"
       }
     ],
-    "container": {
-      "maxWidth": "44rem",
-      "gutter": "1.5rem",
-      "gutterBelowMd": "1.25rem"
-    },
-    "depthStatus": {
-      "state": "flat",
-      "isInvariant": false,
-      "note": "No box-shadow anywhere; depth is drawn with 1px rule borders. The dialog backdrop (rgba(0,0,0,0.5) + 2px blur) is the one exception. Recorded as current state, not a rule - the owner left depth open for future work to reconsider."
-    }
+    "media": [
+      {
+        "name": "prefers-color-scheme: dark",
+        "purpose": "Swaps all five neutral roles, the accent fallback, and --img-dim (1 -> 0.88); neither scheme is the default."
+      },
+      {
+        "name": "supports (color: AccentColor)",
+        "purpose": "Adopts the operating system's own accent colour as --color-accent."
+      },
+      {
+        "name": "prefers-reduced-transparency: reduce",
+        "purpose": "The .bar toolbar drops to solid ground with no backdrop-filter."
+      },
+      {
+        "name": "--img-dim",
+        "purpose": "Scheme-bound brightness multiplier on project screenshots (1 light / 0.88 dark), declared beside --color-accent-ink so imagery moves with the scheme like the colour roles and cannot become a third surface."
+      }
+    ]
   },
   "components": [
+    {
+      "name": "Toolbar",
+      "kind": "nav",
+      "refersTo": "toolbar",
+      "description": "Sticky 2.75rem platform toolbar: wordmark left, routes and email right, hairline beneath, translucent over the ground; every link padded to a ~44px target.",
+      "html": "<header class=\"ds-toolbar\"><div class=\"ds-toolbar-inner\"><a class=\"ds-toolbar-mark\" href=\"/\">Aaron Perkel</a><nav class=\"ds-toolbar-nav\"><a class=\"ds-toolbar-link ds-toolbar-link-active\" href=\"/\" aria-current=\"page\">Home</a><a class=\"ds-toolbar-link\" href=\"/about\">About</a><a class=\"ds-toolbar-link\" href=\"/resume\">Resume</a><a class=\"ds-toolbar-link\" href=\"mailto:me@aaronperkel.com\">me@aaronperkel.com</a></nav></div></header>",
+      "css": ".ds-toolbar { position: sticky; top: 0; border-bottom: 1px solid var(--color-line, #d7d7dc); background: color-mix(in srgb, var(--color-ground, #fff) 85%, transparent); backdrop-filter: blur(4px); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); } .ds-toolbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; height: 2.75rem; max-width: 42rem; margin: 0 auto; padding: 0 1.25rem; } .ds-toolbar-mark { margin: -0.75rem 0; padding: 0.75rem 0; font-size: 0.9375rem; font-weight: 600; color: var(--color-ink, #1a1a1c); text-decoration: none; } .ds-toolbar-nav { display: flex; align-items: center; gap: 1rem; font-size: 0.8125rem; } .ds-toolbar-link { margin: -0.75rem 0; padding: 0.75rem 0; color: var(--color-ink-2, #5c5c61); text-decoration: none; transition: color 150ms ease; } .ds-toolbar-link:hover { color: var(--color-ink, #1a1a1c); } .ds-toolbar-link-active { color: var(--color-ink, #1a1a1c); font-weight: 500; } .ds-toolbar-link:focus-visible { outline: 2px solid var(--color-accent-ink, #1f3a7a); outline-offset: 2px; border-radius: 2px; } @media (prefers-reduced-transparency: reduce) { .ds-toolbar { background: var(--color-ground, #fff); backdrop-filter: none; } }"
+    },
+    {
+      "name": "Work Row",
+      "kind": "custom",
+      "refersTo": "work-row",
+      "description": "The signature component: a native disclosure row carrying project name, LIVE mark, mono stack list, and tagline; open, it takes the platform's selected-row treatment (raised-ground fill closed by a 2px accent rule) and reveals description, links, and a matted screenshot.",
+      "html": "<div class=\"ds-work\"><details class=\"ds-work-row\" open><summary class=\"ds-work-summary\"><svg class=\"ds-work-chevron\" viewBox=\"0 0 8 12\" width=\"8\" height=\"12\" aria-hidden=\"true\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M1.5 1.5 6.5 6l-5 4.5\"/></svg><span class=\"ds-work-body\"><span class=\"ds-work-head\"><span class=\"ds-work-name\">Blob Kart<span class=\"ds-work-live\">live</span></span><span class=\"ds-work-stack\">TypeScript · Next.js</span></span><span class=\"ds-work-tagline\">A browser kart racer built for a dorm-floor tournament.</span></span></summary><div class=\"ds-work-detail\"><p class=\"ds-work-desc\">Multiplayer lobbies, deterministic physics, and a track editor that ships the level in the URL.</p><p class=\"ds-work-links\"><a href=\"#\">Visit site</a><a href=\"#\">Source</a></p><span class=\"ds-work-mat\"><span class=\"ds-work-shot\"></span></span></div></details></div>",
+      "css": ".ds-work { border-top: 1px solid var(--color-line, #d7d7dc); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); color: var(--color-ink, #1a1a1c); } .ds-work-row { border-bottom: 1px solid var(--color-line, #d7d7dc); } .ds-work-summary { display: flex; align-items: flex-start; gap: 0.625rem; padding: 0.75rem 0; border-radius: 4px; cursor: pointer; list-style: none; transition: background-color 150ms ease; } .ds-work-summary::-webkit-details-marker { display: none; } .ds-work-summary:hover { background: var(--color-raise, #f4f4f6); } .ds-work-summary:focus-visible { outline: 2px solid var(--color-accent-ink, #1f3a7a); outline-offset: 2px; } .ds-work-row[open] .ds-work-summary { background: var(--color-raise, #f4f4f6); border-bottom: 2px solid var(--color-accent-ink, #1f3a7a); border-bottom-left-radius: 0; border-bottom-right-radius: 0; } .ds-work-chevron { margin-top: 0.4rem; flex-shrink: 0; color: var(--color-accent-ink, #1f3a7a); transition: transform 150ms ease; } .ds-work-row[open] .ds-work-chevron { transform: rotate(90deg); } .ds-work-body { flex: 1; min-width: 0; } .ds-work-head { display: flex; flex-direction: column; } @media (min-width: 640px) { .ds-work-head { flex-direction: row; flex-wrap: wrap; align-items: baseline; justify-content: space-between; column-gap: 0.75rem; } } .ds-work-name { font-size: 0.9375rem; font-weight: 600; } .ds-work-live { margin-left: 0.5rem; font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 0.75rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.06em; color: var(--color-ink-2, #5c5c61); } .ds-work-stack { font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 0.75rem; color: var(--color-ink-2, #5c5c61); } .ds-work-tagline { display: block; margin-top: 0.125rem; font-size: 0.875rem; color: var(--color-ink-2, #5c5c61); } .ds-work-detail { padding: 0 0 1rem 1.375rem; } .ds-work-desc { max-width: 60ch; margin: 0; font-size: 0.875rem; line-height: 1.6; color: var(--color-ink-2, #5c5c61); } .ds-work-links { display: flex; gap: 1.5rem; margin: 0.625rem 0 0; font-size: 0.8125rem; } .ds-work-links a { color: var(--color-ink, #1a1a1c); text-decoration: underline; text-decoration-color: var(--color-accent-ink, #1f3a7a); text-decoration-thickness: 1px; text-underline-offset: 2px; } .ds-work-links a:hover { text-decoration-thickness: 2px; } .ds-work-mat { display: block; width: fit-content; margin-top: 0.875rem; padding: 0.375rem; border: 1px solid var(--color-line, #d7d7dc); border-radius: 4px; background: var(--color-raise, #f4f4f6); } .ds-work-shot { display: block; width: 260px; height: 160px; border-radius: 2px; background: linear-gradient(135deg, var(--color-line, #d7d7dc), var(--color-ground, #fff)); filter: brightness(var(--img-dim, 1)); } @media (prefers-reduced-motion: reduce) { .ds-work-summary, .ds-work-chevron { transition: none; } }"
+    },
     {
       "name": "Section Heading",
       "kind": "custom",
       "refersTo": "section-label",
-      "description": "The single heading treatment used on every page. Most of what makes the site feel systematic.",
-      "html": "<h2 class=\"ds-section-label\">Experience</h2>",
-      "css": ".ds-section-label { font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.8rem; font-weight: 500; line-height: 1.65; letter-spacing: 0.15em; text-transform: uppercase; color: var(--color-muted, #6f6f6f); margin: 0 0 1rem; }"
+      "description": "The grouped-list header used identically on every page; one size, one treatment.",
+      "html": "<section class=\"ds-section\"><h2 class=\"ds-section-title\">Work</h2><p class=\"ds-section-body\">Section content sits 0.5rem below the label.</p></section>",
+      "css": ".ds-section { margin-top: 2.25rem; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); } .ds-section-title { margin: 0 0 0.5rem; font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-ink-2, #5c5c61); } .ds-section-body { margin: 0; max-width: 60ch; font-size: 0.9375rem; line-height: 1.55; color: var(--color-ink, #1a1a1c); }"
     },
     {
-      "name": "Navigation",
-      "kind": "nav",
-      "refersTo": "nav-link",
-      "description": "Three lowercase mono routes. Active is ink with an offset underline; inactive is muted and undecorated until hover.",
-      "html": "<nav class=\"ds-nav\"><a href=\"/\" class=\"ds-nav-link is-active\">home</a><a href=\"/about\" class=\"ds-nav-link\">about</a><a href=\"/resume\" class=\"ds-nav-link\">resume</a></nav>",
-      "css": ".ds-nav { display: flex; gap: 1.25rem; font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.85rem; } .ds-nav-link { color: var(--color-muted, #6f6f6f); text-decoration: none; transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-nav-link:hover { color: var(--color-ink, #171717); } .ds-nav-link.is-active { color: var(--color-ink, #171717); text-decoration: underline; text-decoration-color: currentColor; text-underline-offset: 4px; } .ds-nav-link:focus-visible { outline: 2px solid var(--color-ink, #171717); outline-offset: 2px; }"
-    },
-    {
-      "name": "Prose Link",
+      "name": "Text Link",
       "kind": "custom",
-      "refersTo": "link-prose",
-      "description": "Ink text with a muted underline that darkens on hover. The system has no colored link.",
-      "html": "<p class=\"ds-prose\">Built with <a class=\"ds-link\" href=\"#\">Next.js and Tailwind</a>.</p>",
-      "css": ".ds-prose { font-family: var(--font-serif, Georgia, serif); font-size: 1rem; line-height: 1.65; color: var(--color-ink, #171717); margin: 0; } .ds-link { color: var(--color-ink, #171717); text-decoration: underline; text-decoration-color: var(--color-muted, #6f6f6f); text-underline-offset: 3px; } .ds-link:hover { text-decoration-color: var(--color-ink, #171717); } .ds-link:focus-visible { outline: 2px solid var(--color-ink, #171717); outline-offset: 2px; }"
+      "refersTo": "typography.body",
+      "description": "Prose link: ink text with an accent-ink underline that thickens on hover. No colour change, ever.",
+      "html": "<p class=\"ds-prose\">Nothing lives at this address. <a class=\"ds-link\" href=\"/\">Back home</a>.</p>",
+      "css": ".ds-prose { margin: 0; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); font-size: 0.9375rem; line-height: 1.55; color: var(--color-ink, #1a1a1c); } .ds-link { color: var(--color-ink, #1a1a1c); text-decoration: underline; text-decoration-color: var(--color-accent-ink, #1f3a7a); text-decoration-thickness: 1px; text-underline-offset: 2px; transition: text-decoration-thickness 150ms ease; } .ds-link:hover { text-decoration-thickness: 2px; } .ds-link:focus-visible { outline: 2px solid var(--color-accent-ink, #1f3a7a); outline-offset: 2px; border-radius: 2px; } @media (prefers-reduced-motion: reduce) { .ds-link { transition: none; } }"
     },
     {
-      "name": "Project Entry",
+      "name": "Dot List",
       "kind": "custom",
-      "refersTo": "project-entry",
-      "description": "One row of the projects definition list: a native <details> whose closed state already carries name, stack, and tagline.",
-      "html": "<details class=\"ds-entry-row\"><summary class=\"ds-entry-summary\"><span class=\"ds-entry-marker\" aria-hidden=\"true\">+</span><span><span class=\"ds-entry-line\"><span class=\"ds-entry-name\">\u00cdoc\u00f3n Graphics</span><span class=\"ds-entry-stack\">next.js \u00b7 typescript \u00b7 tailwind</span></span><span class=\"ds-entry-tagline\">Next.js storefront for an Irish dance graphics studio</span></span></summary><div class=\"ds-entry-detail\"><p>A gallery, multi-step order flows, and a live waitlist.</p></div></details>",
-      "css": ".ds-entry-row { border-bottom: 1px solid var(--color-rule, #e4e4e4); padding: 1rem 0; font-family: var(--font-serif, Georgia, serif); } .ds-entry-summary { display: grid; grid-template-columns: 1.25rem 1fr; align-items: baseline; gap: 0 0.5rem; cursor: pointer; list-style: none; } .ds-entry-summary::-webkit-details-marker { display: none; } .ds-entry-marker { font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.85rem; color: var(--color-muted, #6f6f6f); user-select: none; transition: color 150ms cubic-bezier(0.4, 0, 0.2, 1); } .ds-entry-row[open] .ds-entry-marker { color: var(--color-ink, #171717); } .ds-entry-row[open] .ds-entry-marker::after { content: '\u2212'; } .ds-entry-line { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1rem; } .ds-entry-name { font-weight: 600; color: var(--color-ink, #171717); } .ds-entry-row:hover .ds-entry-name { text-decoration: underline; text-underline-offset: 4px; } .ds-entry-stack { font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.8rem; color: var(--color-muted, #6f6f6f); } .ds-entry-tagline { display: block; margin-top: 0.125rem; font-size: 0.95rem; color: var(--color-muted, #6f6f6f); } .ds-entry-detail { margin-top: 0.75rem; padding-left: 1.75rem; font-size: 0.95rem; line-height: 1.7; color: var(--color-muted, #6f6f6f); } .ds-entry-summary:focus-visible { outline: 2px solid var(--color-ink, #171717); outline-offset: 2px; }"
-    },
-    {
-      "name": "Dash List",
-      "kind": "custom",
-      "refersTo": null,
-      "description": "En-dash markers set in muted via ::before. Used for resume bullets, skills, honors, and projects; nests one level without changing the marker.",
-      "html": "<ul class=\"ds-dash-list\"><li>Built a Java autograder on JUnit that replaced manual grading for two courses</li><li>Co-developed lecture materials and lab exercises</li></ul>",
-      "css": ".ds-dash-list { list-style: none; margin: 0; padding: 0; font-family: var(--font-serif, Georgia, serif); font-size: 1rem; line-height: 1.65; color: var(--color-ink, #171717); } .ds-dash-list li { position: relative; padding-left: 1.25rem; margin-bottom: 0.375rem; } .ds-dash-list li::before { content: '\u2013'; position: absolute; left: 0; color: var(--color-muted, #6f6f6f); }"
-    },
-    {
-      "name": "Header Wordmark",
-      "kind": "custom",
-      "refersTo": "avatar",
-      "description": "36px round headshot plus the name in serif 600, undecorated, above a hairline rule. The only circular element in the system.",
-      "html": "<header class=\"ds-header\"><a class=\"ds-wordmark\" href=\"/\"><span class=\"ds-avatar\"></span>Aaron Perkel</a></header>",
-      "css": ".ds-header { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.25rem 0; border-bottom: 1px solid var(--color-rule, #e4e4e4); } .ds-wordmark { display: flex; align-items: center; gap: 0.75rem; font-family: var(--font-serif, Georgia, serif); font-weight: 600; color: var(--color-ink, #171717); text-decoration: none; } .ds-avatar { width: 2.25rem; height: 2.25rem; border-radius: 9999px; background: var(--color-rule, #e4e4e4); display: inline-block; } .ds-wordmark:focus-visible { outline: 2px solid var(--color-ink, #171717); outline-offset: 2px; }"
+      "refersTo": "typography.body",
+      "description": "The one list marker in the system: a middle dot in secondary ink, used for resume bullets, skills, honours, and about-page lists.",
+      "html": "<ul class=\"ds-dotlist\"><li>Languages: TypeScript, Python, C</li><li>Networking: Cisco IOS, DHCP, DNS</li></ul>",
+      "css": ".ds-dotlist { margin: 0; padding: 0; list-style: none; font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); font-size: 0.9375rem; line-height: 1.55; color: var(--color-ink, #1a1a1c); } .ds-dotlist li { position: relative; margin-bottom: 0.25rem; padding-left: 1rem; } .ds-dotlist li::before { content: '·'; position: absolute; left: 0; color: var(--color-ink-2, #5c5c61); }"
     },
     {
       "name": "Resume Entry",
       "kind": "custom",
-      "refersTo": null,
-      "description": "Title and mono date on one baseline-aligned row, muted location beneath, dash list under that. The repeating unit of the resume page.",
-      "html": "<article class=\"ds-entry\"><div class=\"ds-entry-row\"><h3 class=\"ds-entry-title\">Network Technician</h3><time class=\"ds-entry-time\">May 2025 \u2013 Present</time></div><p class=\"ds-entry-place\">University of Vermont \u2013 Burlington, VT</p></article>",
-      "css": ".ds-entry { font-family: var(--font-serif, Georgia, serif); margin-bottom: 1.75rem; } .ds-entry-row { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1rem; } .ds-entry-title { font-size: 1rem; font-weight: 600; line-height: 1.65; margin: 0; color: var(--color-ink, #171717); } .ds-entry-time { font-family: var(--font-mono, ui-monospace, Menlo, monospace); font-size: 0.8rem; color: var(--color-muted, #6f6f6f); } .ds-entry-place { font-size: 0.95rem; line-height: 1.65; color: var(--color-muted, #6f6f6f); margin: 0; }"
+      "refersTo": "typography.title",
+      "description": "Baseline-aligned record row: title semibold left, mono tabular date right, secondary location beneath.",
+      "html": "<article class=\"ds-entry\"><div class=\"ds-entry-head\"><h3 class=\"ds-entry-title\">Network Technician</h3><time class=\"ds-entry-time\">May 2025 – Present</time></div><p class=\"ds-entry-sub\">University of Vermont · Burlington, VT</p></article>",
+      "css": ".ds-entry { font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); margin-bottom: 1.25rem; } .ds-entry-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0 1rem; } .ds-entry-title { margin: 0; font-size: 0.9375rem; font-weight: 600; color: var(--color-ink, #1a1a1c); } .ds-entry-time { font-family: var(--font-mono, ui-monospace, SFMono-Regular, Menlo, monospace); font-size: 0.75rem; font-variant-numeric: tabular-nums; color: var(--color-ink-2, #5c5c61); } .ds-entry-sub { margin: 0; font-size: 0.875rem; color: var(--color-ink-2, #5c5c61); }"
+    },
+    {
+      "name": "Footer",
+      "kind": "custom",
+      "refersTo": "footer",
+      "description": "Hairline-topped closing strip: tabular copyright year left, social links right, underlined at rest like any other link and padded to a ~44px target.",
+      "html": "<footer class=\"ds-footer\"><div class=\"ds-footer-inner\"><p class=\"ds-footer-year\">© 2026 Aaron Perkel LLC</p><div class=\"ds-footer-links\"><a href=\"#\">GitHub</a><a href=\"#\">LinkedIn</a><a href=\"#\">YouTube</a><a href=\"#\">Instagram</a></div></div></footer>",
+      "css": ".ds-footer { margin-top: 3rem; border-top: 1px solid var(--color-line, #d7d7dc); font-family: var(--font-sans, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, Roboto, sans-serif); } .ds-footer-inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; max-width: 42rem; margin: 0 auto; padding: 1.25rem; font-size: 0.8125rem; color: var(--color-ink-2, #5c5c61); } .ds-footer-year { margin: 0; font-variant-numeric: tabular-nums; } .ds-footer-links { display: flex; gap: 1rem; } .ds-footer-links a { margin: -0.75rem 0; padding: 0.75rem 0; color: var(--color-ink-2, #5c5c61); text-decoration: underline; text-decoration-color: var(--color-accent-ink, #1f3a7a); text-decoration-thickness: 1px; text-underline-offset: 2px; transition: color 150ms ease, text-decoration-thickness 150ms ease; } .ds-footer-links a:hover { color: var(--color-ink, #1a1a1c); text-decoration-thickness: 2px; } .ds-footer-links a:focus-visible { outline: 2px solid var(--color-accent-ink, #1f3a7a); outline-offset: 2px; border-radius: 2px; }"
     }
   ],
   "narrative": {
-    "northStar": "The Man Page",
-    "overview": "This is one document that reads the same in a browser and a terminal. Prose is set in a serif; everything that is about the prose - a section heading, a date, a nav item, a project count, a command - is set in mono. Rules divide, space groups, weight emphasizes. Nothing else is asked to carry meaning, which is why the same content survives being piped through curl with only ANSI bold, dim, and underline standing in for the browser's type scale.\n\nThe result is deliberately undecorated but not unconsidered. There is no color, no shadow, no illustration, no motion beyond the browser's own view transitions, and no component whose job is ornament. Density is moderate and consistent: a single 44rem column, hairline rules at every structural seam, and a vertical rhythm that repeats at 2.5rem between sections and 3.5rem around a page's main block. Both light and dark are first-class, defined by the same four tokens inverted - neither is a theme layered on the other.\n\nThe voice this dresses is first-person and understated: copy that says what a thing does and who it was for, never how impressive it is. The type system matches that register. It does not raise its voice, and it has exactly one way of saying 'this is a heading.'",
+    "northStar": "System Native",
+    "overview": "The page looks like it shipped with the computer. It loads no webfonts at all: headings, prose, and metadata are set in whatever the visitor's operating system already uses for its own interface, and the one colour in the design is the accent colour that visitor picked in their own system settings. Nothing about the surface is a costume put on over the content — the type, the spacing, the disclosure rows, and the focus ring are the platform's own vocabulary used literally.\n\nDensity is that of a native settings screen rather than a marketing page: a 42rem column, prose held to 60ch, hairline separators at every seam, near-square 4px corners, and rows that are 0.75rem tall in their padding rather than cards floating on a tinted ground. There are no cards, no shadows, no gradients, no coloured badges, and no icon set — the single piece of drawn geometry in the whole site is one inline chevron that marks a disclosure row's open state, which is the native control's own marker.\n\nBoth colour schemes are first-class. Each is two committed tones — a ground and a raised ground, an ink and a secondary ink, plus a hairline — and neither was designed first and inverted after. color-scheme: light dark is declared so that scrollbars, form controls, and the caret come from the platform in the matching scheme. The register is plain because the product argument is plain: a recruiter mid-skim should meet the facts with nothing between them and the page.",
     "keyCharacteristics": [
-      "Two typefaces, two jobs: IBM Plex Serif for prose, IBM Plex Mono for every piece of metadata.",
-      "A four-token palette with no hue at all, inverted for dark mode.",
-      "One column, 44rem, with hairline rules as the only divider.",
-      "Links are ink with a muted underline - never a color.",
-      "Section headings are mono, uppercase, letterspaced, and muted, at one size only."
+      "No webfonts load. The platform UI stack carries everything; the system mono stack carries data.",
+      "Two committed tones per scheme, defined from the same five roles and inverted wholesale.",
+      "The accent is the visitor's own OS accent (AccentColor), never body text.",
+      "Hairline separators, ~4px near-square radii, no cards, no shadows, no badges.",
+      "An open work row is the platform's selected row: a raised-ground fill closed by a 2px accent rule.",
+      "State is said in type (a mono LIVE in secondary ink), never in colour.",
+      "Tabular numerics on every date and figure."
     ],
     "rules": [
       {
-        "name": "The No-Hue Rule",
-        "body": "There is no accent color, and adding one is a change to the system rather than a choice within it. Emphasis is produced by weight, rule, and whitespace. If a design needs a color to work, the design is wrong before the palette is.",
+        "name": "The Borrowed-Accent Rule",
+        "body": "The accent belongs to the visitor, not to the site. Where the browser exposes AccentColor, the page adopts it unchanged; the fallback blue is a fallback, not a brand colour, and no second hue may be introduced beside it.",
         "section": "colors"
       },
       {
-        "name": "The Underline-Not-Color Rule",
-        "body": "Links are ink with a muted underline offset 3px, darkening to ink on hover. Navigation and footer links invert this - muted with no underline, gaining ink and an underline on hover - so a link never announces itself with color anywhere in the system.",
+        "name": "The Never-Load-Bearing-Colour Rule",
+        "body": "No fact is communicated by colour alone. Anything a reader must be able to read goes through accent-ink, and anything a reader must be able to know — a project being live, a route being current — is said in words or weight. Audit test: render the page with the accent forced to the ground colour; nothing should become unreadable or ambiguous.",
         "section": "colors"
       },
       {
-        "name": "The Two-Voice Rule",
-        "body": "Serif states, mono annotates. If a string is content, it is serif; if it describes, locates, counts, or addresses content, it is mono. There is no third voice.",
+        "name": "The Two-Tone Rule",
+        "body": "Each scheme gets one ground and one raised ground. A third surface tier is a change to the system, not a choice within it. Imagery is held to the same commitment: any full-colour image sits behind --img-dim so it cannot become a third, brighter surface in the dark scheme.",
+        "section": "colors"
+      },
+      {
+        "name": "The Two-Stack Rule",
+        "body": "Sans states, mono tabulates. If a string is language, it is the UI stack; if it is data a reader might align or compare, it is the mono stack. There is no third voice and no webfont.",
         "section": "typography"
       },
       {
         "name": "The Weight-Not-Size Rule",
-        "body": "Below the page title, hierarchy is made with weight and color, not with size. A project name and the sentence under it are the same 1rem; only 600-vs-400 and ink-vs-muted separate them. Introducing intermediate heading sizes breaks the man-page logic.",
+        "body": "Below the 1.75rem page title, everything lives between 0.75rem and 0.9375rem. Hierarchy comes from weight (600 vs 400) and ink-vs-secondary-ink. Adding an intermediate heading size breaks the native-list logic.",
+        "section": "typography"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Every date and figure gets tabular numerics — applied automatically to <time> and available as .tnum for anything else.",
         "section": "typography"
       },
       {
         "name": "The One-Column Rule",
-        "body": "Everything is in the 44rem column: header, main, footer, rules, and dialog alike. There is no full-bleed element, no sidebar, and no element that escapes the measure.",
+        "body": "Toolbar, main, and footer share one 42rem measure. No full-bleed section, no sidebar, no element that escapes the column except a hairline.",
         "section": "layout"
       },
       {
+        "name": "The Reachable-Contact Rule",
+        "body": "The email address lives in the sticky toolbar and never scrolls away. The primary action does not depend on the reader reaching the bottom.",
+        "section": "layout"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "A surface is separated from another surface by a hairline or by a tonal step, never by a shadow. A component-library default shadow arriving with a copied pattern is a bug.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Conditional-Blur Rule",
+        "body": "Translucency exists on exactly one element (the toolbar) and must ship with its reduced-transparency fallback in the same commit.",
+        "section": "elevation"
+      },
+      {
         "name": "The Hairline Rule",
-        "body": "Structural division is a 1px rule border. Not a 2px bar, not a shadow, not a background change. The one line allowed to be heavier than a hairline is the focus ring.",
+        "body": "Structural division is a 1px hairline border. Not a 2px bar, not a shadow, not a background change. The only lines allowed to be heavier are the focus ring and the open work row's accent rule — both of which report state, never structure.",
         "section": "shapes"
       },
       {
-        "name": "The No-Modal Rule",
-        "body": "Reading is not a task that needs interruption or protected focus. Content expands in place; a dialog is reserved for something that genuinely must block the page.",
+        "name": "The No-Badge Rule",
+        "body": "A project being live is said in type — mono, uppercase, secondary ink — not in a coloured pill. Any status in this system is a word.",
+        "section": "components"
+      },
+      {
+        "name": "The One-Tempo Rule",
+        "body": "If an interaction needs a duration other than 150ms, or an easing curve other than the platform default, it is probably an effect rather than feedback.",
         "section": "components"
       }
     ],
     "dos": [
-      "Do set every piece of metadata in mono and every piece of prose in serif. Dates, counts, nav, commands, and section labels are mono without exception.",
-      "Do build hierarchy from weight (600 vs 400) and color (ink vs muted) before reaching for size. Only the page title is larger than 1rem.",
-      "Do use a 1px rule border for every structural division, and keep it inside the 44rem column.",
-      "Do keep both color schemes working from the same four tokens; test any change in dark mode before shipping it.",
-      "Do ask whether a new structural element can be expressed in the terminal rendering. If it can't, it is probably ornament.",
-      "Do keep muted text at the token value - it is chosen to clear AA on its own background in both schemes, and lightening it breaks that."
+      "Do let the visitor's platform supply the type. Both stacks are the tokens; adding a font file of any kind is a change to the system, not a choice within it.",
+      "Do route anything legibility depends on through accent-ink rather than the raw accent — a visitor's system accent may be pale.",
+      "Do build hierarchy from weight and ink-vs-secondary-ink before reaching for size. Only the page title exceeds 0.9375rem.",
+      "Do use a 1px hairline for every structural division, and keep content inside the 42rem column with prose at 60ch.",
+      "Do say state in words — a mono uppercase mark in secondary ink — and keep it out of colour.",
+      "Do put tabular numerics on every date and figure (<time> gets them automatically; otherwise .tnum).",
+      "Do test every change in both schemes, and with reduced motion and reduced transparency, before shipping it.",
+      "Do keep every interactive target in the chrome at ~44px via negative-margin vertical padding, so the hit area grows and the optical rhythm does not.",
+      "Do prefer a native element (<details>, <summary>, <time>) over a scripted equivalent; the platform's own control is the house component."
     ],
     "donts": [
-      "Don't introduce an accent color, a gradient, or a colored link. The palette has no hue by design.",
+      "Don't add a webfont, an icon font, or an icon pack. The one drawn glyph in the system is the inline disclosure chevron; anything else is a text character.",
+      "Don't introduce a second hue beside the accent, or use the accent for body text, surface fills, or large areas.",
+      "Don't add shadows, lifts, or a third surface tier. Hover, the open row, and the screenshot mat use the raised ground; everything else is a hairline.",
+      "Don't add coloured status badges, pills, or tag chips.",
+      "Don't spread translucency past the toolbar, or ship it without the reduced-transparency fallback.",
+      "Don't add an intermediate heading size between 0.9375rem and 1.75rem, or a second section-heading treatment.",
       "Don't build the dev-portfolio dark theme: neon on near-black, glassmorphism, gradient text, glowing cards, terminal typing animations. Explicitly rejected.",
       "Don't build the SaaS landing page: full-bleed hero, pill CTA, three feature icons, logo strip, testimonial cards, big rounded shadows. Explicitly rejected.",
       "Don't build the awards-site portfolio: oversized display type, custom cursor, scroll-jacking, heavy page transitions, loading counters. Explicitly rejected.",
-      "Don't build the template resume site: skills bar charts, proficiency rings, dotted timelines, generic icon sets. Explicitly rejected.",
-      "Don't add icon fonts, icon packs, or third-party font/icon scripts. Glyphs in this system are plain text characters, and the fonts are self-hosted on purpose.",
-      "Don't add intermediate heading sizes between 1rem and 2rem, or a second section-heading treatment.",
-      "Don't let a component library's default shadow, radius, or elevation arrive by accident - depth is an open question here, and any depth should be a deliberate decision."
+      "Don't build the template resume site: skills bar charts, proficiency rings, dotted timelines, generic icon sets. Explicitly rejected."
     ]
   }
 }
