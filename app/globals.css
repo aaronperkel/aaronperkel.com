@@ -1,68 +1,86 @@
 @import "tailwindcss";
 
-/* Design tokens. Neutral, document-like: white/near-black in light mode,
-   inverted in dark mode. Links are underlined ink, not colored. */
+/* System Native — see .impeccable/surfaces/app-page-tsx.md.
+   No webfonts: the visitor's own platform faces, spacing, and accent colour.
+   Neither scheme is "the" theme; both are defined from the same five roles. */
 @theme {
-  --color-page: #ffffff;
-  --color-ink: #171717;
-  --color-muted: #6f6f6f;
-  --color-rule: #e4e4e4;
+  --color-ground: #ffffff;
+  --color-raise: #f4f4f6;
+  --color-ink: #1a1a1c;
+  --color-ink-2: #5c5c61;
+  --color-line: #d7d7dc;
+  --color-accent: #0b5fff;
 
-  --font-serif: var(--font-plex-serif), Georgia, serif;
-  --font-mono: var(--font-plex-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, Roboto, "Helvetica Neue",
+    Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-page: #0a0a0a;
-    --color-ink: #ededed;
-    --color-muted: #969696;
-    --color-rule: #2a2a2a;
+    --color-ground: #161619;
+    --color-raise: #202026;
+    --color-ink: #f2f2f4;
+    --color-ink-2: #a2a2aa;
+    --color-line: #33333a;
+    --color-accent: #4d9bff;
+  }
+}
+
+/* The signature: where the browser exposes the operating system's own accent,
+   the page adopts it. Legibility never depends on it — it carries underlines,
+   focus rings, and markers, never body text. */
+@supports (color: AccentColor) {
+  :root {
+    --color-accent: AccentColor;
   }
 }
 
 @layer base {
   html {
-    scroll-behavior: smooth;
     color-scheme: light dark;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    html {
-      scroll-behavior: auto;
-    }
+    -webkit-text-size-adjust: 100%;
   }
 
   body {
-    background: var(--color-page);
+    background: var(--color-ground);
     color: var(--color-ink);
-    line-height: 1.65;
+    font-family: var(--font-sans);
+    line-height: 1.55;
   }
 
-  /* Prose links: underlined ink, quiet until hovered */
   a {
     color: var(--color-ink);
     text-decoration: underline;
-    text-decoration-color: var(--color-muted);
-    text-underline-offset: 3px;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 2px;
   }
 
   a:hover {
-    text-decoration-color: var(--color-ink);
+    text-decoration-thickness: 2px;
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-ink);
+    outline: 2px solid var(--color-accent);
     outline-offset: 2px;
+    border-radius: 2px;
   }
 
-  /* The browser's own surfaces, themed from the same two tokens */
   ::selection {
-    background: var(--color-ink);
-    color: var(--color-page);
+    background: var(--color-accent);
+    color: var(--color-ground);
   }
-}
 
-@view-transition {
-  navigation: auto;
+  @supports (color: AccentColorText) {
+    ::selection {
+      color: AccentColorText;
+    }
+  }
+
+  /* Dates, counts, and figures align in a column like a native list. */
+  time,
+  .tnum {
+    font-variant-numeric: tabular-nums;
+  }
 }

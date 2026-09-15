@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import ProjectsList from "@/components/ProjectsList";
-import { ManSection, RunningHead, docDate } from "@/components/ManPage";
+import Image from "next/image";
+import Section from "@/components/Section";
+import WorkList from "@/components/WorkList";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -9,58 +9,59 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="py-14">
-      <RunningHead left="perkel(1)" center="User Commands" right="perkel(1)" decorative />
-
-      <ManSection title="Name">
-        <h1 className="font-semibold">
-          aaron perkel <span className="text-muted">—</span> network technician and software
-          engineer
-        </h1>
-      </ManSection>
-
-      <ManSection title="Synopsis">
-        <p className="font-mono text-[0.85rem]">
-          perkel <span className="text-muted">[--network] [--software] [--vermont]</span>
-        </p>
-      </ManSection>
-
-      <ManSection title="Description">
-        <p className="max-w-[38rem]">
-          I’m a network technician at the University of Vermont with a B.S. in Computer
-          Science. I like building small, reliable systems: networks, web apps, and the
-          occasional Raspberry Pi project.
-        </p>
-      </ManSection>
-
-      <ManSection title="Projects">
-        <ProjectsList />
-      </ManSection>
-
-      <ManSection title="Author">
-        <p>
-          Aaron Perkel <span className="text-muted">·</span>{" "}
-          <a href="mailto:me@aaronperkel.com">me@aaronperkel.com</a>{" "}
-          <span className="text-muted">·</span> Burlington, Vermont
-        </p>
-      </ManSection>
-
-      <ManSection title="See Also">
-        <p className="font-mono text-[0.85rem]">
-          <Link href="/resume">resume(1)</Link>
-          <span className="text-muted">, </span>
-          <Link href="/about">about(7)</Link>
-          <span className="text-muted">, </span>
-          <a href="https://github.com/aaronperkel">github(1)</a>
-          <span className="text-muted">, </span>
-          <a href="https://linkedin.com/in/aaronperkel">linkedin(1)</a>
-        </p>
-        <p className="mt-2 font-mono text-[0.85rem] text-muted">curl aaronperkel.com</p>
-      </ManSection>
-
-      <div className="mt-14">
-        <RunningHead left="Burlington, VT" center={docDate} right="perkel(1)" />
+    <main className="py-10">
+      <div className="flex items-center gap-4">
+        <Image
+          src="/img/headshot.webp"
+          alt=""
+          width={56}
+          height={56}
+          className="h-14 w-14 rounded-full"
+          priority
+        />
+        <div className="min-w-0">
+          <h1 className="text-[1.75rem] font-semibold leading-tight tracking-[-0.02em]">
+            Aaron Perkel
+          </h1>
+          <p className="text-[0.9375rem] text-ink-2">
+            Network technician and software engineer · Burlington, Vermont
+          </p>
+        </div>
       </div>
+
+      <p className="mt-6 max-w-[60ch] text-[0.9375rem]">
+        I’m a network technician at the University of Vermont with a B.S. in Computer
+        Science. I like building small, reliable systems: networks, web apps, and the
+        occasional Raspberry Pi project.
+      </p>
+
+      <Section title="Now">
+        <p className="text-[0.9375rem]">
+          Network Technician, UVM Enterprise Technology Services{" "}
+          <span className="text-ink-2">— since May 2025</span>
+        </p>
+      </Section>
+
+      <Section title="Work">
+        <WorkList />
+        <p className="mt-3 text-[0.8125rem] text-ink-2">
+          <a href="https://github.com/aaronperkel">More on GitHub</a>
+        </p>
+      </Section>
+
+      <Section title="Contact">
+        <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[0.9375rem]">
+          <li>
+            <a href="mailto:me@aaronperkel.com">me@aaronperkel.com</a>
+          </li>
+          <li>
+            <a href="https://github.com/aaronperkel">GitHub</a>
+          </li>
+          <li>
+            <a href="https://linkedin.com/in/aaronperkel">LinkedIn</a>
+          </li>
+        </ul>
+      </Section>
     </main>
   );
 }

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { aboutData } from "@/data/about";
-import { ManSection, RunningHead, docDate } from "@/components/ManPage";
+import Section from "@/components/Section";
 
 export const metadata: Metadata = {
   title: "Aaron Perkel – About",
@@ -11,38 +11,32 @@ export const metadata: Metadata = {
 
 export default function About() {
   return (
-    <main className="py-14">
-      <RunningHead
-        left="perkel(7)"
-        center="Miscellaneous Information"
-        right="perkel(7)"
-        decorative
-      />
-
-      <h1 className="mt-9 text-[2rem] font-semibold leading-tight">{aboutData.pageTitle}</h1>
+    <main className="py-10">
+      <h1 className="text-[1.75rem] font-semibold leading-tight tracking-[-0.02em]">
+        {aboutData.pageTitle}
+      </h1>
 
       {aboutData.sections.map((section) => (
-        <ManSection key={section.title} title={section.title}>
+        <Section key={section.title} title={section.title}>
           {section.contentHtml && (
-            <p dangerouslySetInnerHTML={{ __html: section.contentHtml }} />
+            <p
+              className="max-w-[60ch] text-[0.9375rem]"
+              dangerouslySetInnerHTML={{ __html: section.contentHtml }}
+            />
           )}
           {section.list && (
-            <ul>
+            <ul className="text-[0.9375rem]">
               {section.list.map((item, i) => (
                 <li
                   key={i}
-                  className="relative mb-2 pl-5 before:absolute before:left-0 before:text-muted before:content-['–']"
+                  className="relative mb-1.5 pl-4 before:absolute before:left-0 before:text-ink-2 before:content-['·']"
                   dangerouslySetInnerHTML={{ __html: item }}
                 />
               ))}
             </ul>
           )}
-        </ManSection>
+        </Section>
       ))}
-
-      <div className="mt-14">
-        <RunningHead left="Burlington, VT" center={docDate} right="perkel(7)" />
-      </div>
     </main>
   );
 }

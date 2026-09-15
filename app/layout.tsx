@@ -1,29 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import Header from "@/components/Header";
+import Toolbar from "@/components/Toolbar";
 import Footer from "@/components/Footer";
 import "./globals.css";
-
-// Self-hosted from committed files (Fontsource latin-subset woff2) rather than
-// next/font/google so builds never depend on reaching Google Fonts.
-const plexSerif = localFont({
-  variable: "--font-plex-serif",
-  src: [
-    { path: "../assets/fonts/ibm-plex-serif-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../assets/fonts/ibm-plex-serif-latin-600-normal.woff2", weight: "600", style: "normal" },
-  ],
-  adjustFontFallback: "Times New Roman",
-});
-
-const plexMono = localFont({
-  variable: "--font-plex-mono",
-  src: [
-    { path: "../assets/fonts/ibm-plex-mono-latin-400-normal.woff2", weight: "400", style: "normal" },
-    { path: "../assets/fonts/ibm-plex-mono-latin-500-normal.woff2", weight: "500", style: "normal" },
-  ],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aaronperkel.com"),
@@ -36,7 +16,7 @@ export const metadata: Metadata = {
       { url: "/img/favicon-96x96.png", sizes: "96x96", type: "image/png" },
     ],
     apple: [{ url: "/img/apple-touch-icon.png", sizes: "180x180" }],
-    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#171717" }],
+    other: [{ rel: "mask-icon", url: "/img/favicon.svg", color: "#1a1a1c" }],
   },
   manifest: "/img/site.webmanifest",
   appleWebApp: {
@@ -58,7 +38,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0a0a0a" },
+    { media: "(prefers-color-scheme: dark)", color: "#161619" },
   ],
 };
 
@@ -105,18 +85,14 @@ export default function RootLayout({
   // data-scroll-behavior lets Next disable the CSS smooth scrolling (used for
   // in-page anchors) during route transitions, so page changes jump instantly
   return (
-    <html
-      lang="en"
-      data-scroll-behavior="smooth"
-      className={`${plexSerif.variable} ${plexMono.variable}`}
-    >
-      <body className="mx-auto flex min-h-svh max-w-[44rem] flex-col px-6 font-serif max-md:px-5">
+    <html lang="en" data-scroll-behavior="smooth">
+      <body className="flex min-h-svh flex-col">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
         />
-        <Header />
-        <div className="flex-1">{children}</div>
+        <Toolbar />
+        <div className="mx-auto w-full max-w-[42rem] flex-1 px-5">{children}</div>
         <Footer />
         <Analytics />
         <SpeedInsights />

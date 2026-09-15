@@ -13,64 +13,60 @@ const dim = (s: string) => style("2", s);
 const note = (s: string) => style("2;3", s); // dim italic — comments/taglines
 const link = (s: string) => style("4", s);
 
-const RULE_WIDTH = 64;
+// Plain bold caps — the terminal's own equivalent of the site's small section
+// headers. No rules, no ornament.
+const section = (label: string) => bold(label.toUpperCase());
 
-// "── LINKS ────────…" — the site's hairline rules + uppercase mono labels.
-const section = (label: string) =>
-  dim("── ") +
-  bold(label.toUpperCase()) +
-  " " +
-  dim("─".repeat(RULE_WIDTH - label.length - 4));
-
-const row = (label: string, url: string) => dim(label.padEnd(10)) + link(url);
+const row = (label: string, url: string) => "  " + dim(label.padEnd(10)) + link(url);
 
 const cmd = (c: string, comment: string) =>
-  dim("$ ") + c.padEnd(33) + note(`# ${comment}`);
+  "  " + dim("$ ") + c.padEnd(33) + note(`# ${comment}`);
 
 const endpoint = (path: string, comment: string) =>
   path.padEnd(12) + note(`# ${comment}`);
 
 const project = (name: string, tagline: string, url: string) =>
-  name.padEnd(17) + note(tagline) + "\n" + " ".repeat(17) + link(url);
+  "  " + name.padEnd(17) + note(tagline) + "\n" + " ".repeat(19) + link(url);
 
-// Man-page body indent: section heads sit flush left, their bodies step in.
-const ind = (s: string) => "   " + s;
 
 export const landing = [
-  section("name"),
+  bold("Aaron Perkel") + dim(" \u2014 network technician and software engineer"),
+  dim("Burlington, Vermont"),
   "",
-  ind("aaron perkel " + dim("\u2014") + " network technician and software engineer"),
+  "I'm a network technician at the University of Vermont with",
+  "a B.S. in Computer Science. I like building small, reliable",
+  "systems: networks, web apps, and the occasional Raspberry",
+  "Pi project.",
   "",
-  section("synopsis"),
+  section("work"),
   "",
-  ind("perkel " + dim("[--network] [--software] [--vermont]")),
+  project("\u00cdoc\u00f3n", "storefront for a working artist", "https://iocongraphics.com"),
+  project("UVM Sublets", "sublet listings for UVM students", "https://sublet.aperkel.w3.uvm.edu"),
+  project(
+    "Utility Manager",
+    "bill splitting for my apartment",
+    "https://github.com/aaronperkel/Utility-Manager",
+  ),
+  project(
+    "Finance Tracker",
+    "net-worth dashboard",
+    "https://github.com/aaronperkel/finance-tracker",
+  ),
+  project("Blob Kart", "two-player C++/OpenGL kart racer", "https://github.com/owncook/Blob-Kart"),
   "",
-  section("description"),
+  section("contact"),
   "",
-  ind("I'm a network technician at the University of Vermont with"),
-  ind("a B.S. in Computer Science. I like building small, reliable"),
-  ind("systems: networks, web apps, and the occasional Raspberry"),
-  ind("Pi project."),
+  row("email", "me@aaronperkel.com"),
+  row("web", "https://aaronperkel.com"),
+  row("github", "https://github.com/aaronperkel"),
+  row("linkedin", "https://linkedin.com/in/aaronperkel"),
   "",
-  section("examples"),
+  section("more"),
   "",
-  ind(cmd("curl aaronperkel.com", "this page")),
-  ind(cmd("curl aaronperkel.com/links", "links + projects")),
-  ind(cmd("curl aaronperkel.com/json", "the above, as JSON")),
-  ind(cmd("curl aaronperkel.com/help", "every endpoint")),
-  ind(cmd("curl -OJ aaronperkel.com/vcard", "contact card (.vcf)")),
-  "",
-  section("author"),
-  "",
-  ind("Aaron Perkel " + dim("\u00b7") + " " + link("me@aaronperkel.com") + " " + dim("\u00b7") + " Burlington, VT"),
-  "",
-  section("see also"),
-  "",
-  ind(row("web", "https://aaronperkel.com")),
-  ind(row("about", "https://aaronperkel.com/about")),
-  ind(row("resume", "https://aaronperkel.com/resume")),
-  ind(row("github", "https://github.com/aaronperkel")),
-  ind(row("linkedin", "https://linkedin.com/in/aaronperkel")),
+  cmd("curl aaronperkel.com/links", "links + projects"),
+  cmd("curl aaronperkel.com/json", "the above, as JSON"),
+  cmd("curl aaronperkel.com/help", "every endpoint"),
+  cmd("curl -OJ aaronperkel.com/vcard", "contact card (.vcf)"),
 ].join("\n");
 
 export const linksTxt = [
