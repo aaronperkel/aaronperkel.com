@@ -38,7 +38,9 @@ export default function Home() {
       <Section title="Now">
         <p className="text-[0.9375rem]">
           Network Technician, UVM Enterprise Technology Services{" "}
-          <span className="text-ink-2">— since May 2025</span>
+          <span className="text-ink-2">
+            — since <time dateTime="2025-05">May 2025</time>
+          </span>
         </p>
       </Section>
 
@@ -50,17 +52,9 @@ export default function Home() {
       </Section>
 
       <Section title="Contact">
-        <ul className="flex flex-wrap gap-x-5 gap-y-1 text-[0.9375rem]">
-          <li>
-            <a href="mailto:me@aaronperkel.com">me@aaronperkel.com</a>
-          </li>
-          <li>
-            <a href="https://github.com/aaronperkel">GitHub</a>
-          </li>
-          <li>
-            <a href="https://linkedin.com/in/aaronperkel">LinkedIn</a>
-          </li>
-        </ul>
+        <p className="text-[0.9375rem]">
+          <a href="mailto:me@aaronperkel.com">me@aaronperkel.com</a>
+        </p>
       </Section>
     </main>
   );

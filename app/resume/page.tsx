@@ -22,7 +22,7 @@ export default function Resume() {
     <main className="py-10">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
         <h1 className="text-[1.75rem] font-semibold leading-tight tracking-[-0.02em]">Resume</h1>
-        <a href="/resume.pdf" className="text-[0.8125rem]">
+        <a href="/resume.pdf" download className="text-[0.9375rem]">
           Download PDF
         </a>
       </div>
@@ -30,7 +30,7 @@ export default function Resume() {
       <Section title="Contact">
         <ul className="flex flex-wrap gap-x-4 gap-y-1 text-[0.875rem]">
           {resumeData.contactInfo.map((item) => (
-            <li key={item.label}>
+            <li key={item.label} className="tnum">
               {item.href ? <a href={item.href}>{display(item)}</a> : item.label}
             </li>
           ))}
@@ -86,7 +86,7 @@ export default function Resume() {
             {resumeData.honorsAndAwards.map((honor) => (
               <li key={honor.title} className={bullet}>
                 {honor.title}
-                {honor.date && <span className="text-ink-2"> — {honor.date}</span>}
+                {honor.date && <span className="tnum text-ink-2"> — {honor.date}</span>}
               </li>
             ))}
           </ul>

@@ -82,10 +82,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  // data-scroll-behavior lets Next disable the CSS smooth scrolling (used for
-  // in-page anchors) during route transitions, so page changes jump instantly
   return (
-    <html lang="en" data-scroll-behavior="smooth">
+    <html lang="en">
       <body className="flex min-h-svh flex-col">
         <script
           type="application/ld+json"

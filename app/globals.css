@@ -36,6 +36,22 @@
   }
 }
 
+/* Anything legibility rests on uses the bounded mix, never the raw OS value:
+   a pale yellow or graphite accent still lands dark enough to read. */
+:root {
+  --color-accent-ink: color-mix(in oklab, var(--color-accent) 55%, var(--color-ink));
+  /* Project screenshots are the one saturated surface here, and on the dark
+     ground they outshine everything. Held back a little so the two tones stay
+     the page. A token, not a media-query utility, so it moves with the scheme. */
+  --img-dim: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --img-dim: 0.88;
+  }
+}
+
 @layer base {
   html {
     color-scheme: light dark;
@@ -47,14 +63,27 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     line-height: 1.55;
+    caret-color: var(--color-accent-ink);
+    accent-color: var(--color-accent);
+    scrollbar-color: var(--color-line) transparent;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
   }
 
   a {
     color: var(--color-ink);
     text-decoration: underline;
-    text-decoration-color: var(--color-accent);
+    text-decoration-color: var(--color-accent-ink);
     text-decoration-thickness: 1px;
     text-underline-offset: 2px;
+    transition:
+      color 150ms ease,
+      text-decoration-color 150ms ease,
+      text-decoration-thickness 150ms ease;
   }
 
   a:hover {
@@ -62,9 +91,20 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-accent);
+    outline: 2px solid var(--color-accent-ink);
     outline-offset: 2px;
     border-radius: 2px;
+  }
+
+  summary {
+    transition: background-color 150ms ease;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    a,
+    summary {
+      transition: none;
+    }
   }
 
   ::selection {
@@ -82,5 +122,13 @@
   time,
   .tnum {
     font-variant-numeric: tabular-nums;
+  }
+}
+
+/* The translucent toolbar drops to a solid ground when the reader asks for it. */
+@media (prefers-reduced-transparency: reduce) {
+  .bar {
+    background: var(--color-ground);
+    backdrop-filter: none;
   }
 }

@@ -7,7 +7,7 @@ export interface AboutSection {
 }
 
 export const aboutData: { pageTitle: string; sections: AboutSection[] } = {
-  pageTitle: "About Me",
+  pageTitle: "Background",
   sections: [
     {
       title: "Who I Am",

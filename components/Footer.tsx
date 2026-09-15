@@ -12,7 +12,7 @@ export default function Footer() {
         <p className="tnum">© {new Date().getFullYear()} Aaron Perkel LLC</p>
         <div className="flex gap-4">
           {socials.map((s) => (
-            <a key={s.label} href={s.href} className="text-ink-2 no-underline hover:text-ink">
+            <a key={s.label} href={s.href} className="-my-3 py-3 text-ink-2 hover:text-ink">
               {s.label}
             </a>
           ))}

@@ -1,21 +1,14 @@
-import { readFile } from "node:fs/promises";
-import { join } from "node:path";
 import { ImageResponse } from "next/og";
 
-// Social-preview card, generated at build time in the site's text-on-a-page
-// style. Fonts are the OFL-licensed IBM Plex TTFs committed in assets/fonts
-// (ImageResponse/satori can't consume the woff2 files next/font uses).
+// Social-preview card, generated at build time. Deliberately no font files:
+// this world loads none, so the card takes next/og's default UI sans rather
+// than shipping a display face the site itself does not use.
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Aaron Perkel — CS grad and network technician";
+export const alt = "Aaron Perkel — network technician and software engineer";
 
 export default async function OpengraphImage() {
-  const [plexSerif, plexMono] = await Promise.all([
-    readFile(join(process.cwd(), "assets/fonts/IBMPlexSerif-SemiBold.ttf")),
-    readFile(join(process.cwd(), "assets/fonts/IBMPlexMono-Regular.ttf")),
-  ]);
-
   return new ImageResponse(
     (
       <div
@@ -24,42 +17,36 @@ export default async function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          justifyContent: "center",
-          padding: "0 96px",
+          justifyContent: "space-between",
+          padding: "88px 96px",
           backgroundColor: "#ffffff",
-          color: "#171717",
-          fontFamily: "IBM Plex Serif",
+          color: "#1a1a1c",
         }}
       >
-        <div
-          style={{
-            width: 120,
-            borderTop: "3px solid #171717",
-            marginBottom: 48,
-          }}
-        />
-        <div style={{ fontSize: 84, lineHeight: 1.1 }}>Aaron Perkel</div>
-        <div style={{ marginTop: 24, fontSize: 34, color: "#6f6f6f" }}>
-          Computer science grad &amp; network technician
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 84, fontWeight: 600, letterSpacing: "-0.02em" }}>
+            Aaron Perkel
+          </div>
+          <div style={{ marginTop: 20, fontSize: 36, color: "#5c5c61" }}>
+            Network technician and software engineer
+          </div>
         </div>
         <div
           style={{
-            marginTop: 56,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingTop: 28,
+            borderTop: "1px solid #d7d7dc",
             fontSize: 26,
-            color: "#6f6f6f",
-            fontFamily: "IBM Plex Mono",
+            color: "#5c5c61",
           }}
         >
-          $ curl aaronperkel.com
+          <div>aaronperkel.com</div>
+          <div>Burlington, Vermont</div>
         </div>
       </div>
     ),
-    {
-      ...size,
-      fonts: [
-        { name: "IBM Plex Serif", data: plexSerif, weight: 600, style: "normal" },
-        { name: "IBM Plex Mono", data: plexMono, weight: 400, style: "normal" },
-      ],
-    }
+    size
   );
 }

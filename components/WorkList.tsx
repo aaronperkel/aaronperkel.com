@@ -25,7 +25,7 @@ function Chevron() {
       strokeWidth="1.75"
       strokeLinecap="round"
       strokeLinejoin="round"
-      className="mt-[0.4rem] shrink-0 text-accent transition-transform duration-150 group-open:rotate-90 motion-reduce:transition-none"
+      className="mt-[0.4rem] shrink-0 text-[var(--color-accent-ink)] transition-transform duration-150 group-open:rotate-90 motion-reduce:transition-none"
     >
       <path d="M1.5 1.5 6.5 6l-5 4.5" />
     </svg>
@@ -74,18 +74,19 @@ export default function WorkList() {
       {rows.map((project) => (
         <details
           key={project.name}
+          name="work"
           className="group border-b border-line"
           onToggle={onToggle(project.name)}
         >
-          <summary className="-mx-2 flex cursor-pointer list-none items-start gap-2.5 rounded-[4px] px-2 py-3 hover:bg-raise [&::-webkit-details-marker]:hidden">
+          <summary className="flex cursor-pointer list-none items-start gap-2.5 rounded-[4px] py-3 hover:bg-raise group-open:rounded-b-none group-open:border-b-2 group-open:border-[var(--color-accent-ink)] group-open:bg-raise [&::-webkit-details-marker]:hidden">
             <Chevron />
             <span className="min-w-0 flex-1" data-project={project.name}>
-              <span className="flex flex-wrap items-baseline justify-between gap-x-3">
+              <span className="flex flex-col sm:flex-row sm:flex-wrap sm:items-baseline sm:justify-between sm:gap-x-3">
                 <span className="text-[0.9375rem] font-semibold">
                   {project.name}
                   {/* State said in type, never a coloured badge. */}
                   {project.site && (
-                    <span className="ml-2 font-mono text-[0.6875rem] font-normal uppercase tracking-[0.06em] text-ink-2">
+                    <span className="ml-2 font-mono text-[0.75rem] font-normal uppercase tracking-[0.06em] text-ink-2">
                       live
                     </span>
                   )}
@@ -104,19 +105,29 @@ export default function WorkList() {
               dangerouslySetInnerHTML={{ __html: project.descHtml }}
             />
             {(project.site || project.repo) && (
-              <p className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1 text-[0.8125rem]">
-                {project.site && <a href={project.site}>Visit site</a>}
-                {project.repo && <a href={project.repo}>Source</a>}
+              <p className="mt-2.5 flex flex-wrap gap-x-6 text-[0.8125rem]">
+                {project.site && (
+                  <a href={project.site} className="-my-1.5 py-1.5">
+                    Visit site
+                  </a>
+                )}
+                {project.repo && (
+                  <a href={project.repo} className="-my-1.5 py-1.5">
+                    Source
+                  </a>
+                )}
               </p>
             )}
-            <Image
-              src={project.image}
-              alt={project.name}
-              width={700}
-              height={467}
-              sizes="(max-width: 640px) 90vw, 620px"
-              className="mt-3.5 max-h-[300px] w-auto max-w-full rounded-[4px] border border-line object-contain"
-            />
+            <div className="mt-3.5 w-fit rounded-[4px] border border-line bg-raise p-1.5">
+              <Image
+                src={project.image}
+                alt=""
+                width={700}
+                height={467}
+                sizes="(max-width: 640px) 90vw, 620px"
+                className="block max-h-[300px] w-auto max-w-full rounded-[2px] object-contain [filter:brightness(var(--img-dim))]"
+              />
+            </div>
           </div>
         </details>
       ))}
