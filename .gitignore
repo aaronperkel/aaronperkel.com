@@ -14,6 +14,7 @@ silk/
 next-env.d.ts
 .vercel
 .env*
+!.env.example
 *.pem
 
 ##### Windows

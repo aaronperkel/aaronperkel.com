@@ -20,6 +20,11 @@ export const aboutData: { pageTitle: string; sections: AboutSection[] } = {
         "My work and side projects live at the intersection of <strong>networking</strong>, <strong>software</strong>, and <strong>automation</strong>. I enjoy designing small, reliable systems that make everyday workflows smoother — from full‐stack web apps to Raspberry Pi projects.",
     },
     {
+      title: "Freelance Work",
+      contentHtml:
+        "Alongside my day job, I take on freelance web and software projects through <strong>Aaron Perkel LLC</strong> — custom web apps, business sites and storefronts, payments, and automation for small businesses and organizations. <a href=\"/services\">See what I build</a>.",
+    },
+    {
       title: "What I’m Exploring",
       contentHtml:
         "I’ve always been fascinated by <strong>aviation</strong>, and I’m gradually blending that with my technical background. Whether through flight simulation on VATSIM, network visualization tools, or aviation data systems, I love connecting these two worlds. I’m also planning to pursue an FAA Private Pilot Certificate in the near future.",

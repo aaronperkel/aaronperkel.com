@@ -49,6 +49,7 @@ export const landing = [
   "",
   row("web", "https://aaronperkel.com"),
   row("about", "https://aaronperkel.com/about"),
+  row("services", "https://aaronperkel.com/services"),
   row("resume", "https://aaronperkel.com/resume"),
   row("github", "https://github.com/aaronperkel"),
   row("email", "me@aaronperkel.com"),
@@ -67,6 +68,7 @@ export const linksTxt = [
   "",
   row("web", "https://aaronperkel.com"),
   row("about", "https://aaronperkel.com/about"),
+  row("services", "https://aaronperkel.com/services"),
   row("resume", "https://aaronperkel.com/resume"),
   row("github", "https://github.com/aaronperkel"),
   row("linkedin", "https://linkedin.com/in/aaronperkel"),
@@ -125,6 +127,7 @@ export const cliJson = {
   links: [
     { title: "Home", url: "https://aaronperkel.com/" },
     { title: "About", url: "https://aaronperkel.com/about" },
+    { title: "Services", url: "https://aaronperkel.com/services" },
     { title: "Resume", url: "https://aaronperkel.com/resume" },
   ],
   projects: [

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import ProjectsGrid from "@/components/ProjectsGrid";
 
 export const metadata: Metadata = {
@@ -14,6 +15,10 @@ export default function Home() {
           I’m a network technician at the University of Vermont with a B.S. in Computer
           Science. I like building small, reliable systems: networks, web apps, and the
           occasional Raspberry Pi project.
+        </p>
+        <p className="mt-4 max-w-[38rem]">
+          I also take on freelance web and software work through Aaron Perkel LLC —{" "}
+          <Link href="/services">see what I build</Link>.
         </p>
       </section>
 

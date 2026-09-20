@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // (the popup opens client-side), so listing them just creates duplicate noise.
   return [
     { url: `${base}/`, priority: 1.0 },
+    { url: `${base}/services`, priority: 0.9 },
     { url: `${base}/about`, priority: 0.8 },
     { url: `${base}/resume`, priority: 0.8 },
   ];
