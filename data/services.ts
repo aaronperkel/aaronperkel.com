@@ -19,7 +19,7 @@ export interface ServicesData {
 export const servicesData: ServicesData = {
   pageTitle: "Services",
   intro:
-    "Freelance web and software development, contracted through Aaron Perkel LLC. I build custom software for small businesses and organizations — usually replacing a spreadsheet, a subscription you’ve outgrown, or a process somebody is still doing by hand.",
+    "I do freelance web and software development through Aaron Perkel LLC, building custom software for small businesses and organizations — usually replacing a spreadsheet, a subscription you’ve outgrown, or a process somebody is still doing by hand.",
   availability:
     "I take on a small number of projects at a time alongside my full-time work as a network technician at UVM, so I’ll tell you honestly up front what a realistic timeline looks like.",
   build: [
