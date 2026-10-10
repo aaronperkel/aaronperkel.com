@@ -30,8 +30,10 @@ const cmd = (c: string, comment: string) =>
 const endpoint = (path: string, comment: string) =>
   path.padEnd(12) + note(`# ${comment}`);
 
+// Wide enough for the longest project name plus a two-space gutter.
+const PROJECT_COL = 22;
 const project = (name: string, tagline: string, url: string) =>
-  name.padEnd(17) + note(tagline) + "\n" + " ".repeat(17) + link(url);
+  name.padEnd(PROJECT_COL) + note(tagline) + "\n" + " ".repeat(PROJECT_COL) + link(url);
 
 // ---- Header: "AARON PERKEL" in half-block caps (46 cols, 2 rows). ----
 export const headerTxt = [
@@ -78,32 +80,26 @@ export const linksTxt = [
   "",
   project(
     "Íocón",
-    "Next.js storefront for an Irish dance graphics studio",
+    "Storefront for an Irish dance graphics studio",
     "https://iocongraphics.com",
   ),
   "",
   project(
-    "UVM Sublets",
+    "Catamount Sublets",
     "Sublet listings platform for UVM students",
-    "https://github.com/aaronperkel/sublet",
+    "https://catamountsublets.com",
   ),
   "",
   project(
-    "Utility Manager",
+    "77 N Union Utilities",
     "Bill splitting & reminders for my apartment",
-    "https://github.com/aaronperkel/Utility-Manager",
+    "https://github.com/aaronperkel/utilities",
   ),
   "",
   project(
-    "Finance Tracker",
-    "Net-worth dashboard with Chart.js",
-    "https://github.com/aaronperkel/finance-tracker",
-  ),
-  "",
-  project(
-    "Blob Kart",
-    "Two-player C++/OpenGL kart racer",
-    "https://github.com/owncook/Blob-Kart",
+    "Vermont Plate Log",
+    "Logging Vermont plates spotted around Burlington",
+    "https://github.com/aaronperkel/vermont-plate-log",
   ),
 ].join("\n");
 
@@ -132,10 +128,9 @@ export const cliJson = {
   ],
   projects: [
     { title: "Íocón", url: "https://iocongraphics.com" },
-    { title: "UVM Sublets", url: "https://github.com/aaronperkel/sublet" },
-    { title: "Utility Manager", url: "https://github.com/aaronperkel/Utility-Manager" },
-    { title: "Finance Tracker", url: "https://github.com/aaronperkel/finance-tracker" },
-    { title: "Blob Kart", url: "https://github.com/owncook/Blob-Kart" },
+    { title: "Catamount Sublets", url: "https://catamountsublets.com" },
+    { title: "77 N Union Utilities", url: "https://github.com/aaronperkel/utilities" },
+    { title: "Vermont Plate Log", url: "https://github.com/aaronperkel/vermont-plate-log" },
   ],
 };
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { projects } from "@/data/projects";
 
-// Match the old main.js behavior: normalize NBSP so ?project=Blob Kart
+// Match the old main.js behavior: normalize NBSP so ?project=Vermont Plate Log
 // matches names containing non-breaking spaces.
 const normalize = (s: string) => s.replace(/ /g, " ").trim();
 
@@ -24,13 +24,19 @@ export default function ProjectsGrid() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
 
-  // Open a card when arriving with ?project=Name (used by resume links & old sitemap URLs)
+  // Open a card when arriving with ?project=Name (used by resume links & old sitemap URLs).
+  // A former name (aliases) opens the renamed card and rewrites the URL to the current name.
   useEffect(() => {
     const project = new URLSearchParams(window.location.search).get("project");
     if (!project) return;
-    const idx = projects.findIndex((p) => normalize(p.name) === normalize(project));
+    const wanted = normalize(project);
+    const idx = projects.findIndex(
+      (p) => normalize(p.name) === wanted || p.aliases?.some((a) => normalize(a) === wanted),
+    );
+    if (idx === -1) return;
     // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing from the URL on mount; state must start closed for SSR
-    if (idx !== -1) setOpenIndex(idx);
+    setOpenIndex(idx);
+    syncUrl(idx);
   }, []);
 
   const openAt = (idx: number) => {

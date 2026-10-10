@@ -88,7 +88,7 @@ export const resumeData = {
   skills: [
     { category: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL", "C", "C++", "Java", "PHP"] },
     { category: "Full-Stack", items: ["React", "Next.js (App Router)", "Node.js", "REST APIs", "Tailwind CSS"] },
-    { category: "Data", items: ["MySQL", "TiDB Cloud", "Schema design & migrations"] },
+    { category: "Data", items: ["PostgreSQL", "MySQL", "TiDB Cloud", "Schema design & migrations"] },
     { category: "Cloud & CI", items: ["Git", "GitHub Actions", "Vercel", "Cloudflare", "Docker", "Linux"] },
     { category: "AI Tooling", items: ["Claude Code", "LLM-assisted development"] },
     { category: "Interests", items: ["Aviation", "Flight sim (VATSIM)", "FAA PPL"] },
@@ -103,14 +103,20 @@ export const resumeData = {
       ],
     },
     {
-      link: "/?project=Utility%20Manager",
-      name: "Utility Manager",
+      link: "/?project=Catamount%20Sublets",
+      name: "Catamount Sublets",
+      description: "Sublet listings platform for UVM students — catamountsublets.com",
+      details: [
+        "Rebuilt my PHP/MySQL sublet board as Next.js 16 + TypeScript on Neon Postgres (Drizzle) with email-code auth, MapLibre maps, and a sharp photo pipeline; cut over in one morning, migrating 44 live listings and 199 photos",
+      ],
+    },
+    {
+      link: "/?project=77%20N%20Union%20Utilities",
+      name: "77 N Union Utilities",
       description: "Internal tool for splitting shared household bills — Next.js rewrite of a PHP app",
       details: [
         "Rewrote a two-year-old PHP/MySQL app as Next.js 15 + TypeScript, migrating the live DB to TiDB Cloud and PDFs to Vercel Blob with no user interruption; email-code auth, cron scheduler, signed JSON API",
       ],
     },
-    { link: "/?project=UVM%20Sublets", name: "UVM Sublets", description: "Sublet listings platform for UVM students — PHP/MySQL, NetID login, Leaflet maps, faceted filters" },
-    { link: "/?project=Blob%20Kart", name: "Blob Kart", description: "Two-player kart racer in C++ and OpenGL (GLFW/GLM) — physics, lap checkpoints, surface friction" },
   ] satisfies ResumeProject[],
 };
