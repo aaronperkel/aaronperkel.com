@@ -70,7 +70,13 @@ export default function Services() {
 
       <section className="mt-10">
         <h2 className={sectionLabel}>Recent work</h2>
-        <p dangerouslySetInnerHTML={{ __html: servicesData.proofHtml }} />
+        {servicesData.proofHtml.map((html, i) => (
+          <p
+            key={i}
+            className={i > 0 ? "mt-3" : undefined}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        ))}
         <p className="mt-3 font-mono text-[0.85rem]">
           <Link href="/">See more of what I’ve built →</Link>
         </p>

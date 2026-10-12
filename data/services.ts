@@ -1,6 +1,6 @@
 // Services-page content (freelance work under Aaron Perkel LLC).
-// `proofHtml` may contain trusted HTML and is rendered with
-// dangerouslySetInnerHTML — only trusted content belongs here.
+// `proofHtml` (one string per paragraph) may contain trusted HTML and is
+// rendered with dangerouslySetInnerHTML — only trusted content belongs here.
 export interface ServiceItem {
   title: string;
   body: string;
@@ -12,7 +12,7 @@ export interface ServicesData {
   availability: string;
   build: ServiceItem[];
   process: string[];
-  proofHtml: string;
+  proofHtml: string[];
   formIntro: string;
 }
 
@@ -47,8 +47,10 @@ export const servicesData: ServicesData = {
     "You own the code and the accounts. Nothing is locked to me.",
     "Handoff with documentation, or I stay on for maintenance — your call.",
   ],
-  proofHtml:
+  proofHtml: [
     'I built and maintain <a href="https://iocongraphics.com" target="_blank">iocongraphics.com</a> — a storefront for a working artist with a gallery, six custom order flows, a live order queue, moderated reviews, and an admin portal she runs herself. It’s live and taking real orders.',
+    'I also built and run <a href="https://catamountsublets.com" target="_blank">catamountsublets.com</a> — a sublet marketplace for UVM students with grid and map browsing, sign-in by a one-time code sent to a university email, photo uploads, and an admin console. It replaced an older app of mine, and every live listing moved over at launch.',
+  ],
   formIntro:
     "Tell me what you’re trying to build. I read everything and reply within a few days, usually sooner.",
 };
