@@ -14,12 +14,19 @@ const nextConfig: NextConfig = {
       { source: "/checklist/:path*", destination: "https://aperkel.w3.uvm.edu/checklist/:path*", permanent: false },
       { source: "/riley21/:path*", destination: "https://aperkel.w3.uvm.edu/riley21/:path*", permanent: false },
       { source: "/videos/:path*", destination: "https://aperkel.w3.uvm.edu/videos/:path*", permanent: false },
+      // The luggage-tag contact card lives at /me; its printed QR code points
+      // at the old /me.html, which the rewrite below serves at the clean URL.
+      { source: "/me.html", destination: "/me", permanent: true },
     ];
   },
   async rewrites() {
     // The PHP site served assets from /public/img/...; me.html, the web
     // manifest, and any external hotlinks still use those paths.
-    return [{ source: "/public/:path*", destination: "/:path*" }];
+    return [
+      { source: "/public/:path*", destination: "/:path*" },
+      // Clean URL for public/me.html (see the /me.html redirect above).
+      { source: "/me", destination: "/me.html" },
+    ];
   },
 };
 
