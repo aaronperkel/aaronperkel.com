@@ -111,11 +111,11 @@ export const resumeData = {
       ],
     },
     {
-      link: "/?project=77%20N%20Union%20Utilities",
-      name: "77 N Union Utilities",
-      description: "Internal tool for splitting shared household bills — Next.js rewrite of a PHP app",
+      link: "/?project=Lejer",
+      name: "Lejer",
+      description: "Hosted, multi-tenant household bill splitting — uselejer.com",
       details: [
-        "Rewrote a two-year-old PHP/MySQL app as Next.js 15 + TypeScript, migrating the live DB to TiDB Cloud and PDFs to Vercel Blob with no user interruption; email-code auth, cron scheduler, signed JSON API",
+        "Grew my roommates' PHP bill tracker into a product any household can sign up for: Next.js 16 + TypeScript on Neon Postgres with row-level security per household, email-code auth, Vercel Blob statements, and Resend reminders; migrated both existing houses at launch",
       ],
     },
   ] satisfies ResumeProject[],
