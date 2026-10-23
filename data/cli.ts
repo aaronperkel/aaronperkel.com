@@ -79,6 +79,12 @@ export const linksTxt = [
   section("projects"),
   "",
   project(
+    "Lejer",
+    "Shared bills for the people you live with",
+    "https://uselejer.com",
+  ),
+  "",
+  project(
     "Íocón",
     "Storefront for an Irish dance graphics studio",
     "https://iocongraphics.com",
@@ -127,6 +133,7 @@ export const cliJson = {
     { title: "Resume", url: "https://aaronperkel.com/resume" },
   ],
   projects: [
+    { title: "Lejer", url: "https://uselejer.com" },
     { title: "Íocón", url: "https://iocongraphics.com" },
     { title: "Catamount Sublets", url: "https://catamountsublets.com" },
     { title: "77 N Union Utilities", url: "https://github.com/aaronperkel/utilities" },

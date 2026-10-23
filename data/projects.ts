@@ -13,6 +13,13 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    name: "Lejer",
+    image: "/img/lejer.webp",
+    tagline: "Shared bills for the people you live with",
+    descHtml:
+      'Lejer is the hosted version of my bill-splitting apps, for anyone who shares a lease: sign up with an email code, invite the people you live with, and post each house bill with its statement — everyone sees their share, gets a reminder before it\'s due, and checks off when they\'ve paid, whether one person pays everything or each bill has its own owner who fronts it. I built it with Next.js, TypeScript & Tailwind CSS on Postgres (Neon, with row-level security per household), Vercel Blob, and Resend; it\'s free, with no ads, and both of my houses moved onto it at launch. There\'s a <a href="https://uselejer.com/demo" target="_blank">sample household</a> to poke around. <a href="https://uselejer.com" target="_blank">View Site</a>',
+  },
+  {
     name: "Iocon Graphics",
     image: "/img/iocon.webp",
     tagline: "Next.js storefront for an Irish dance graphics studio",
@@ -32,7 +39,7 @@ export const projects: Project[] = [
     image: "/img/77-n-union-utilities.webp",
     tagline: "Bill splitting & reminders for my apartment",
     descHtml:
-      '77 N Union Utilities is the dashboard my roommates and I use to track our gas, electric, and internet bills — it splits each bill, tracks who has paid, charts cost trends, and emails reminders before anything is due. I rewrote it from PHP in Next.js & TypeScript, with TiDB Cloud and Vercel Blob. I\'ve adapted it for a second house (<a href="https://github.com/aaronperkel/peach-cob" target="_blank">Peach Cob</a>) and am now merging both into <a href="https://github.com/aaronperkel/lejer" target="_blank">Lejer</a>, a version for any household. <a href="https://github.com/aaronperkel/utilities" target="_blank">GitHub Repo</a>',
+      '77 N Union Utilities is the dashboard my roommates and I use to track our gas, electric, and internet bills — it splits each bill, tracks who has paid, charts cost trends, and emails reminders before anything is due. I rewrote it from PHP in Next.js & TypeScript, with TiDB Cloud and Vercel Blob. I\'ve adapted it for a second house (<a href="https://github.com/aaronperkel/peach-cob" target="_blank">Peach Cob</a>), and both houses now run on <a href="https://uselejer.com" target="_blank">Lejer</a>, the hosted version for any household. <a href="https://github.com/aaronperkel/utilities" target="_blank">GitHub Repo</a>',
     aliases: ["Utility Manager"],
   },
   {
