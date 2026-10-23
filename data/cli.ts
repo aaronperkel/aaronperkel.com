@@ -97,12 +97,6 @@ export const linksTxt = [
   ),
   "",
   project(
-    "77 N Union Utilities",
-    "Bill splitting & reminders for my apartment",
-    "https://github.com/aaronperkel/utilities",
-  ),
-  "",
-  project(
     "Vermont Plate Log",
     "Logging Vermont plates spotted around Burlington",
     "https://github.com/aaronperkel/vermont-plate-log",
@@ -136,7 +130,6 @@ export const cliJson = {
     { title: "Lejer", url: "https://uselejer.com" },
     { title: "Íocón", url: "https://iocongraphics.com" },
     { title: "Catamount Sublets", url: "https://catamountsublets.com" },
-    { title: "77 N Union Utilities", url: "https://github.com/aaronperkel/utilities" },
     { title: "Vermont Plate Log", url: "https://github.com/aaronperkel/vermont-plate-log" },
   ],
 };
