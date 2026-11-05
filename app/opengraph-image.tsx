@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
+import { identity } from "@/data/identity";
 
 // Social-preview card, generated at build time in the site's text-on-a-page
 // style. Fonts are the OFL-licensed IBM Plex TTFs committed in assets/fonts
@@ -8,7 +9,7 @@ import { ImageResponse } from "next/og";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-export const alt = "Aaron Perkel — CS grad and network technician";
+export const alt = `${identity.name} — ${identity.role.toLowerCase()}`;
 
 export default async function OpengraphImage() {
   const [plexSerif, plexMono] = await Promise.all([
@@ -38,9 +39,17 @@ export default async function OpengraphImage() {
             marginBottom: 48,
           }}
         />
-        <div style={{ fontSize: 84, lineHeight: 1.1 }}>Aaron Perkel</div>
-        <div style={{ marginTop: 24, fontSize: 34, color: "#6f6f6f" }}>
-          Computer science grad &amp; network technician
+        <div style={{ fontSize: 84, lineHeight: 1.1 }}>{identity.name}</div>
+        <div style={{ marginTop: 24, fontSize: 40 }}>{identity.role}</div>
+        <div
+          style={{
+            marginTop: 16,
+            fontSize: 28,
+            color: "#6f6f6f",
+            fontFamily: "IBM Plex Mono",
+          }}
+        >
+          {identity.stack.join(" · ")}
         </div>
         <div
           style={{

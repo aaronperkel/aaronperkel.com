@@ -7,6 +7,8 @@
 // styles so escape codes don't break column alignment. Keep visible lines
 // ≤ 72 columns so nothing wraps in a default 80-column terminal.
 
+import { identity } from "@/data/identity";
+
 const style = (code: string, s: string) => `\x1b[${code}m${s}\x1b[0m`;
 const bold = (s: string) => style("1", s);
 const dim = (s: string) => style("2", s);
@@ -14,6 +16,23 @@ const note = (s: string) => style("2;3", s); // dim italic — comments/taglines
 const link = (s: string) => style("4", s);
 
 const RULE_WIDTH = 64;
+
+// Greedy word wrap for prose pulled from data/identity.ts (curly quotes are
+// fine; ANSI styling is applied after wrapping, never before).
+const wrap = (text: string, width = RULE_WIDTH) => {
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(/\s+/)) {
+    if (line && line.length + 1 + word.length > width) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = line ? `${line} ${word}` : word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+};
 
 // "── LINKS ────────…" — the site's hairline rules + uppercase mono labels.
 const section = (label: string) =>
@@ -42,19 +61,20 @@ export const headerTxt = [
 ].join("\n");
 
 export const landing = [
-  "I'm a network technician at the University of Vermont with a",
-  "B.S. in Computer Science. I like building small, reliable",
-  "systems: networks, web apps, and the occasional Raspberry Pi",
-  "project.",
+  bold(identity.role),
+  "",
+  ...wrap(identity.intro),
   "",
   section("links"),
   "",
-  row("web", "https://aaronperkel.com"),
-  row("about", "https://aaronperkel.com/about"),
-  row("services", "https://aaronperkel.com/services"),
-  row("resume", "https://aaronperkel.com/resume"),
-  row("github", "https://github.com/aaronperkel"),
-  row("email", "me@aaronperkel.com"),
+  row("web", identity.site),
+  row("projects", `${identity.site}/#projects`),
+  row("about", `${identity.site}/about`),
+  row("resume", `${identity.site}/resume`),
+  row("contact", `${identity.site}/contact`),
+  row("github", identity.github),
+  row("linkedin", identity.linkedin),
+  row("email", identity.email),
   "",
   section("legend"),
   "",
@@ -68,13 +88,15 @@ export const landing = [
 export const linksTxt = [
   section("links"),
   "",
-  row("web", "https://aaronperkel.com"),
-  row("about", "https://aaronperkel.com/about"),
-  row("services", "https://aaronperkel.com/services"),
-  row("resume", "https://aaronperkel.com/resume"),
-  row("github", "https://github.com/aaronperkel"),
-  row("linkedin", "https://linkedin.com/in/aaronperkel"),
-  row("email", "me@aaronperkel.com"),
+  row("web", identity.site),
+  row("projects", `${identity.site}/#projects`),
+  row("about", `${identity.site}/about`),
+  row("resume", `${identity.site}/resume`),
+  row("contact", `${identity.site}/contact`),
+  row("services", `${identity.site}/services`),
+  row("github", identity.github),
+  row("linkedin", identity.linkedin),
+  row("email", identity.email),
   "",
   section("projects"),
   "",
@@ -114,17 +136,21 @@ export const helpTxt = [
 ].join("\n");
 
 export const cliJson = {
-  name: "Aaron Perkel",
-  title: "Network Technician @ UVM",
+  name: identity.name,
+  title: identity.role,
+  tagline: identity.tagline,
+  dayJob: `${identity.currentRole.title} @ ${identity.currentRole.org}`,
   location: "Burlington, Vermont",
-  email: "me@aaronperkel.com",
-  site: "https://aaronperkel.com",
-  github: "https://github.com/aaronperkel",
+  email: identity.email,
+  site: identity.site,
+  github: identity.github,
+  linkedin: identity.linkedin,
   links: [
-    { title: "Home", url: "https://aaronperkel.com/" },
-    { title: "About", url: "https://aaronperkel.com/about" },
-    { title: "Services", url: "https://aaronperkel.com/services" },
-    { title: "Resume", url: "https://aaronperkel.com/resume" },
+    { title: "Home", url: `${identity.site}/` },
+    { title: "About", url: `${identity.site}/about` },
+    { title: "Resume", url: `${identity.site}/resume` },
+    { title: "Contact", url: `${identity.site}/contact` },
+    { title: "Services", url: `${identity.site}/services` },
   ],
   projects: [
     { title: "Lejer", url: "https://uselejer.com" },
@@ -134,13 +160,14 @@ export const cliJson = {
   ],
 };
 
-// No home address here — this file is downloadable by anyone on the internet.
+// No phone or home address here — this file is downloadable by anyone on the
+// internet, and both live only on /me (data/contact.ts).
 export const vcard = `
 BEGIN:VCARD
 VERSION:3.0
 N:Perkel;Aaron;;;
-FN:Aaron Perkel
-EMAIL;TYPE=INTERNET,PREF:me@aaronperkel.com
-TEL;TYPE=CELL:478-262-8935
-URL:https://aaronperkel.com
+FN:${identity.name}
+TITLE:${identity.role}
+EMAIL;TYPE=INTERNET,PREF:${identity.email}
+URL:${identity.site}
 END:VCARD`.trim();
