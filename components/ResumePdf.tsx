@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontSize: 9.5,
     lineHeight: 1.4,
     color: color.text,
-    paddingVertical: 40,
+    paddingVertical: 34,
     paddingHorizontal: 54,
   },
   name: {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: color.rule,
     paddingBottom: 3,
-    marginTop: 11,
+    marginTop: 9,
     marginBottom: 6,
   },
   entry: { marginBottom: 7 },
