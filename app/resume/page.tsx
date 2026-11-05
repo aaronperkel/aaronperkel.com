@@ -72,6 +72,12 @@ export default function Resume() {
           {resumeData.projects.map((project) => (
             <li key={project.name} className={dashLi}>
               <Link href={project.link}>{project.name}</Link>
+              {project.repo && (
+                <>
+                  {" "}
+                  (<a href={project.repo}>{project.repo.replace(/^https?:\/\//, "")}</a>)
+                </>
+              )}
               {project.description && <> — {project.description}</>}
             </li>
           ))}
