@@ -5,6 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { identity } from "@/data/identity";
+import { openGraph } from "@/app/og";
 import "./globals.css";
 
 // Self-hosted from committed files (Fontsource latin-subset woff2) rather than
@@ -44,12 +45,8 @@ export const metadata: Metadata = {
     title: "AP",
     statusBarStyle: "default",
   },
-  // og:title/og:description fall back to each page's resolved title/description.
-  openGraph: {
-    type: "website",
-    url: identity.site,
-    siteName: identity.name,
-  },
+  // Pages override this with their own openGraph("/path") for a correct og:url.
+  openGraph: openGraph("/"),
   twitter: {
     card: "summary_large_image",
   },

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import ProjectList from "@/components/ProjectList";
 
 export const metadata: Metadata = {
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   description:
     "Production web apps by Aaron Perkel, each with a short case study: auth, data models, payments, migrations, and deploys.",
   alternates: { canonical: "/projects" },
+  openGraph: openGraph("/projects"),
 };
 
 export default function Projects() {

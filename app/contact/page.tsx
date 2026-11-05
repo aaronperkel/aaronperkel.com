@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import Link from "next/link";
 import { identity } from "@/data/identity";
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   title: "Aaron Perkel – Contact",
   description: `Get in touch with ${identity.name}: email, LinkedIn, GitHub, and resume.`,
   alternates: { canonical: "/contact" },
+  openGraph: openGraph("/contact"),
 };
 
 const rows = [

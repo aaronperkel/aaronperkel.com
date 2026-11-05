@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import { aboutData } from "@/data/about";
 import { identity } from "@/data/identity";
 
@@ -6,6 +7,7 @@ export const metadata: Metadata = {
   title: "Aaron Perkel – About",
   description: `About ${identity.name}: ${identity.metaDescription}`,
   alternates: { canonical: "/about" },
+  openGraph: openGraph("/about"),
 };
 
 export default function About() {

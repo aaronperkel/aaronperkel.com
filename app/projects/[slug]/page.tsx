@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { openGraph } from "@/app/og";
 import { featured, findProject } from "@/data/projects";
 
 // One short case study per featured project, all prerendered.
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: `${project.name} – Aaron Perkel`,
     description: `${project.tagline}. ${project.highlights[0]}`,
     alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: openGraph(`/projects/${project.slug}`),
   };
 }
 

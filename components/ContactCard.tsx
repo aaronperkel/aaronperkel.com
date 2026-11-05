@@ -94,7 +94,7 @@ export default function ContactCard() {
         <a className={button} href={`mailto:${contact.email}`}>
           Email
         </a>
-        <a className={button} href={mapsUrl} target="_blank" rel="noopener">
+        <a className={button} href={mapsUrl} target="_blank" rel="noopener noreferrer">
           Directions
         </a>
       </section>
@@ -109,7 +109,7 @@ export default function ContactCard() {
             >
               <dt className="w-16 shrink-0 font-mono text-[0.8rem] text-muted">{row.label}</dt>
               <dd className="min-w-0 flex-1 break-words">
-                <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel="noopener">
+                <a href={row.href} target={row.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer">
                   {row.value}
                 </a>
               </dd>

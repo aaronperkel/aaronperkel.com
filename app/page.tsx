@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import ProjectList from "@/components/ProjectList";
 import { identity } from "@/data/identity";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
+  openGraph: openGraph("/"),
 };
 
 const sectionLabel =

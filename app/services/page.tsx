@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import Link from "next/link";
 import InquiryForm from "@/components/InquiryForm";
 import { servicesData } from "@/data/services";
@@ -8,6 +9,7 @@ export const metadata: Metadata = {
   description:
     "Freelance web and software development through Aaron Perkel LLC — custom web apps, business sites and storefronts, Stripe payments, and automation for small businesses and organizations.",
   alternates: { canonical: "/services" },
+  openGraph: openGraph("/services"),
 };
 
 const sectionLabel =

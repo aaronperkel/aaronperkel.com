@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import Link from "next/link";
 import { resumeData, type ContactItem } from "@/data/resume";
 
@@ -7,6 +8,7 @@ export const metadata: Metadata = {
   description:
     "Aaron Perkel's resume: experience as a network technician, education, skills, and side projects.",
   alternates: { canonical: "/resume" },
+  openGraph: openGraph("/resume"),
 };
 
 const sectionLabel =
