@@ -6,7 +6,7 @@ import { resumeData, type ContactItem } from "@/data/resume";
 export const metadata: Metadata = {
   title: "Aaron Perkel – Resume",
   description:
-    "Aaron Perkel's resume: experience as a network technician, education, skills, and side projects.",
+    "Aaron Perkel's resume: full-stack development through Aaron Perkel LLC, production projects, skills, and education.",
   alternates: { canonical: "/resume" },
   openGraph: openGraph("/resume"),
 };
@@ -23,7 +23,10 @@ export default function Resume() {
   return (
     <main className="py-14">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h1 className="text-[2rem] font-semibold leading-tight">Resume</h1>
+        <div>
+          <h1 className="text-[2rem] font-semibold leading-tight">Resume</h1>
+          <p className="mt-1 text-muted">{resumeData.headline}</p>
+        </div>
         <a href="/resume.pdf" className="font-mono text-[0.85rem]">
           resume.pdf ↓
         </a>
@@ -31,17 +34,14 @@ export default function Resume() {
 
       <section className="mt-8">
         <h2 className={sectionLabel}>Contact</h2>
-        {/* Same two-line grouping as the PDF: personal info, then web presence */}
-        {[resumeData.contactInfo.slice(0, 3), resumeData.contactInfo.slice(3)].map((group, g) => (
-          <ul key={g} className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[0.85rem]">
-            {group.map((item, i) => (
-              <li key={item.label} className="flex gap-x-2">
-                {i > 0 && <span className="text-muted">·</span>}
-                {item.href ? <a href={item.href}>{display(item)}</a> : item.label}
-              </li>
-            ))}
-          </ul>
-        ))}
+        <ul className="flex flex-wrap gap-x-2 gap-y-1 font-mono text-[0.85rem]">
+          {resumeData.contactInfo.map((item, i) => (
+            <li key={item.label} className="flex gap-x-2">
+              {i > 0 && <span className="text-muted">·</span>}
+              {item.href ? <a href={item.href}>{display(item)}</a> : item.label}
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="mt-10">
@@ -67,6 +67,29 @@ export default function Resume() {
       </section>
 
       <section className="mt-10">
+        <h2 className={sectionLabel}>Projects</h2>
+        <ul>
+          {resumeData.projects.map((project) => (
+            <li key={project.name} className={dashLi}>
+              <Link href={project.link}>{project.name}</Link>
+              {project.description && <> — {project.description}</>}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="mt-10">
+        <h2 className={sectionLabel}>Skills</h2>
+        <ul>
+          {resumeData.skills.map((group) => (
+            <li key={group.category} className={dashLi}>
+              <strong className="font-semibold">{group.category}:</strong>{" "}
+              {group.items.join(", ")}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10">
         <h2 className={sectionLabel}>Education</h2>
         {resumeData.education.map((edu) => (
           <article key={edu.institution} className="mb-4">
@@ -79,52 +102,6 @@ export default function Resume() {
         ))}
       </section>
 
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Skills &amp; Interests</h2>
-        <ul>
-          {resumeData.skills.map((group) => (
-            <li key={group.category} className={dashLi}>
-              <strong className="font-semibold">{group.category}:</strong>{" "}
-              {group.items.join(", ")}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      {resumeData.honorsAndAwards.length > 0 && (
-        <section className="mt-10">
-          <h2 className={sectionLabel}>Honors &amp; Awards</h2>
-          <ul>
-            {resumeData.honorsAndAwards.map((honor) => (
-              <li key={honor.title} className={dashLi}>
-                {honor.title}
-                {honor.date && <span className="text-muted"> — {honor.date}</span>}
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
-      <section className="mt-10">
-        <h2 className={sectionLabel}>Projects</h2>
-        <ul>
-          {resumeData.projects.map((project) => (
-            <li key={project.name} className={dashLi}>
-              <Link href={project.link}>{project.name}</Link>
-              {project.description && <> — {project.description}</>}
-              {project.details && project.details.length > 0 && (
-                <ul className="mt-1 mb-2">
-                  {project.details.map((detail, i) => (
-                    <li key={i} className={dashLi}>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </section>
     </main>
   );
 }

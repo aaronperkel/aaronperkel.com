@@ -7,32 +7,32 @@ export interface AboutSection {
 }
 
 export const aboutData: { pageTitle: string; sections: AboutSection[] } = {
-  pageTitle: "About Me",
+  pageTitle: "About",
   sections: [
     {
-      title: "Who I Am",
+      title: "What I build",
       contentHtml:
-        "Hi, I’m Aaron Perkel. I’m a computer scientist and network technician based in Burlington, Vermont. I graduated from the University of Vermont with a B.S. in Computer Science and a minor in Mathematics, completing the degree in three years. I currently work with UVM’s Enterprise Technology Services (ETS) team, where I focus on network infrastructure, systems support, and automation projects.",
+        "I’m a full-stack developer in Burlington, Vermont. I build web apps for real users: registration and payments for a nonprofit, a bill-splitting app households use every month, a sublet marketplace for UVM students, and a storefront that takes real orders. Most of it is Next.js and TypeScript on Postgres, and the parts I like best are underneath — data models, auth, payments, and the jobs that run when nobody’s watching. <a href=\"/projects\">See the case studies</a>.",
     },
     {
-      title: "What I Do",
+      title: "How I work",
       contentHtml:
-        "My work and side projects live at the intersection of <strong>networking</strong>, <strong>software</strong>, and <strong>automation</strong>. I enjoy designing small, reliable systems that make everyday workflows smoother — from full‐stack web apps to Raspberry Pi projects.",
+        "I take projects end to end, from the first conversation through deploy and the maintenance after. I lean on the database to keep data correct — constraints, row-level security, transactions — write tests for the rules that cost money when they’re wrong, and plan migrations so cutovers are boring: Catamount Sublets moved 44 live listings and 199 photos in about twenty minutes.",
     },
     {
-      title: "Freelance Work",
+      title: "Background",
       contentHtml:
-        "Alongside my day job, I take on freelance web and software projects through <strong>Aaron Perkel LLC</strong> — custom web apps, business sites and storefronts, payments, and automation for small businesses and organizations. <a href=\"/services\">See what I build</a>.",
+        "I graduated from the University of Vermont with a B.S. in Computer Science and a minor in Mathematics, finishing in three years. Since May 2025 I’ve been a network technician on UVM’s Enterprise Technology Services team. I also run <strong>Aaron Perkel LLC</strong>, building software for small businesses and nonprofits — <a href=\"/services\">see services</a>.",
     },
     {
-      title: "What I’m Exploring",
+      title: "What I’m looking for",
       contentHtml:
-        "I’ve always been fascinated by <strong>aviation</strong>, and I’m gradually blending that with my technical background. Whether through flight simulation on VATSIM, network visualization tools, or aviation data systems, I love connecting these two worlds. I’m also planning to pursue an FAA Private Pilot Certificate in the near future.",
+        "A backend or full-stack role on a team that ships to real users — owning features from schema to production, with people I can learn from in code review.",
     },
     {
-      title: "Outside of Tech",
+      title: "Outside of work",
       contentHtml:
-        "When I’m not coding or working, I’m probably making music, exploring Vermont, or creating short films and photos for friends. My projects are personal, practical, and usually built just because I can.",
+        "I’m an aviation nerd (flight sim on VATSIM, and I plan to earn a private pilot certificate), and I make music and short films.",
     },
   ],
 };
