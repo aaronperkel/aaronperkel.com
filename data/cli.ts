@@ -7,6 +7,9 @@
 // styles so escape codes don't break column alignment. Keep visible lines
 // ≤ 72 columns so nothing wraps in a default 80-column terminal.
 
+import { identity } from "@/data/identity";
+import { featured, otherProjects } from "@/data/projects";
+
 const style = (code: string, s: string) => `\x1b[${code}m${s}\x1b[0m`;
 const bold = (s: string) => style("1", s);
 const dim = (s: string) => style("2", s);
@@ -14,6 +17,23 @@ const note = (s: string) => style("2;3", s); // dim italic — comments/taglines
 const link = (s: string) => style("4", s);
 
 const RULE_WIDTH = 64;
+
+// Greedy word wrap for prose pulled from data/identity.ts (curly quotes are
+// fine; ANSI styling is applied after wrapping, never before).
+const wrap = (text: string, width = RULE_WIDTH) => {
+  const lines: string[] = [];
+  let line = "";
+  for (const word of text.split(/\s+/)) {
+    if (line && line.length + 1 + word.length > width) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = line ? `${line} ${word}` : word;
+    }
+  }
+  if (line) lines.push(line);
+  return lines;
+};
 
 // "── LINKS ────────…" — the site's hairline rules + uppercase mono labels.
 const section = (label: string) =>
@@ -30,10 +50,17 @@ const cmd = (c: string, comment: string) =>
 const endpoint = (path: string, comment: string) =>
   path.padEnd(12) + note(`# ${comment}`);
 
-// Wide enough for the longest project name plus a two-space gutter.
-const PROJECT_COL = 22;
+// Wide enough for the longest project name plus a two-space gutter. Taglines
+// wrap within the remaining columns, continuation lines indented to match.
+const PROJECT_COL = 23;
+const indent = " ".repeat(PROJECT_COL);
 const project = (name: string, tagline: string, url: string) =>
-  name.padEnd(PROJECT_COL) + note(tagline) + "\n" + " ".repeat(PROJECT_COL) + link(url);
+  [
+    ...wrap(tagline, RULE_WIDTH - PROJECT_COL).map(
+      (line, i) => (i === 0 ? name.padEnd(PROJECT_COL) : indent) + note(line),
+    ),
+    indent + link(url),
+  ].join("\n");
 
 // ---- Header: "AARON PERKEL" in half-block caps (46 cols, 2 rows). ----
 export const headerTxt = [
@@ -42,19 +69,20 @@ export const headerTxt = [
 ].join("\n");
 
 export const landing = [
-  "I'm a network technician at the University of Vermont with a",
-  "B.S. in Computer Science. I like building small, reliable",
-  "systems: networks, web apps, and the occasional Raspberry Pi",
-  "project.",
+  bold(identity.role),
+  "",
+  ...wrap(identity.intro),
   "",
   section("links"),
   "",
-  row("web", "https://aaronperkel.com"),
-  row("about", "https://aaronperkel.com/about"),
-  row("services", "https://aaronperkel.com/services"),
-  row("resume", "https://aaronperkel.com/resume"),
-  row("github", "https://github.com/aaronperkel"),
-  row("email", "me@aaronperkel.com"),
+  row("web", identity.site),
+  row("projects", `${identity.site}/projects`),
+  row("about", `${identity.site}/about`),
+  row("resume", `${identity.site}/resume`),
+  row("contact", `${identity.site}/contact`),
+  row("github", identity.github),
+  row("linkedin", identity.linkedin),
+  row("email", identity.email),
   "",
   section("legend"),
   "",
@@ -68,39 +96,24 @@ export const landing = [
 export const linksTxt = [
   section("links"),
   "",
-  row("web", "https://aaronperkel.com"),
-  row("about", "https://aaronperkel.com/about"),
-  row("services", "https://aaronperkel.com/services"),
-  row("resume", "https://aaronperkel.com/resume"),
-  row("github", "https://github.com/aaronperkel"),
-  row("linkedin", "https://linkedin.com/in/aaronperkel"),
-  row("email", "me@aaronperkel.com"),
+  row("web", identity.site),
+  row("projects", `${identity.site}/projects`),
+  row("about", `${identity.site}/about`),
+  row("resume", `${identity.site}/resume`),
+  row("contact", `${identity.site}/contact`),
+  row("services", `${identity.site}/services`),
+  row("github", identity.github),
+  row("linkedin", identity.linkedin),
+  row("email", identity.email),
   "",
   section("projects"),
   "",
-  project(
-    "Lejer",
-    "Shared bills for the people you live with",
-    "https://uselejer.com",
-  ),
-  "",
-  project(
-    "Íocón",
-    "Storefront for an Irish dance graphics studio",
-    "https://iocongraphics.com",
-  ),
-  "",
-  project(
-    "Catamount Sublets",
-    "Sublet listings platform for UVM students",
-    "https://catamountsublets.com",
-  ),
-  "",
-  project(
-    "Vermont Plate Log",
-    "Logging Vermont plates spotted around Burlington",
-    "https://github.com/aaronperkel/vermont-plate-log",
-  ),
+  ...featured.flatMap((p) => [
+    // Scheme dropped (like the legend's commands) to stay within 72 columns.
+    project(p.name, p.tagline, `aaronperkel.com/projects/${p.slug}`),
+    "",
+  ]),
+  ...otherProjects.map((p) => p.name.padEnd(PROJECT_COL) + link(p.links[0].href)),
 ].join("\n");
 
 export const helpTxt = [
@@ -114,33 +127,39 @@ export const helpTxt = [
 ].join("\n");
 
 export const cliJson = {
-  name: "Aaron Perkel",
-  title: "Network Technician @ UVM",
+  name: identity.name,
+  title: identity.role,
+  tagline: identity.tagline,
+  dayJob: `${identity.currentRole.title} @ ${identity.currentRole.org}`,
   location: "Burlington, Vermont",
-  email: "me@aaronperkel.com",
-  site: "https://aaronperkel.com",
-  github: "https://github.com/aaronperkel",
+  email: identity.email,
+  site: identity.site,
+  github: identity.github,
+  linkedin: identity.linkedin,
   links: [
-    { title: "Home", url: "https://aaronperkel.com/" },
-    { title: "About", url: "https://aaronperkel.com/about" },
-    { title: "Services", url: "https://aaronperkel.com/services" },
-    { title: "Resume", url: "https://aaronperkel.com/resume" },
+    { title: "Home", url: `${identity.site}/` },
+    { title: "About", url: `${identity.site}/about` },
+    { title: "Resume", url: `${identity.site}/resume` },
+    { title: "Contact", url: `${identity.site}/contact` },
+    { title: "Services", url: `${identity.site}/services` },
   ],
-  projects: [
-    { title: "Lejer", url: "https://uselejer.com" },
-    { title: "Íocón", url: "https://iocongraphics.com" },
-    { title: "Catamount Sublets", url: "https://catamountsublets.com" },
-    { title: "Vermont Plate Log", url: "https://github.com/aaronperkel/vermont-plate-log" },
-  ],
+  projects: featured.map((p) => ({
+    title: p.name,
+    tagline: p.tagline,
+    status: p.status,
+    caseStudy: `${identity.site}/projects/${p.slug}`,
+    url: p.links[0]?.href ?? null,
+  })),
 };
 
-// No home address here — this file is downloadable by anyone on the internet.
+// No phone or home address here — this file is downloadable by anyone on the
+// internet, and both live only on /me (data/contact.ts).
 export const vcard = `
 BEGIN:VCARD
 VERSION:3.0
 N:Perkel;Aaron;;;
-FN:Aaron Perkel
-EMAIL;TYPE=INTERNET,PREF:me@aaronperkel.com
-TEL;TYPE=CELL:478-262-8935
-URL:https://aaronperkel.com
+FN:${identity.name}
+TITLE:${identity.role}
+EMAIL;TYPE=INTERNET,PREF:${identity.email}
+URL:${identity.site}
 END:VCARD`.trim();

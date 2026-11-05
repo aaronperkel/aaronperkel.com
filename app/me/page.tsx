@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { openGraph } from "@/app/og";
 import ContactCard from "@/components/ContactCard";
 import { contact } from "@/data/contact";
 
@@ -9,6 +10,7 @@ export const metadata: Metadata = {
   description: "Tap to call, text, email, or get directions.",
   robots: { index: false, follow: false },
   alternates: { canonical: "/me" },
+  openGraph: openGraph("/me"),
 };
 
 export default function Me() {

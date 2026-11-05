@@ -4,6 +4,8 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { identity } from "@/data/identity";
+import { openGraph } from "@/app/og";
 import "./globals.css";
 
 // Self-hosted from committed files (Fontsource latin-subset woff2) rather than
@@ -26,10 +28,9 @@ const plexMono = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://aaronperkel.com"),
-  title: "Aaron Perkel – CS Grad and Network Technician",
-  description:
-    "Computer science grad, network technician, and avgeek blending tech and flight. Check out my projects, resume, & more.",
+  metadataBase: new URL(identity.site),
+  title: identity.title,
+  description: identity.metaDescription,
   icons: {
     icon: [
       { url: "/img/favicon.svg", type: "image/svg+xml" },
@@ -44,12 +45,8 @@ export const metadata: Metadata = {
     title: "AP",
     statusBarStyle: "default",
   },
-  // og:title/og:description fall back to each page's resolved title/description.
-  openGraph: {
-    type: "website",
-    url: "https://aaronperkel.com",
-    siteName: "Aaron Perkel",
-  },
+  // Pages override this with their own openGraph("/path") for a correct og:url.
+  openGraph: openGraph("/"),
   twitter: {
     card: "summary_large_image",
   },
@@ -67,21 +64,23 @@ export const viewport: Viewport = {
 const personSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Aaron Perkel",
-  url: "https://aaronperkel.com",
-  email: "mailto:me@aaronperkel.com",
+  name: identity.name,
+  url: identity.site,
+  email: `mailto:${identity.email}`,
+  description: identity.tagline,
   sameAs: [
-    "https://github.com/aaronperkel",
-    "https://linkedin.com/in/aaronperkel",
+    identity.github,
+    identity.linkedin,
     "https://youtube.com/@aaronperkel",
     "https://instagram.com/aaronperkel",
     "https://aperkel.w3.uvm.edu",
   ],
-  jobTitle: "Network Technician",
-  worksFor: {
-    "@type": "Organization",
-    name: "University of Vermont",
-  },
+  jobTitle: identity.role,
+  // Both are true: the LLC is the dev work, UVM is the day job.
+  worksFor: [
+    { "@type": "Organization", name: identity.business },
+    { "@type": "Organization", name: identity.currentRole.org },
+  ],
   alumniOf: [
     {
       "@type": "CollegeOrUniversity",
@@ -90,11 +89,11 @@ const personSchema = {
   ],
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Burlington",
-    addressRegion: "VT",
-    addressCountry: "US",
+    addressLocality: identity.location.city,
+    addressRegion: identity.location.region,
+    addressCountry: identity.location.country,
   },
-  image: "https://aaronperkel.com/img/headshot.webp",
+  image: `${identity.site}/img/headshot.webp`,
 };
 
 export default function RootLayout({

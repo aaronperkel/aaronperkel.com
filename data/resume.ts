@@ -1,13 +1,11 @@
 // Resume content — the single source for both the /resume page and the
-// PDF generated at build time by app/resume.pdf/route.ts.
+// PDF generated at build time by app/resume.pdf/route.ts. The PDF must stay
+// one page (`npm run check:resume`). No phone number: that lives only on /me.
+import { identity } from "@/data/identity";
+
 export interface ContactItem {
   label: string;
   href?: string;
-}
-
-export interface Honor {
-  title: string;
-  date?: string;
 }
 
 export interface Job {
@@ -32,91 +30,100 @@ export interface ResumeProject {
   link: string;
   name: string;
   description?: string;
-  // Optional sub-bullets for the projects worth more than a one-liner.
-  details?: string[];
 }
 
 export const resumeData = {
-  name: "Aaron Perkel",
+  name: identity.name,
+  headline: identity.role,
   contactInfo: [
-    { label: "me@aaronperkel.com", href: "mailto:me@aaronperkel.com" },
-    { label: "(478) 262-8935", href: "tel:4782628935" },
-    // City/state only — the full street address doesn't belong on a public page.
-    { label: "Burlington, VT" },
+    { label: identity.email, href: `mailto:${identity.email}` },
     // Web page and PDF both show the full host/path from href for http links.
-    { label: "aaronperkel.com", href: "https://aaronperkel.com" },
-    { label: "github.com/aaronperkel", href: "https://github.com/aaronperkel" },
-    { label: "linkedin.com/in/aaronperkel", href: "https://linkedin.com/in/aaronperkel" },
+    { label: "aaronperkel.com", href: identity.site },
+    { label: "github.com/aaronperkel", href: identity.github },
+    { label: "linkedin.com/in/aaronperkel", href: identity.linkedin },
+    // City/state only — the full street address doesn't belong on a public page.
+    { label: `${identity.location.city}, ${identity.location.region}` },
   ] satisfies ContactItem[],
-  // Empty for now; typed so the section stays type-safe until an entry returns.
-  honorsAndAwards: [
-    // { title: "Excellence in Technology", date: "May 2021" },
-  ] as Honor[],
   experience: [
+    {
+      title: "Software Developer — Aaron Perkel LLC (freelance)",
+      location: "Burlington, VT",
+      time: "Jun 2026 – Present",
+      details: [
+        "Building registration and Stripe payments for a nonprofit Irish dance org (~1,000 dancer registrations/yr, first season 2027): webhook-driven payment state, idempotent off-session waitlist charges, business rules enforced in Postgres; 87 test files including Playwright E2E",
+        "Built and run iocongraphics.com for an independent art studio: order intake, a live order queue with email notifications, moderated reviews, and an owner-run admin portal",
+        "Own every engagement end to end: scoping and contracts, schema, migrations, deploys, and support",
+      ],
+    },
     {
       title: "Network Technician",
       location: "University of Vermont – Burlington, VT",
       time: "May 2025 – Present",
       details: [
-        "Support campus-wide networking and telecommunications infrastructure within an enterprise environment",
-        "Execute department-level phone system migrations from Nortel to Cisco",
-        "Install, mount, and patch wireless access points across campus buildings",
+        "Support network and telecom infrastructure across UVM’s 205-building campus and 12 remote sites",
+        "Migrate departments from Nortel to Cisco phone systems",
+        "Install, mount, and patch wireless access points",
+        "Wrote the Network Services triage guide used by UVM’s Tech Team as first point of contact for jacks and VoIP phones",
       ],
     },
     {
-      title: "ETS Student Technician - Level II",
+      title: "ETS Student Technician – Level II",
       location: "University of Vermont – Burlington, VT",
-      time: "Nov 2023 – May 2025 • 1 yr 7 mos",
+      time: "Nov 2023 – May 2025",
       details: [
-        "Primary IT support contact for UVM staff & students; triaged and escalated tickets",
-        "Maintained internal documentation and assisted lower level techs",
+        "Primary IT support contact for staff and students; triaged and escalated tickets; maintained internal documentation",
       ],
     },
   ] satisfies Job[],
+  projects: [
+    {
+      link: "/projects/catamount-sublets",
+      name: "Catamount Sublets",
+      description:
+        "141 UVM students, 75 listings. Rebuilt my 2025 PHP app as Next.js + Postgres (Drizzle, Neon); NetID-restricted email OTP replaced CAS SSO; migrated 44 listings and 199 photos in a ~20-min live cutover; CI with 36 test files.",
+    },
+    {
+      link: "/projects/lejer",
+      name: "Lejer",
+      description:
+        "multi-tenant bill splitting on Next.js + Postgres with per-household row-level security (non-bypassable app role), hashed email-code auth, hourly cron reminders, ~790 verification checks.",
+    },
+  ] satisfies ResumeProject[],
+  skills: [
+    { category: "Languages", items: ["TypeScript", "JavaScript", "SQL", "Python", "Java", "PHP"] },
+    {
+      category: "Backend & Data",
+      items: [
+        "Node.js",
+        "REST APIs",
+        "PostgreSQL (row-level security, constraints, migrations)",
+        "Drizzle ORM",
+        "MySQL / TiDB",
+        "Stripe (Checkout, webhooks)",
+        "Auth (Auth.js, Better Auth)",
+        "Resend",
+      ],
+    },
+    { category: "Frontend", items: ["React", "Next.js (App Router)", "Tailwind CSS"] },
+    {
+      category: "Infra & Tools",
+      items: [
+        "Vercel (Functions, Cron, Blob, Queues)",
+        "Neon",
+        "GitHub Actions",
+        "Linux",
+        "Git",
+        "Vitest",
+        "Playwright",
+        "Claude Code",
+      ],
+    },
+  ] satisfies SkillGroup[],
   education: [
     {
       institution: "University of Vermont",
-      degree: "B.S. Computer Science, Mathematics Minor — completed in three years",
+      degree: "B.S. Computer Science, Mathematics minor — completed in three years",
       time: "Aug 2022 – May 2025",
     },
-    // {
-    //   institution: "Middle Georgia State University",
-    //   degree: "M.S. Management, Aviation Concentration",
-    //   time: "Admitted",
-    // },
   ] satisfies School[],
-  skills: [
-    { category: "Languages", items: ["TypeScript", "JavaScript", "Python", "SQL", "C", "C++", "Java", "PHP"] },
-    { category: "Full-Stack", items: ["React", "Next.js (App Router)", "Node.js", "REST APIs", "Tailwind CSS"] },
-    { category: "Data", items: ["PostgreSQL", "MySQL", "TiDB Cloud", "Schema design & migrations"] },
-    { category: "Cloud & CI", items: ["Git", "GitHub Actions", "Vercel", "Cloudflare", "Docker", "Linux"] },
-    { category: "AI Tooling", items: ["Claude Code", "LLM-assisted development"] },
-    { category: "Interests", items: ["Aviation", "Flight sim (VATSIM)", "FAA PPL"] },
-  ] satisfies SkillGroup[],
-  projects: [
-    {
-      link: "/?project=Iocon%20Graphics",
-      name: "Iocon Graphics",
-      description: "Production storefront built for a working artist — iocongraphics.com",
-      details: [
-        "Sole engineer for a non-technical client: gallery, six order flows, a live order queue, moderated reviews, and an admin portal she runs herself — Next.js 15, TypeScript, TiDB Cloud; live and taking real orders",
-      ],
-    },
-    {
-      link: "/?project=Catamount%20Sublets",
-      name: "Catamount Sublets",
-      description: "Sublet listings platform for UVM students — catamountsublets.com",
-      details: [
-        "Rebuilt my PHP/MySQL sublet board as Next.js 16 + TypeScript on Neon Postgres (Drizzle) with email-code auth, MapLibre maps, and a sharp photo pipeline; cut over in one morning, migrating 44 live listings and 199 photos",
-      ],
-    },
-    {
-      link: "/?project=Lejer",
-      name: "Lejer",
-      description: "Hosted, multi-tenant household bill splitting — uselejer.com",
-      details: [
-        "Grew my roommates' PHP bill tracker into a product any household can sign up for: Next.js 16 + TypeScript on Neon Postgres with row-level security per household, email-code auth, Vercel Blob statements, and Resend reminders; migrated both existing houses at launch",
-      ],
-    },
-  ] satisfies ResumeProject[],
 };

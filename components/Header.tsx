@@ -17,7 +17,9 @@ export default function Header() {
           className="h-9 w-9 rounded-full"
           priority
         />
-        Aaron Perkel
+        {/* Visually hidden on phones so the nav fits on one line; the avatar
+            stays the home link and the name stays its accessible label. */}
+        <span className="whitespace-nowrap max-sm:sr-only">Aaron Perkel</span>
       </Link>
       <Nav />
     </header>

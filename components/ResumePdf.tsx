@@ -36,13 +36,20 @@ const styles = StyleSheet.create({
     letterSpacing: 1,
     marginBottom: 2,
   },
-  contactRow: {
-    flexDirection: "row",
-    justifyContent: "center",
-    marginTop: 4,
+  headline: {
+    fontSize: 11,
+    textAlign: "center",
     color: color.muted,
   },
-  separator: { marginHorizontal: 7, color: color.rule },
+  contactRow: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    marginTop: 4,
+    fontSize: 9,
+    color: color.muted,
+  },
+  separator: { marginHorizontal: 5, color: color.rule },
   link: {
     color: color.link,
     textDecoration: "none",
@@ -68,7 +75,6 @@ const styles = StyleSheet.create({
   time: { color: color.muted, fontSize: 9 },
   location: { fontFamily: "Helvetica-Oblique", color: color.muted, marginBottom: 2 },
   bullet: { flexDirection: "row", marginBottom: 1 },
-  subBullet: { flexDirection: "row", marginBottom: 1, paddingLeft: 12, color: color.muted },
   bulletDot: { width: 12, textAlign: "center" },
   bulletText: { flex: 1 },
   skillsGrid: { flexDirection: "row", flexWrap: "wrap" },
@@ -112,14 +118,13 @@ function Bullet({ children }: { children: React.ReactNode }) {
 }
 
 export default function ResumePdf() {
-  const { name, contactInfo, experience, education, skills, projects, honorsAndAwards } =
-    resumeData;
+  const { name, headline, contactInfo, experience, education, skills, projects } = resumeData;
   return (
     <Document title={`${name} — Resume`} author={name}>
       <Page size="LETTER" style={styles.page}>
         <Text style={styles.name}>{name}</Text>
-        <ContactLine items={contactInfo.slice(0, 3)} />
-        <ContactLine items={contactInfo.slice(3)} />
+        <Text style={styles.headline}>{headline}</Text>
+        <ContactLine items={contactInfo} />
 
         <Text style={styles.sectionTitle}>Experience</Text>
         {experience.map((job) => (
@@ -135,16 +140,18 @@ export default function ResumePdf() {
           </View>
         ))}
 
-        <Text style={styles.sectionTitle}>Education</Text>
-        {education.map((edu) => (
-          <View key={edu.institution} style={styles.entry}>
-            <View style={styles.entryHeader}>
-              <Text>
-                <Text style={styles.bold}>{edu.institution}</Text>
-                {edu.degree ? ` — ${edu.degree}` : ""}
-              </Text>
-              <Text style={styles.time}>{edu.time}</Text>
-            </View>
+        <Text style={styles.sectionTitle}>Projects</Text>
+        {projects.map((project) => (
+          <View key={project.name} wrap={false}>
+            <Bullet>
+              <Link
+                src={project.link.startsWith("http") ? project.link : `${SITE}${project.link}`}
+                style={styles.link}
+              >
+                {project.name}
+              </Link>
+              {project.description ? ` — ${project.description}` : ""}
+            </Bullet>
           </View>
         ))}
 
@@ -158,38 +165,19 @@ export default function ResumePdf() {
           ))}
         </View>
 
-        <Text style={styles.sectionTitle}>Projects</Text>
-        {projects.map((project) => (
-          <View key={project.name} wrap={false}>
-            <Bullet>
-              <Link
-                src={project.link.startsWith("http") ? project.link : `${SITE}${project.link}`}
-                style={styles.link}
-              >
-                {project.name}
-              </Link>
-              {project.description ? ` — ${project.description}` : ""}
-            </Bullet>
-            {project.details?.map((detail, i) => (
-              <View key={i} style={styles.subBullet}>
-                <Text style={styles.bulletDot}>–</Text>
-                <Text style={styles.bulletText}>{detail}</Text>
-              </View>
-            ))}
+        <Text style={styles.sectionTitle}>Education</Text>
+        {education.map((edu) => (
+          <View key={edu.institution} style={styles.entry}>
+            <View style={styles.entryHeader}>
+              <Text>
+                <Text style={styles.bold}>{edu.institution}</Text>
+                {edu.degree ? ` — ${edu.degree}` : ""}
+              </Text>
+              <Text style={styles.time}>{edu.time}</Text>
+            </View>
           </View>
         ))}
 
-        {honorsAndAwards.length > 0 && (
-          <>
-            <Text style={styles.sectionTitle}>Honors &amp; Awards</Text>
-            {honorsAndAwards.map((honor) => (
-              <View key={honor.title} style={styles.entryHeader}>
-                <Text>{honor.title}</Text>
-                {honor.date && <Text style={styles.time}>{honor.date}</Text>}
-              </View>
-            ))}
-          </>
-        )}
       </Page>
     </Document>
   );
