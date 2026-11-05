@@ -8,6 +8,7 @@
 // ≤ 72 columns so nothing wraps in a default 80-column terminal.
 
 import { identity } from "@/data/identity";
+import { featured, otherProjects } from "@/data/projects";
 
 const style = (code: string, s: string) => `\x1b[${code}m${s}\x1b[0m`;
 const bold = (s: string) => style("1", s);
@@ -49,10 +50,17 @@ const cmd = (c: string, comment: string) =>
 const endpoint = (path: string, comment: string) =>
   path.padEnd(12) + note(`# ${comment}`);
 
-// Wide enough for the longest project name plus a two-space gutter.
-const PROJECT_COL = 22;
+// Wide enough for the longest project name plus a two-space gutter. Taglines
+// wrap within the remaining columns, continuation lines indented to match.
+const PROJECT_COL = 23;
+const indent = " ".repeat(PROJECT_COL);
 const project = (name: string, tagline: string, url: string) =>
-  name.padEnd(PROJECT_COL) + note(tagline) + "\n" + " ".repeat(PROJECT_COL) + link(url);
+  [
+    ...wrap(tagline, RULE_WIDTH - PROJECT_COL).map(
+      (line, i) => (i === 0 ? name.padEnd(PROJECT_COL) : indent) + note(line),
+    ),
+    indent + link(url),
+  ].join("\n");
 
 // ---- Header: "AARON PERKEL" in half-block caps (46 cols, 2 rows). ----
 export const headerTxt = [
@@ -68,7 +76,7 @@ export const landing = [
   section("links"),
   "",
   row("web", identity.site),
-  row("projects", `${identity.site}/#projects`),
+  row("projects", `${identity.site}/projects`),
   row("about", `${identity.site}/about`),
   row("resume", `${identity.site}/resume`),
   row("contact", `${identity.site}/contact`),
@@ -89,7 +97,7 @@ export const linksTxt = [
   section("links"),
   "",
   row("web", identity.site),
-  row("projects", `${identity.site}/#projects`),
+  row("projects", `${identity.site}/projects`),
   row("about", `${identity.site}/about`),
   row("resume", `${identity.site}/resume`),
   row("contact", `${identity.site}/contact`),
@@ -100,29 +108,12 @@ export const linksTxt = [
   "",
   section("projects"),
   "",
-  project(
-    "Lejer",
-    "Shared bills for the people you live with",
-    "https://uselejer.com",
-  ),
-  "",
-  project(
-    "Íocón",
-    "Storefront for an Irish dance graphics studio",
-    "https://iocongraphics.com",
-  ),
-  "",
-  project(
-    "Catamount Sublets",
-    "Sublet listings platform for UVM students",
-    "https://catamountsublets.com",
-  ),
-  "",
-  project(
-    "Vermont Plate Log",
-    "Logging Vermont plates spotted around Burlington",
-    "https://github.com/aaronperkel/vermont-plate-log",
-  ),
+  ...featured.flatMap((p) => [
+    // Scheme dropped (like the legend's commands) to stay within 72 columns.
+    project(p.name, p.tagline, `aaronperkel.com/projects/${p.slug}`),
+    "",
+  ]),
+  ...otherProjects.map((p) => p.name.padEnd(PROJECT_COL) + link(p.links[0].href)),
 ].join("\n");
 
 export const helpTxt = [
@@ -152,12 +143,13 @@ export const cliJson = {
     { title: "Contact", url: `${identity.site}/contact` },
     { title: "Services", url: `${identity.site}/services` },
   ],
-  projects: [
-    { title: "Lejer", url: "https://uselejer.com" },
-    { title: "Íocón", url: "https://iocongraphics.com" },
-    { title: "Catamount Sublets", url: "https://catamountsublets.com" },
-    { title: "Vermont Plate Log", url: "https://github.com/aaronperkel/vermont-plate-log" },
-  ],
+  projects: featured.map((p) => ({
+    title: p.name,
+    tagline: p.tagline,
+    status: p.status,
+    caseStudy: `${identity.site}/projects/${p.slug}`,
+    url: p.links[0]?.href ?? null,
+  })),
 };
 
 // No phone or home address here — this file is downloadable by anyone on the

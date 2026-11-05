@@ -48,7 +48,7 @@ export const servicesData: ServicesData = {
     "Handoff with documentation, or I stay on for maintenance — your call.",
   ],
   proofHtml: [
-    'I built and maintain <a href="https://iocongraphics.com" target="_blank">iocongraphics.com</a> — a storefront for a working artist with a gallery, six custom order flows, a live order queue, moderated reviews, and an admin portal she runs herself. It’s live and taking real orders.',
+    'I built and maintain <a href="https://iocongraphics.com" target="_blank">iocongraphics.com</a> — a storefront for an Irish dance graphics studio with a gallery, four custom order types, a live order queue, moderated reviews, and an admin portal the owner runs herself. It’s live and taking real orders.',
     'I also built and run <a href="https://catamountsublets.com" target="_blank">catamountsublets.com</a> — a sublet marketplace for UVM students with grid and map browsing, sign-in by a one-time code sent to a university email, photo uploads, and an admin console. It replaced an older app of mine, and every live listing moved over at launch.',
   ],
   formIntro:

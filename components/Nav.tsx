@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 
 // /services lives in the footer and on /about — the nav is for hiring managers.
 const links = [
-  { href: "/#projects", label: "projects", match: "/projects" },
+  { href: "/projects", label: "projects", match: "/projects" },
   { href: "/about", label: "about" },
   { href: "/resume", label: "resume" },
   { href: "/contact", label: "contact" },

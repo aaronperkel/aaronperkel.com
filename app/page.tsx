@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import ProjectsGrid from "@/components/ProjectsGrid";
+import ProjectList from "@/components/ProjectList";
 import { identity } from "@/data/identity";
 
 export const metadata: Metadata = {
@@ -32,7 +32,7 @@ export default function Home() {
 
       <section id="projects" className="scroll-mt-6 border-t border-rule pt-10">
         <h2 className={`mb-8 ${sectionLabel}`}>Projects</h2>
-        <ProjectsGrid />
+        <ProjectList />
       </section>
 
       <section className="mt-14 border-t border-rule pt-10">

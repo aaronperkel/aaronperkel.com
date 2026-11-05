@@ -95,15 +95,15 @@ export const resumeData = {
   ] satisfies SkillGroup[],
   projects: [
     {
-      link: "/?project=Iocon%20Graphics",
-      name: "Iocon Graphics",
+      link: "/projects/iocon-graphics",
+      name: "Íocón Graphics",
       description: "Production storefront built for a working artist — iocongraphics.com",
       details: [
-        "Sole engineer for a non-technical client: gallery, six order flows, a live order queue, moderated reviews, and an admin portal she runs herself — Next.js 15, TypeScript, TiDB Cloud; live and taking real orders",
+        "Sole engineer for a non-technical client: gallery, four order types, a live order queue, moderated reviews, and an admin portal she runs herself — Next.js 15, TypeScript, TiDB Cloud; live and taking real orders",
       ],
     },
     {
-      link: "/?project=Catamount%20Sublets",
+      link: "/projects/catamount-sublets",
       name: "Catamount Sublets",
       description: "Sublet listings platform for UVM students — catamountsublets.com",
       details: [
@@ -111,7 +111,7 @@ export const resumeData = {
       ],
     },
     {
-      link: "/?project=Lejer",
+      link: "/projects/lejer",
       name: "Lejer",
       description: "Hosted, multi-tenant household bill splitting — uselejer.com",
       details: [
