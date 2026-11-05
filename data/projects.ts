@@ -200,7 +200,7 @@ export const featured: Project[] = [
     howItWorks: [
       {
         title: "Tenant isolation",
-        body: "Postgres row-level security per household. Each request runs in a transaction that sets the household with set_config(…, true), and every policy reads it. The app connects as a role without BYPASSRLS — the migration refuses to run otherwise — and the owner role is confined to five listed call sites.",
+        body: "Postgres row-level security per household. Each request runs in a transaction that sets the household with set_config(…, true), and every policy reads it. The app connects as a role without BYPASSRLS — the migration refuses to run otherwise — and the owner role is confined to four listed call sites.",
       },
       {
         title: "Auth",

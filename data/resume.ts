@@ -46,7 +46,7 @@ export const resumeData = {
   ] satisfies ContactItem[],
   experience: [
     {
-      title: "Software Developer — Aaron Perkel LLC (freelance)",
+      title: "Software Engineer — Aaron Perkel LLC (freelance)",
       location: "Burlington, VT",
       time: "Jun 2026 – Present",
       details: [
@@ -67,12 +67,18 @@ export const resumeData = {
       ],
     },
     {
+      title: "Computer Science Teaching Assistant (part-time)",
+      location: "University of Vermont – Burlington, VT",
+      time: "Jan 2024 – May 2025",
+      details: [
+        "Built a JUnit autograder on Gradescope for Intermediate Programming (Java), automating grading of weekly assignments",
+        "TA for Intermediate Programming and Advanced Programming (C++): graded assignments and projects and helped faculty develop course materials",
+      ],
+    },
+    {
       title: "ETS Student Technician – Level II",
       location: "University of Vermont – Burlington, VT",
       time: "Nov 2023 – May 2025",
-      details: [
-        "Primary IT support contact for staff and students; triaged and escalated tickets; maintained internal documentation",
-      ],
     },
   ] satisfies Job[],
   projects: [
@@ -90,7 +96,7 @@ export const resumeData = {
     },
   ] satisfies ResumeProject[],
   skills: [
-    { category: "Languages", items: ["TypeScript", "JavaScript", "SQL", "Python", "Java", "PHP"] },
+    { category: "Languages", items: ["TypeScript", "JavaScript", "SQL", "Python", "Java", "C++", "PHP"] },
     {
       category: "Backend & Data",
       items: [
