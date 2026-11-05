@@ -15,7 +15,7 @@ export default function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="flex gap-5 font-mono text-[0.85rem]">
+    <nav className="flex gap-5 font-mono text-[0.85rem] max-sm:gap-4">
       {links.map((link) => (
         <Link
           key={link.href}
