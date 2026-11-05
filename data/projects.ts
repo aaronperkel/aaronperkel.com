@@ -117,6 +117,7 @@ export const featured: Project[] = [
     slug: "red-king-registration",
     name: "Red King Registration",
     tagline: "Feis registration and payments for a nonprofit Irish dance tabulation org",
+    image: "/img/red-king.webp",
     status: "In development; first season 2027",
     role: "Sole developer (Aaron Perkel LLC)",
     timeline: "Sep 2026 – present",
