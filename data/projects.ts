@@ -111,7 +111,10 @@ export const featured: Project[] = [
       "Open sign-up to other Vermont schools.",
       "Handle Resend bounce webhooks so dead addresses stop getting mail.",
     ],
-    links: [{ label: "catamountsublets.com", href: "https://catamountsublets.com" }],
+    links: [
+      { label: "catamountsublets.com", href: "https://catamountsublets.com" },
+      { label: "Source on GitHub", href: "https://github.com/Aaron-Perkel-LLC/catamount-sublets" },
+    ],
   },
   {
     slug: "red-king-registration",
@@ -231,6 +234,7 @@ export const featured: Project[] = [
     links: [
       { label: "uselejer.com", href: "https://uselejer.com" },
       { label: "Sample household", href: "https://uselejer.com/demo" },
+      { label: "Source on GitHub", href: "https://github.com/Aaron-Perkel-LLC/lejer" },
     ],
   },
   {

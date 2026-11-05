@@ -150,6 +150,15 @@ export default function ResumePdf() {
               >
                 {project.name}
               </Link>
+              {project.repo && (
+                <>
+                  {" ("}
+                  <Link src={project.repo} style={styles.link}>
+                    {project.repo.replace(/^https?:\/\//, "")}
+                  </Link>
+                  {")"}
+                </>
+              )}
               {project.description ? ` — ${project.description}` : ""}
             </Bullet>
           </View>

@@ -29,6 +29,8 @@ export interface SkillGroup {
 export interface ResumeProject {
   link: string;
   name: string;
+  // Public source, when there is one.
+  repo?: string;
   description?: string;
 }
 
@@ -85,12 +87,14 @@ export const resumeData = {
     {
       link: "/projects/catamount-sublets",
       name: "Catamount Sublets",
+      repo: "https://github.com/Aaron-Perkel-LLC/catamount-sublets",
       description:
         "141 UVM students, 75 listings. Rebuilt my 2025 PHP app as Next.js + Postgres (Drizzle, Neon); NetID-restricted email OTP replaced CAS SSO; migrated 44 listings and 199 photos in a ~20-min live cutover; CI with 36 test files.",
     },
     {
       link: "/projects/lejer",
       name: "Lejer",
+      repo: "https://github.com/Aaron-Perkel-LLC/lejer",
       description:
         "multi-tenant bill splitting on Next.js + Postgres with per-household row-level security (non-bypassable app role), hashed email-code auth, hourly cron reminders, ~790 verification checks.",
     },
